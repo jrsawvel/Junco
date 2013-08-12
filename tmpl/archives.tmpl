@@ -1,0 +1,21 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<p>
+<strong>
+Blog Archives
+<!-- tmpl_if userblog -->
+  for <!-- tmpl_var name="userarchives" -->'s <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="userarchives" -->">blog posts</a>
+<!-- /tmpl_if -->
+</strong>
+  <span class="greytext">(by creation date)</span>
+</p>
+
+<!-- tmpl_loop name="archives_loop" -->
+
+<p>
+<a href="<!-- tmpl_var name="cgi_app" -->/blogarchivepage/<!-- tmpl_var name="month" -->/<!-- tmpl_var name="year" -->/1/<!-- tmpl_var name="userarchives" -->"><!-- tmpl_var name="monthyear" --></a>
+</p>
+
+<!-- /tmpl_loop -->
+
+<!-- tmpl_include name="footer.tmpl" -->

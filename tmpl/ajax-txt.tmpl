@@ -1,0 +1,24 @@
+<p>
+<!-- tmpl_var name="site_name" --> - <!-- tmpl_var name="description" -->
+</p>
+
+<p>
+<!-- tmpl_var name="link" -->
+</p>
+
+<p>
+<!-- tmpl_var name="site_name" --> <!-- tmpl_var name="site_description" --> - <!-- tmpl_var name="description" -->
+</p>
+
+<tmpl_loop name="article_loop">    
+<p>
+title=<!-- tmpl_var name="title" -->
+<br />
+description=<!-- tmpl_var name="posttext" -->
+<br />
+pubDate=<!-- tmpl_var name="creationdate" --> <!-- tmpl_var name="creationtime" -->
+<br />
+link=<!-- tmpl_var name="home_page" --><!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="posttype" -->post/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urltitle" -->
+<br />
+author=<!-- tmpl_var name="author" -->
+</tmpl_loop>

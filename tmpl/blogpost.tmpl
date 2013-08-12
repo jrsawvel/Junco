@@ -1,0 +1,91 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<!-- tmpl_if usingtoc -->
+<div id="toc">
+<!-- tmpl_loop name="toc_loop" -->
+<span class="toclevel<!-- tmpl_var name="level" -->">&#149; <a href="#<!-- tmpl_var name="cleantitle" -->"><!-- tmpl_var name="toclink" --></a></span><br />
+<!-- /tmpl_loop -->
+</div>
+<!-- /tmpl_if -->
+
+<!-- tmpl_if redirectedpage -->
+<small>
+(Redirected here from : 
+ <!-- tmpl_if canedit -->
+  <a href="<!-- tmpl_var name="cgi_app" -->/edit/<!-- tmpl_var name="originalid" -->"><!-- tmpl_var name="originaltitle" --></a>)
+ <!-- tmpl_else -->
+  <strong>"<!-- tmpl_var name="originaltitle" -->"</strong>)
+ <!-- /tmpl_if -->
+</small>
+<!-- /tmpl_if -->
+
+<!-- tmpl_if viewingoldversion -->
+<strong>You're viewing old version number <!-- tmpl_var name="versionnumber" -->.</strong> - <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="versionlinkarticleid" -->/<!-- tmpl_var name="cleantitle" -->">Current version</a>
+<!-- /tmpl_if -->
+
+<!-- tmpl_if usingimageheader -->
+<center>
+<img src="<!-- tmpl_var name="imageheaderurl" -->">
+</center>
+<!-- /tmpl_if -->
+
+<div id="content">
+
+<h1 id="articletitle"><a title="word count <!-- tmpl_var name="wordcount" --> - char count <!-- tmpl_var name="charcount" --> - <!-- tmpl_var name="readingtime" --> min read" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="cleantitle" -->"><!-- tmpl_var name="title" --></a></h1>
+
+<!-- tmpl_var name="blogpost" -->
+
+</div>
+
+<p>
+<small class="greytext">From <a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="authorname" -->"><!-- tmpl_var name="authorname" -->'s</a> : <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="authorname" -->">blog</a></small>
+<br />
+<small><!-- tmpl_var name="wordcount" --> words - <!-- tmpl_var name="charcount" --> chars 
+<!-- tmpl_if readingtime -->
+ - <!-- tmpl_var name="readingtime" --> min read
+<!-- /tmpl_if -->
+</small>
+<br />
+<small>created on <!-- tmpl_var name="createddate" --> at <!-- tmpl_var name="createdtime" --></small> 
+<!-- tmpl_if updated -->
+<br />
+<small>updated on <!-- tmpl_var name="modifieddate" --> at <!-- tmpl_var name="modifiedtime" --></small> 
+<!-- /tmpl_if -->
+<!-- tmpl_if importdateexists -->
+<br />
+<small><em>import date <!-- tmpl_var name="importdate" --></em></small>
+<!-- /tmpl_if -->
+ - <a title="permalink" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="cleantitle" -->"><small>#</small></a>
+<!-- tmpl_if replycount -->
+ - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
+<!-- /tmpl_if -->
+<br />
+<small>
+ <a href="<!-- tmpl_var name="cgi_app" -->/source/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">source</a>
+ - <a href="<!-- tmpl_var name="cgi_app" -->/versions/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">versions</a>
+<!-- tmpl_if backlinks -->
+ - <a href="<!-- tmpl_var name="cgi_app" -->/backlinks/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">backlinks</a>
+<!-- /tmpl_if -->
+<!-- tmpl_if loggedin --> 
+ - <a href="<!-- tmpl_var name="cgi_app" -->/reply/<!-- tmpl_var name="articleid" -->">reply</a>
+<!-- /tmpl_if -->
+<!-- tmpl_if canedit -->
+ - <a href="<!-- tmpl_var name="cgi_app" -->/edit/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">EDIT</a>
+<!-- /tmpl_if -->
+</small>
+</p>
+
+
+<!-- tmpl_if relatedarticlesexist -->
+<p> 
+<strong>Related blog posts</strong><br />
+<!-- tmpl_loop name="relatedarticles_loop" -->
+<a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urltitle" -->"><tmpl_var name="title"></a>  - <!-- tmpl_var name="date" --><br /> 
+<!-- /tmpl_loop -->
+<!-- tmpl_if morerelatedarticles -->
+<a href="<!-- tmpl_var name="cgi_app" -->/relatedblogposts/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">more &gt;&gt;</a>
+<!-- /tmpl_if -->
+</p>
+<!-- /tmpl_if -->
+
+<!-- tmpl_include name="footer.tmpl" -->

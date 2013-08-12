@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<html lang="en">
+<head>
+<title><!-- tmpl_var name="pagetitle" --></title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="generator" content="Kestrel" />
+<meta name="reply-to" content="<!-- tmpl_var name="admin_email" -->" />
+<meta name="viewport" content="initial-scale=1, width=device-width" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> 
+
+
+<link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
+<!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
+<link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="theme" -->.css"  />
+
+
+</head>
+<body>
+
+<header>
+<nav>
+<div id="headersearch">
+<form method="post" action="<!-- tmpl_var name="cgi_app" -->/search">
+<INPUT id="headersearchbox" TYPE=text name="keywords" onfocus="if(this.value==this.defaultValue)value=''" onblur="if(this.value=='')value=this.defaultValue;" value="Search">
+<INPUT class="submitbutton" type=submit name=sb VALUE="Go">
+</form>
+</div>
+<div id="headerhomelink">
+<a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a>
+</div>
+<div id="navmenu">
+<ul>
+<li class="current" id="navmenutext"><a href="<!-- tmpl_var name="requesturi" -->">menu</a></li> 
+<span id="headersearchlink"><li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li></span>
+<!-- tmpl_if loggedin --> 
+<span class="largescreens"><li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li></span>
+<span class="smallscreens"><li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->">YOU</a></li></span>
+<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags/<!-- tmpl_var name="username" -->">tags</a></li> 
+<li><a title="Posts by users that you are following" href="<!-- tmpl_var name="cgi_app" -->/followingstream">following</a></li>
+<li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li>
+<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
+<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
+<!-- tmpl_else --> 
+<li><a title="Create an Account" href="<!-- tmpl_var name="cgi_app" -->/signup">sign-up</a></li>
+<li><a title="Login" href="<!-- tmpl_var name="cgi_app" -->/loginform">login</a></li>
+<!-- /tmpl_if -->
+</ul>
+</div>
+</nav>
+</header>
+
+<section>
+
+<!-- tmpl_if usinglargeimageheader -->
+<div id="imageheader">
+<center>
+<img src="<!-- tmpl_var name="largeimageheaderurl" -->">
+</center>
+</div>
+<!-- /tmpl_if -->
+
+<div id="sitewide">
+

@@ -1,0 +1,22 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+
+<p>
+<strong>("Backlinks") - Blog posts linking to : <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->"><!-- tmpl_var name="title" --></a></strong>
+</p>
+
+
+<!-- tmpl_if havebacklinks -->
+<!-- tmpl_loop name="backlinks_loop" -->
+<p>
+<a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urltitle" -->"><!-- tmpl_var name="title" --></a>
+</p>
+<!-- /tmpl_loop -->
+<!-- tmpl_else -->
+<p>
+None
+</p>
+<!-- /tmpl_if -->
+
+
+<!-- tmpl_include name="footer.tmpl" -->

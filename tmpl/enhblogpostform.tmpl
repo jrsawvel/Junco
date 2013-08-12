@@ -1,0 +1,97 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+</div> <!-- close id=sitewide -->
+
+<!-- tmpl_if replyblogpost -->
+<p>
+<strong>Creating a reply blog post to <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="replytoid" -->">"<!-- tmpl_var name="replytotitle" -->"</a>.</strong>
+</p>
+<!-- /tmpl_if -->
+
+<!-- tmpl_if errorexists -->
+<p>
+<h2>Article Input Error</strong></h2>
+<!-- tmpl_var name="errormessage" -->
+</p>
+<!-- /tmpl_if -->
+
+<div id="rightpane">
+<!-- tmpl_if previewingarticle -->
+<div id="content">
+<!--
+<p>
+<strong><!-- tmpl_var name="previewtitle" --></strong>
+</p>
+-->
+<h1 id="articletitle"><!-- tmpl_var name="previewtitle" --></h1>
+<p>
+<!-- tmpl_var name="previewarticle" -->
+</p>
+</div>
+<!-- /tmpl_if -->
+</div>
+
+<div id="leftpane">
+<p>
+<!-- <script type="text/javascript" src="/dvlp/buttons/comments-textile.js"></script> -->
+<form id="parulaform" method="post" action="<!-- tmpl_var name="cgi_app" -->/addarticle">
+<input type="hidden" name="replytocontentdigest" value="<!-- tmpl_var name="replytocontentdigest" -->">
+<input type="hidden" name="formtype" value="enhanced">
+<!--
+<div id="enhtoolbar"> 
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('enhtextareaboxarticle','strong')"    align="middle" title="click to make your text selection bold">B</a>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('enhtextareaboxarticle','emphasis')"  align="middle" title="click to make your text selection italicized">I</a>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('enhtextareaboxarticle','a_href')"    align="middle" title="click to add a link to the selected text">link</a>
+</div>
+-->
+<textarea id="enhtextareaboxarticle" name="article" rows="15" cols="60" autofocus><!-- tmpl_var name="article" --></textarea>
+</p>
+<div style="float:right">
+
+<!-- tmpl_if replyblogpost -->
+<a href="<!-- tmpl_var name="cgi_app" -->/replyform/<!-- tmpl_var name="replytocontentdigest" -->"><small>basic</small></a>
+<!-- tmpl_else --> 
+<a href="<!-- tmpl_var name="cgi_app" -->/blogpostform"><small>basic</small></a>
+<!-- /tmpl_if -->
+</div>
+<p>
+<input class="submitbutton" type="submit" name="sb" value="Preview">
+</p>
+<p>
+<input class="submitbutton" type="submit" name="sb" value="Post">
+</p>
+</form>
+</div>
+
+
+<!-- 3june2013
+<div id="sitewide">
+<br style="clear:left;"/>
+-->
+
+<!--
+
+</div> 
+<div id="footermenu">
+<ul>
+<li><a title="Site description" href="<!-- tmpl_var name="cgi_app" -->/blogpost/141/About">about</a></li> 
+<li><a title="Site help" href="<!-- tmpl_var name="cgi_app" -->/blogpost/142/Help">help</a></li> 
+<li><a title="Contact Administrator" href="<!-- tmpl_var name="cgi_app" -->/Contact">contact</a></li>  
+<li><a title="Archives" href="<!-- tmpl_var name="cgi_app" -->/blogarchives">archives</a></li> 
+<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags">tags</a></li> 
+<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
+</ul>
+ 
+<p>
+&copy; 2013 <a href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name" --></strong></a> - <!-- tmpl_var name="site_description" -->
+<br />
+current date: <!-- tmpl_var name="serverdatetime" -->
+</p>
+
+</div>
+
+</section>
+-->
+
+</body>
+</html>

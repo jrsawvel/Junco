@@ -1,0 +1,55 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<!-- <!-- tmpl_var name="username_of_favorite_articles" --> -->
+<!-- <!-- tmpl_var name="display_username" --> -->
+<!-- <!-- tmpl_var name="viewing_all_stream" --> -->
+<!-- <!-- tmpl_var name="pageheadingurl" --> -->
+<!-- <!-- tmpl_var name="streamtype" --> -->
+
+<!-- tmpl_if replytoparentid -->
+<!-- tmpl_if replytoparentmicroblogpost -->
+<small><a title="<!-- tmpl_var name="replytoparenttitle" -->" href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="replytoparentid" -->">parent post</a></small>
+<!-- tmpl_else -->
+<small><a title="<!-- tmpl_var name="replytoparenttitle" -->" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="replytoparentid" -->">parent post</a></small>
+<!-- /tmpl_if -->
+<small> - <a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="replytoparentid" -->">discussion thread</a></small>
+<!-- /tmpl_if -->
+
+<div id="streamcontent">
+<p>
+<!-- tmpl_include name="inc_replypostinfo.tmpl" -->
+</p>
+<small><strong><!-- tmpl_var name="replytocount" --> <!-- tmpl_var name="replytostring" --></strong></small>
+<!-- tmpl_loop name="stream_loop" -->
+<!-- <!-- tmpl_var name="blogposttype" --> -->
+<!-- <!-- tmpl_var name="title" --> -->
+<a name="<!-- tmpl_var name="articleid" -->"></a>
+<div class="<!-- tmpl_var name="useraction" -->">
+<p> 
+<small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="author" -->"><!-- tmpl_var name="author" --></a></small>: 
+ <!-- tmpl_var name="post" -->   
+<br />
+<small class="greytext">- <a href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="articleid" -->"><!-- tmpl_var name="creationdate" --></a></small> <!-- at <!-- tmpl_var name="creationtime" --> -->
+ - <small><a title="permalink" href="#<!-- tmpl_var name="articleid" -->">#</a></small>
+<!-- <!-- tmpl_var name="parentid" --> -->
+<!-- tmpl_if replycount -->
+ - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
+<!-- /tmpl_if -->
+<!-- tmpl_if logged_in_user_viewing_own_stream -->
+<!-- todo is this needed for replies? &nbsp; &nbsp; <small class="greytext"><a title="<!-- tmpl_var name="useraction" --> micro blog post" href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="useraction" -->microblog/<!-- tmpl_var name="articleid" -->">[<!-- tmpl_var name="useraction" -->]</a></small> -->
+<!-- /tmpl_if -->
+</p>
+<hr class="hrstream">
+</div>
+<!-- /tmpl_loop -->
+
+</div>  <!-- close streamcontent div -->
+
+<!-- tmpl_if notlastpage -->
+<span id="olderlink"><a href="<!-- tmpl_var name="nextpageurl" -->">Older &gt;&gt;</a></span>
+<!-- /tmpl_if -->
+<!-- tmpl_if notpageone -->
+<a href="<!-- tmpl_var name="previouspageurl" -->">&lt;&lt; Newer</a>
+<!-- /tmpl_if -->
+
+<!-- tmpl_include name="footer.tmpl" -->

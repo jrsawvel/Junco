@@ -1,0 +1,16 @@
+<p>
+<strong><!-- tmpl_var name="site_name" --> <!-- tmpl_var name="site_description" --></strong> 
+</p>
+
+<p>
+<a href="<!-- tmpl_var name="link" -->"><!-- tmpl_var name="description" --></a>
+</p>
+
+<tmpl_loop name="article_loop">    
+<p>
+<a href="<!-- tmpl_var name="home_page" --><!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="posttype" -->post/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urltitle" -->"><!-- tmpl_var name="title" --></a>
+<!-- <!-- tmpl_var name="posttext" --> -->
+<br />
+by <!-- tmpl_var name="author" --> on <!-- tmpl_var name="creationdate" --> <!-- tmpl_var name="creationtime" -->
+</p>
+</tmpl_loop>

@@ -1,0 +1,154 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<!-- tmpl_if doingsearch -->
+<small> 
+Search Results For &ldquo;<!-- tmpl_var name="keywords" -->&rdquo; 
+ - <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->">#</a>
+ - <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->/rss">rss</a>
+<!-- tmpl_unless nomatches -->
+<!-- tmpl_if singletagsearch -->
+<!-- tmpl_if isalreadyfollowingtag -->
+<form style="padding-left: 10px; display:inline!important;"  action="<!-- tmpl_var name="cgi_app" -->/unfollowtag/<!-- tmpl_var name="searchurlstr" -->/">
+<input id="unfollowbutton" type="submit" value="Unfollow">  
+</form>
+<!-- tmpl_else -->
+<form style="padding-left: 10px; display:inline!important;"  action="<!-- tmpl_var name="cgi_app" -->/followtag/<!-- tmpl_var name="searchurlstr" -->/">
+<input id="followbutton" type="submit" value="Follow">  
+</form>
+<!-- /tmpl_if -->
+<!-- /tmpl_if -->
+<!-- /tmpl_unless -->
+</small>
+
+<!-- tmpl_if nomatches -->
+<p>
+No matches found.
+</p>
+<!-- /tmpl_if -->
+
+<!-- tmpl_else -->
+
+<!-- tmpl_if viewing_all_stream -->
+    <p class="greytext">
+    <!-- tmpl_if showfollowing --> 
+    stream of followed <a href="<!-- tmpl_var name="cgi_app" -->/followingstream/<!-- tmpl_var name="followingtype" -->"><span class="activehighlight"><!-- tmpl_var name="followingtype" --></span></a> 
+    - <small><a href="<!-- tmpl_var name="cgi_app" -->/followingstream/<!-- tmpl_var name="otherfollowingtype" -->"><!-- tmpl_var name="otherfollowingtype" --></a></small> 
+    <!-- tmpl_else -->
+      <small><!-- tmpl_var name="pageheadingurl" --></small>
+    <!-- /tmpl_if -->
+    </p>
+<!-- tmpl_else -->
+<!-- tmpl_if logged_in_user_viewing_own_stream -->
+<!--   <div class="smallscreens" style="float: right;"><small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/stream/All">All</a></small></div> -->
+<!-- tmpl_else -->
+<p class="greytext"> 
+<small>
+<a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username_of_favorite_articles" -->"><!-- tmpl_var name="display_username" --></a> 
+ <!-- tmpl_var name="streamtypetext" --> posts  
+<!-- <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->">all <!-- tmpl_var name="streamtypetext" --> posts</a> --> 
+  -  <!-- tmpl_var name="pageheadingurl" -->
+</small>
+</p>
+<!-- /tmpl_if -->
+<!-- /tmpl_if -->
+<!-- /tmpl_if --> 
+
+<p>
+<!-- tmpl_var name="errmsg" -->
+</p>
+
+<!-- tmpl_if logged_in_user_viewing_own_stream -->
+<p>
+<script type="text/javascript" src="/dvlp/buttons/comments-textile.js"></script>
+ <form name="myform" onkeyup=limiter() id="parulaform" method="post" action="<!-- tmpl_var name="cgi_app" -->/addmicroblog">
+ <div id="microblogtoolbar">
+ <a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('microblogtextareabox','period')"  align="middle" title="click to add period">.</a>
+ <br style="clear:left;"/>
+ <br style="clear:left;"/>
+ <a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('microblogtextareabox','pound')"   align="middle" title="click to add pound sign"><small>#</small></a>
+ <br style="clear:left;"/>
+ </div>
+  <textarea id="microblogtextareabox" name="microblogtext" rows="5" cols="50" wrap="virtual"><!-- tmpl_var name="microblogpostingtext" --></textarea>
+  <br>
+  <input class="submitbutton" type="submit" name="sb" value="Post (300 chars max)">
+  <script language=javascript>
+document.write("<input type=text name=limit size=4 readonly value="+count+">");
+</script>
+ </form>
+</p>
+<!-- /tmpl_if -->
+
+<div id="content">
+
+<!-- tmpl_loop name="stream_loop" -->
+
+<div class="<!-- tmpl_var name="useraction" -->">
+
+<!-- tmpl_if blogposttype -->
+
+<p> 
+<!-- tmpl_unless logged_in_user_viewing_own_stream -->
+<!-- <small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="author" -->"><!-- tmpl_var name="author" --></a></small>:  -->
+<!-- /tmpl_unless -->
+<big><span class="blogposttitle"><a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="urltitle" -->"><!-- tmpl_var name="title" --></a></span></big>
+  <!-- tmpl_var name="post" --> 
+<!-- tmpl_if extendedtextexists -->
+<a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="urltitle" -->"><strong>more&gt;&gt;</strong></a>
+<!-- /tmpl_if -->  
+
+<!-- tmpl_if readingtime --> <small><!-- tmpl_var name="readingtime" --> min read</small><!-- /tmpl_if -->
+
+<br />
+<small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="author" -->"><!-- tmpl_var name="author" --></a></small> 
+<small class="greytext">- <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="urltitle" -->"><!-- tmpl_var name="creationdate" --></a></small> <!-- at <!-- tmpl_var name="creationtime" --> -->
+<!-- tmpl_if blogtagsexist -->
+<!-- tmpl_if extendedtextexists -->
+<br />
+ <small class="greytext"><!-- tmpl_var name="blogtaglinkstr" --></small>
+<!-- /tmpl_if -->
+<!-- /tmpl_if -->
+<!-- tmpl_if replycount -->
+ - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
+<!-- /tmpl_if -->
+<!-- tmpl_if logged_in_user_viewing_own_stream -->
+ &nbsp; &nbsp; <small class="greytext"><a title="<!-- tmpl_var name="useraction" --> blog post" href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="useraction" -->blog/<!-- tmpl_var name="articleid" -->">[<!-- tmpl_var name="useraction" -->]</a></small>
+<!-- /tmpl_if -->
+
+</p>
+
+<!-- tmpl_else -->
+
+<p> 
+<!-- tmpl_unless logged_in_user_viewing_own_stream -->
+<small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="author" -->"><!-- tmpl_var name="author" --></a></small>: 
+<!-- /tmpl_unless -->
+ <!-- tmpl_var name="post" -->   
+<br />
+<small class="greytext">- <a href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="articleid" -->"><!-- tmpl_var name="creationdate" --></a></small> <!-- at <!-- tmpl_var name="creationtime" --> -->
+<!-- tmpl_if replycount -->
+ - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
+<!-- /tmpl_if -->
+<!-- tmpl_if logged_in_user_viewing_own_stream -->
+ &nbsp; &nbsp; <small class="greytext"><a title="<!-- tmpl_var name="useraction" --> micro blog post" href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="useraction" -->microblog/<!-- tmpl_var name="articleid" -->">[<!-- tmpl_var name="useraction" -->]</a></small>
+<!-- /tmpl_if -->
+</p>
+
+<!-- /tmpl_if -->
+
+<!-- 27jun2013 <hr class="hrstream"> -->
+<br />
+
+</div>
+
+<!-- /tmpl_loop -->
+
+</div>  <!-- close streamcontent div -->
+
+<!-- tmpl_if notlastpage -->
+<span id="olderlink"><a href="<!-- tmpl_var name="nextpageurl" -->">Older &gt;&gt;</a></span>
+<!-- /tmpl_if -->
+<!-- tmpl_if notpageone -->
+<a href="<!-- tmpl_var name="previouspageurl" -->">&lt;&lt; Newer</a>
+<!-- /tmpl_if -->
+
+<!-- tmpl_include name="footer.tmpl" -->

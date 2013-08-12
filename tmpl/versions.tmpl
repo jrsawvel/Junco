@@ -1,0 +1,61 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<p>
+All versions for: <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="currentarticleid" -->/<!-- tmpl_var name="titleurl" -->"><!-- tmpl_var name="title" --></a> 
+</p>
+
+
+<form method="post" action="<!-- tmpl_var name="cgi_app" -->/compare">
+
+<table border="0" cellspacing="5" width="90%">
+
+<tr>
+<td align="center"><input class="submitbutton" type="submit" value="Compare Versions"></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+
+<tr>
+<th align="center">Select</th>
+<th align="left">View Article</th>
+<th align="left">Edited By</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th align="left">Edit Reason</th>
+</tr>
+
+<tr>
+<td align="center">
+<input type="radio" name="leftid" value="<!-- tmpl_var name="currentarticleid" -->">
+<input type="radio" name="rightid" value="<!-- tmpl_var name="currentarticleid" -->" checked="checked">
+</td>
+<td align="left"><a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="currentarticleid" -->">version <!-- tmpl_var name="currentversion" --></a></td>
+<td align="left"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="currentauthor" -->"><!-- tmpl_var name="currentauthor" --></a></td>
+<td align="right"><!-- tmpl_var name="currentcreationdate" --></td>
+<td align="left"><!-- tmpl_var name="currentcreationtime" --></td>
+<td align="left"><!-- tmpl_var name="currenteditreason" --></td>
+</tr>
+
+<!-- tmpl_loop name="versions_loop" -->
+<tr>
+<td align="center">
+<input type="radio" name="leftid" value="<!-- tmpl_var name="articleid" -->" <!-- tmpl_var name="checked" -->>
+<input type="radio" name="rightid" value="<!-- tmpl_var name="articleid" -->">
+</td>
+<td align="left"><a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->">version <!-- tmpl_var name="version" --></a></td>
+<td align="left"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="author" -->"><!-- tmpl_var name="author" --></a></td>
+<td align="right"><!-- tmpl_var name="creationdate" --></td>
+<td align="left"><!-- tmpl_var name="creationtime" --></td>
+<td align="left"><!-- tmpl_var name="editreason" --></td>
+</tr>
+<!-- /tmpl_loop -->
+
+<tr>
+<td align="center"><input class="submitbutton" type="submit" value="Compare Versions"></td>
+<td colspan="3">&nbsp;</td>
+</tr>
+
+</table>
+
+</form>
+
+<!-- tmpl_include name="footer.tmpl" -->

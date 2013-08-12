@@ -1,0 +1,75 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<!-- tmpl_if replyblogpost -->
+<p>
+<strong>Creating a reply blog post to <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="replytoid" -->">"<!-- tmpl_var name="replytotitle" -->"</a>.</strong>
+</p>
+<!-- /tmpl_if -->
+
+<!-- tmpl_if errorexists -->
+<p>
+<h2>Article Input Error</strong></h2>
+<!-- tmpl_var name="errormessage" -->
+</p>
+<!-- /tmpl_if -->
+
+<!-- tmpl_if previewingarticle -->
+<p>
+Previewing article ...
+</p>
+
+<div id="content">
+<p>
+<strong><!-- tmpl_var name="previewtitle" --></strong>
+</p>
+
+<p>
+<!-- tmpl_var name="previewarticle" -->
+</p>
+</div>
+<!-- /tmpl_if -->
+
+<p>
+<script type="text/javascript" src="/dvlp/buttons/comments-textile.js"></script>
+<form id="parulaform" method="post" action="<!-- tmpl_var name="cgi_app" -->/addarticle">
+<input type="hidden" name="replytocontentdigest" value="<!-- tmpl_var name="replytocontentdigest" -->">
+<!--
+<div id="toolbar"> 
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('textareaboxarticle','strong')"    align="middle" title="click to make your text selection bold">B</a>
+ <br style="clear:left;"/>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('textareaboxarticle','emphasis')"  align="middle" title="click to make your text selection italicized">I</a>
+ <br style="clear:left;"/>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('textareaboxarticle','a_href')"    align="middle" title="click to add a link to the selected text">link</a>
+ <br style="clear:left;"/>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('textareaboxarticle','period')"     align="middle" title="click to add period">.</a>
+ <br style="clear:left;"/>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('textareaboxarticle','pound')"     align="middle" title="click to add pound sign">#</a>
+</div>
+-->
+
+<textarea id="textareaboxarticle" name="article" rows="15" cols="60"><!-- tmpl_var name="article" --></textarea>
+</p>
+
+<div style="float:right">
+<a href="<!-- tmpl_var name="cgi_app" -->/splitscreen"><small>split screen</small></a>
+<br />
+<a href="<!-- tmpl_var name="cgi_app" -->/textileeditor"><small>live preview (test)</small></a>
+</div>
+
+<div id="toolbar" style="margin-right:20px;"> 
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('textareaboxarticle','period')"     align="middle" title="click to add period">.</a>
+ <br style="clear:left;"/>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('textareaboxarticle','pound')"     align="middle" title="click to add pound sign">#</a>
+</div>
+
+<p>
+<input class="submitbutton" type="submit" name="sb" value="Preview">
+</p>
+
+<p>
+<input class="submitbutton" type="submit" name="sb" value="Post">
+</p>
+
+</form>
+
+<!-- tmpl_include name="footer.tmpl" -->

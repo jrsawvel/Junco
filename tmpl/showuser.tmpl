@@ -1,0 +1,58 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<p>
+<strong>User Profile for "<!-- tmpl_var name="profileusername" -->"</strong>
+</p>
+
+<!-- tmpl_if deleteduser -->
+<p>
+<span style="color: #c00">User account deactivated</span>
+</p>
+<!-- /tmpl_if -->
+
+<!-- tmpl_if loggedin -->
+<!-- tmpl_unless ownerloggedin -->
+<!-- tmpl_if isalreadyfollowing -->
+<form action="<!-- tmpl_var name="cgi_app" -->/unfollow/<!-- tmpl_var name="profileusername" -->/">
+<input id="unfollowbutton" type="submit" value="Unfollow">  
+</form>
+<!-- tmpl_else -->
+<form action="<!-- tmpl_var name="cgi_app" -->/follow/<!-- tmpl_var name="profileusername" -->/">
+<input id="followbutton" type="submit" value="Follow">  
+</form>
+<!-- /tmpl_if -->
+<!-- /tmpl_unless -->
+<!-- /tmpl_if -->
+
+<ul>
+<li>Member since: <!-- tmpl_var name="creationdate" --></li>
+<li>Blog posts: <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="profileusername" -->"><!-- tmpl_var name="blogcount" --></a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/blog/<!-- tmpl_var name="profileusername" -->">rss</a></li>
+<li>Micro Blog posts: <a href="<!-- tmpl_var name="cgi_app" -->/microblog/<!-- tmpl_var name="profileusername" -->"><!-- tmpl_var name="microblogcount" --></a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/microblog/<!-- tmpl_var name="profileusername" -->">rss</a></li>
+<!-- tmpl_if ownerloggedin -->
+<!-- /tmpl_if -->
+<li><a href="<!-- tmpl_var name="cgi_app" -->/stream/<!-- tmpl_var name="profileusername" -->">Stream</a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/stream/<!-- tmpl_var name="profileusername" -->">rss</a> -- (<a title="All posts by all users" href="<!-- tmpl_var name="cgi_app" -->/stream/All">All</a>)</li>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/tags/<!-- tmpl_var name="profileusername" -->">Tags</a></li>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/blogarchives/<!-- tmpl_var name="profileusername" -->">Archives</a></li>
+</ul>
+
+<!-- tmpl_if ownerloggedin -->
+<div id="loggedinuserinfo">
+<p class="greytext"> 
+<!-- Items only visible to you when you're logged in. -->
+<ul>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/settings">Change your password, e-mail address, or description info</a></li>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/following/users">Following Users</a> : <!-- tmpl_var name="followingcount" -->  <small><a href="<!-- tmpl_var name="cgi_app" -->/followingstream/users">stream</a></small></li>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/following/tags">Following Tags</a> : <!-- tmpl_var name="followingtagcount" -->  <small><a href="<!-- tmpl_var name="cgi_app" -->/followingstream/tags">stream</a></small></li>
+<!-- <li><a href="<!-- tmpl_var name="cgi_app" -->/followedby">Followed By</a> : <!-- tmpl_var name="beingfollowedbycount" --></li> -->
+<li><a href="<!-- tmpl_var name="cgi_app" -->/private">Private Blog Posts</a> : <!-- tmpl_var name="privateblogcount" --></li>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/draft">Draft Blog Posts</a> : <!-- tmpl_var name="draftblogcount" --></li>
+</ul> 
+</p>
+</div>
+<!-- /tmpl_if -->
+
+<p>
+<!-- tmpl_var name="descformat" -->
+</p>
+
+<!-- tmpl_include name="footer.tmpl" -->

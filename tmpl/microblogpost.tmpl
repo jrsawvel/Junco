@@ -1,0 +1,38 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<!-- tmpl_if parentid -->
+<!-- tmpl_if microblogposttype -->
+<small><a title="<!-- tmpl_var name="replytotitle" -->" href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="replytoid" -->">parent post</a></small>
+<!-- tmpl_else -->
+<small><a title="<!-- tmpl_var name="replytotitle" -->" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="replytoid" -->">parent post</a></small>
+<!-- /tmpl_if -->
+<!-- /tmpl_if -->
+<small> - <a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="replytoid" -->">discussion thread</a></small>
+
+<div id="content">
+<p id="microblogcontent">
+<!-- tmpl_var name="microblogpost" -->
+</p>
+</div>
+
+<p>
+<small>
+<span class="greytext">From <a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="authorname" -->"><!-- tmpl_var name="authorname" -->'s</a> : <a href="<!-- tmpl_var name="cgi_app" -->/microblog/<!-- tmpl_var name="authorname" -->">micro blog</a></span>
+<br />
+ created on <!-- tmpl_var name="createddate" --> at <!-- tmpl_var name="createdtime" --></small> 
+<!-- tmpl_if importdateexists -->
+<br />
+<small><em>import date <!-- tmpl_var name="importdate" --></em></small>
+<!-- /tmpl_if -->
+ - <a title="permalink" href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="articleid" -->"><small>#</small></a>
+<!-- tmpl_if replycount -->
+ - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
+<!-- /tmpl_if -->
+<br />
+<!-- tmpl_if loggedin --> 
+<small><a href="<!-- tmpl_var name="cgi_app" -->/reply/<!-- tmpl_var name="articleid" -->">reply</a></small> 
+<!-- /tmpl_if -->
+</p>
+
+<!-- tmpl_include name="footer.tmpl" -->
+

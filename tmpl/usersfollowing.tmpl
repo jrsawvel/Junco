@@ -1,0 +1,15 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+Users that you are following:
+<br />
+
+<div id="streamcontent">
+<!-- tmpl_loop name="usersfollowing_loop" -->
+<small class="greytext"><a title="unfollow user" href="<!-- tmpl_var name="cgi_app" -->/unfollow/<!-- tmpl_var name="item" -->">X</a></small> -   
+  <a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="item" -->"><!-- tmpl_var name="item" --></a>  -
+<small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/stream/<!-- tmpl_var name="item" -->">stream</a></small>
+<br />
+<!-- /tmpl_loop -->
+</div>
+
+<!-- tmpl_include name="footer.tmpl" -->

@@ -1,0 +1,32 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<p class="greytext">
+<strong><!-- tmpl_var name="usertags" -->Tags by</strong> 
+ <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="tagdisplaytype" -->/<!-- tmpl_var name="sortby_username" -->"><span class="activehighlight"><!-- tmpl_var name="tagdisplayname" --></span></a>
+ - <small><a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="othertagdisplaytype" -->/<!-- tmpl_var name="sortby_username" -->"><!-- tmpl_var name="othertagdisplayname" --></a></small>
+<br />
+<a href="#tagcloud">tag cloud</a> - <a href="<!-- tmpl_var name="cgi_app" -->/tagscountstop/<!-- tmpl_var name="sortby_username" -->">top tags</a>
+</p>
+
+<p>
+<!-- tmpl_loop name="tags_loop" -->
+<a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="tagfunction" -->/<!-- tmpl_var name="name" -->/<!-- tmpl_var name="sortbyusername" -->"><!-- tmpl_var name="name"></a> - <!-- tmpl_var name="count" --> <br />
+<!-- /tmpl_loop -->
+</p>
+
+
+<a name="tagcloud"></a>
+<p>
+Tag Cloud, a more intuitive view of the most popular tags.
+</p>
+
+<p>
+<!-- tmpl_loop name="tag_cloud_loop" -->
+<a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="tagfunction" -->/<!-- tmpl_var name="name" -->/<!-- tmpl_var name="sortbyusername" -->"><span class="<!-- tmpl_var name="class" -->"><!-- tmpl_var name="name"></span></a><!-- (<!-- tmpl_var name="count" -->) -->
+&nbsp; &nbsp;
+<!-- /tmpl_loop -->
+</p>
+
+
+
+<!-- tmpl_include name="footer.tmpl" -->

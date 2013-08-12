@@ -1,0 +1,14 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+Users who are following you:
+<br />
+
+<div id="streamcontent">
+<!-- tmpl_loop name="followedbyusers_loop" -->
+  <a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a>  -
+<small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/stream/<!-- tmpl_var name="username" -->">stream</a></small>
+<br />
+<!-- /tmpl_loop -->
+</div>
+
+<!-- tmpl_include name="footer.tmpl" -->

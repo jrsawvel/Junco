@@ -1,0 +1,39 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<blockquote>
+
+<p>
+<strong>
+"<!-- tmpl_var name="title" -->" : <span style="color: #c00;">Comparing versions <!-- tmpl_var name="leftversion" --> and <!-- tmpl_var name="rightversion" --></span>
+</strong>
+</p>
+
+<p>
+<a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="parentid" -->/<!-- tmpl_var name="urltitle" -->">Back to current version</a> |  
+<a href="<!-- tmpl_var name="cgi_app" -->/versions/<!-- tmpl_var name="parentid" -->/<!-- tmpl_var name="urltitle" -->">All versions</a> 
+&nbsp; &nbsp; 
+<span class="greytext">
+<span class="added">+ added</span> &nbsp;
+<span class="removed">- removed</span> &nbsp;
+<span class="changed">c changed</span> &nbsp;
+<span class="unmodified">u unmodified</span>
+</span>
+</p>
+
+<table class="greytext" border="1" cellspacing="0" cellpadding="4">
+ <tr>
+  <td colspan="2" align="center"><a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="leftversionid" -->/<!--  tmpl_var name="urltitle" -->">Version <!-- tmpl_var name="leftversion" --></a> : <!-- tmpl_var name="leftdate" -->, <!-- tmpl_var name="lefttime" --></td>
+  <td align="center"><a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="rightversionid" -->/<!-- tmpl_var name="urltitle" -->">Version <!-- tmpl_var name="rightversion" --></a> : <!-- tmpl_var name="rightdate" -->, <!-- tmpl_var name="righttime" --></td>
+ </tr>
+<!-- tmpl_loop name="compare_loop" -->
+ <tr>
+  <td class="greytext"><!-- tmpl_var name="modindicator" --></td>
+  <td class="<!-- tmpl_var name="leftdiffclass" -->"><!-- tmpl_var name="left" --></td>
+  <td class="<!-- tmpl_var name="rightdiffclass" -->"><!-- tmpl_var name="right" --></td>
+ </tr>
+<!-- /tmpl_loop -->
+</table>
+
+</blockquote>
+
+<!-- tmpl_include name="footer.tmpl" -->

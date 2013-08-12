@@ -1,0 +1,9 @@
+
+<div id="toolbar">
+<img class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('comment','strong')" src="bold.gif" title="click to make your text selection bold (or type control-shift-b)"  width="16" height="16">
+<img class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('comment','emphasis')" src="italic.gif" title="click to make your text selection italicized (or type control-shift-t)" width="16" height="16">
+<img class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('comment','a_href')" src="link.gif" width=32 height=16 align="middle" title="click to add a link to the selected text (or type control-shift-a)">
+</div>
+
+
+

@@ -1,0 +1,18 @@
+<!-- tmpl_if microblogpost -->
+<!-- tmpl_var name="replytotitle" -->
+<!-- tmpl_else -->
+<a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="replytoid" -->/<!-- tmpl_var name="replytourldate" -->/<!-- tmpl_var name="replytocleantitle" -->"><!-- tmpl_var name="replytotitle" --></a>
+<!-- /tmpl_if -->
+<br />
+<small class="greytext">From: <a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="replytoauthorname" -->"><!-- tmpl_var name="replytoauthorname" -->'s</a>  
+<!-- tmpl_if microblogpost -->
+ : <a href="<!-- tmpl_var name="cgi_app" -->/microblog/<!-- tmpl_var name="replytoauthorname" -->">micro blog</a>  
+ - <a href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="replytoid" -->"><!-- tmpl_var name="replytocreateddate" --></a>
+<!-- tmpl_else -->
+ : <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="replytoauthorname" -->">blog</a>  
+ - <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="replytoid" -->/<!-- tmpl_var name="replytourldate" -->/<!-- tmpl_var name="replytocleantitle" -->"><!-- tmpl_var name="replytocreateddate" --></a>
+<!-- /tmpl_if -->
+</small>
+<!-- tmpl_if showreplylink -->
+<small>  - <a href="<!-- tmpl_var name="cgi_app" -->/reply/<!-- tmpl_var name="replytoid" -->">reply</a></small>
+<!-- /tmpl_if -->

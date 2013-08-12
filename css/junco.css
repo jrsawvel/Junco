@@ -1,0 +1,842 @@
+
+/* @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);  */
+
+
+body {
+    background: #ffffff;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif; 
+/*    font-size: 100%; */   /* ~16px */
+    line-height: 1.5em;
+    width: 100%;
+    margin: 0px;
+}  
+
+br {
+    padding: 50px;
+}
+
+.codetext {
+    color: #000000; 
+    font-size: .8em;
+    line-height: 1em;
+    font-family: "Courier New" Courier  monospace;
+    background: #f0fff0; /* light blue */
+}
+
+header {
+    background: #120a8f;   /* ultramarine blue */
+	width: 100%;
+	position: fixed; 
+	top: 0;
+	left: 0;
+	z-index: 100; 
+}
+
+section {
+    margin: 10px auto 0px;
+    position: relative;
+    padding-top: 20px; 
+}
+
+textarea {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;  
+    font-size: 1em;
+    overflow: auto;
+    background: #ffffff;
+    border: 1px solid #ccc; 
+}
+
+#textareaboxarticle {
+    width: 90%;
+    height: 250px;
+}
+
+#microblogtextareabox {
+    width: 75%;
+}   
+
+#sitewide {
+  margin: 0px auto;
+  padding: 0;
+  max-width: 42em;
+
+  padding: .4em .2em 0 .2em;
+}
+
+img {
+    max-width: 100%;
+}
+
+#imageheader img {
+    width: 100%;
+    max-width: 990px; 
+}
+
+table {
+    font-size: .8em;
+    color: #000000;
+}
+
+#content {
+    line-height: 1.7em;
+    font-size: 1.2em;
+}
+
+#streamcontent {
+    font-size: 1em;
+}
+
+#microblogcontent {
+    line-height: 1.7em;
+ /* 17jul2013  font-size: 1.2em; */
+    font-size: 1.1em;
+}
+
+#toc {
+    font-size: .8em;
+    float: right;
+    background: #f0fff0; /* light blue */
+    display: inline;
+    width: 12.5em;
+    text-align: left;
+    border: 1px solid #cccccc;
+    line-height: 1.2em;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    margin: 1.2em 0 1.2em 1.2em;
+} 
+
+/* the button CSS, javascript, and html code is from metafilter.com */
+	.buttons {
+			background: #ccc;
+           		border: 1px solid #ccc; 
+			margin: 1;
+			float:left;
+                        /* padding-left: 10px; */
+                        /* padding-right: 10px; */
+                        width: 30px;
+		}
+		
+		.raise	{
+			border-top: 1px solid buttonhighlight;
+			border-left: 1px solid buttonhighlight;
+			border-bottom: 1px solid buttonshadow;
+			border-right: 1px solid buttonshadow;
+			background: #ccc;
+			margin:1;
+			float:left;
+                        width: 30px;
+                        /* padding-left: 10px; */
+                        /* padding-right: 10px; */
+		}
+		
+		.press {
+			border-top: 1px solid buttonshadow;
+			border-left: 1px solid buttonshadow;
+			border-bottom: 1px solid buttonhighlight;
+			border-right: 1px solid buttonhighlight;
+			background: #ccc;
+			margin:1;
+			float:left;
+                        width: 30px;
+                        /* padding-left: 10px; */
+                        /* padding-right: 10px; */
+		}	
+		
+		#toolbar {
+			margin: 0;
+			padding: 0;
+			text-align:left;
+                        float:right;
+		}
+
+		#microblogtoolbar {
+			margin: 0;
+			padding: 0;
+			text-align:left;
+                        float:right;
+		}
+#toolbar {
+    display: none;
+}
+#microblogtoolbar {
+    display: none;
+}
+
+/******************* MEDIA QUERIES START **********************/
+
+/********* smartphone **********/
+@media screen and (max-device-width: 480px) {
+    body {
+/*        font-size: 110%; */
+    }
+    #content {
+        color: #000000;
+        font-size: 1.15em;
+        line-height: 1.4em;
+    }
+    #streamcontent {
+        font-size: 1em;
+    }
+    
+}
+
+/********** tablet **********/
+
+/* use @media screen and (min-width: 768px) and (max-width: 1024px) { */
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) { 
+    body {
+/*        font-size: 110%; */
+    }
+    #sitewide {
+        max-width: 40em; 
+    }
+    #content {
+        color: #000000;
+        font-size: 1.2em;
+        line-height: 1.7em; 
+    }
+    #streamcontent {
+        font-size: 1em; 
+    }
+}
+
+/********** desktop or laptop **********/
+@media screen and (min-device-width: 1224px) {
+    #content {
+        line-height: 1.7em;
+          font-size: 1.2em;  
+          color: #222222;
+    }
+}    
+
+/******************* MEDIA QUERIES END **********************/
+
+#navmenu ul {
+    list-style-type: none;
+    background: #120a8f;   /* ultramarine blue */
+    padding: .4em 0 .5em 0; 
+    margin: 0 0 0 0;
+    font-size: .9em;
+    font-family: Arial, Helvetica, sans-serif;  
+}
+#navmenu ul li {
+    display: inline-block; 
+}
+#navmenu ul li a {
+    text-decoration: none;
+    color: #f8f8f8;
+    text-align: left;
+    padding: 0 .5em;
+}
+#navmenu ul li a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+#navmenu #navmenutext {
+    display: none;
+}
+
+#footermenu {
+    clear: right;
+    font-size: .8em;
+    text-align: center;
+}
+#footermenu ul {
+    list-style-type: none;
+    padding: 0 0 0 0; 
+    margin: 0 0 0 0;
+}
+#footermenu ul li {
+    display: inline-block; 
+}
+#footermenu ul li a {
+    text-align: left;
+    padding: 0 .5em;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #000;
+    border-bottom: 1px solid #cccccc;
+}
+
+h1 {font-size: 1.40em;}
+h2 {font-size: 1.30em; padding-top: 1.5em;}
+h3 {font-size: 1.20em; border-bottom: none; padding-top: 1.5em;}
+h4 {font-size: 1.15em; border-bottom: none; padding-top: 1.5em;}
+h5 {font-size: 1.10em; border-bottom: none; padding-top: 1.5em;}
+
+#articletitle a {
+    color: #000000;
+    text-decoration: none;
+}
+
+#articletitle a:visited {
+    color: #000000;
+    text-decoration: none;
+}
+
+a.extlink {
+    text-decoration: none;
+}
+a.extlink:hover {
+    color: red;
+}
+
+.toclevel1 {margin-left: 0;}
+.toclevel2 {margin-left: .3em;}
+.toclevel3 {margin-left: .6em;}
+.toclevel4 {margin-left: .9em;}
+.toclevel5 {margin-left: 1.2em;}
+
+#content strong, b {
+    color: #000000;
+}
+
+
+a {text-decoration: none; color: #0000ff;}
+a:visited {color: #cc3399;} 
+a:hover {text-decoration: underline;}
+a:active {text-decoration: underline; color: #ff0000;}
+
+#content a strong,b {color: #0000ff;}
+#content a:visited strong,b {color: #cc3399;}
+#content a:hover strong,b {text-decoration: underline;}
+#content a:active strong,b {text-decoration: underline; color: #ff0000;}
+
+
+.greytext a {color: #888888;}
+.greytext a:visited {color: #888888;}
+.greytext a:hover {color: #000000; text-decoration: underline;}
+
+.hrstream {
+    background-color: #ffffff; 
+    border-width: 0; 
+    color: #d8d8d8; 
+    height: 1px; 
+    line-height: 0; 
+    text-align: left;
+} 
+
+.undelete {
+    background: #ffff99;
+    font-size: 0.6em;
+}
+
+#olderlink {float: right;}
+
+
+.blogposttitle a {
+    color: #000000;
+    font-weight: bold; 
+    text-decoration: none;
+}
+.blogposttitle a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.highlighted {
+    margin-right: .5em;
+    margin-left: .5em;
+    background: #f5faff;
+    padding: .2em .2em 0 .2em;
+    border: 1px solid #cccccc;
+}
+
+
+/* this alters only the opening paragraph of text on a blog post except in IE8 */
+/*
+#content > p:nth-child(2) {
+    font-size: 1.2em;
+    background: yellow;
+}
+*/
+
+
+/* ol formatting adapted from: 
+   http://www.456bereastreet.com/archive/201105/styling_ordered_list_numbers/ 
+*/
+
+ol {
+    counter-reset:li; /* Initiate a counter */
+    margin-left:0; /* Remove the default left margin */
+    padding-left:0; /* Remove the default left padding */
+}
+ol > li {
+    position:relative; /* Create a positioning context */
+    margin:0 0 6px 2em; /* Give each list item a left margin to make room for the numbers */
+    padding:4px 8px; /* Add some spacing around the content */
+    list-style:none; /* Disable the normal item numbering */
+}
+ol > li:before {
+    content:counter(li) ". "; /* Use the counter as content */
+    counter-increment:li; /* Increment the counter by 1 */
+    /* Position and style the number */
+    position:absolute;
+    top:-2px;
+    left:-2em;
+    width:2em;
+    /* Some space between the number and the content in browsers that support
+       generated content but not positioning it (Camino 2 is one example) */
+    margin-right:8px;
+    padding:4px;
+    font-weight:bold;
+    text-align:center;
+}
+li ol,
+/* 3may2013 I think it's suppose to be ol not ul  li ul {margin-top:6px;} */
+ li ol {margin-top:6px;} 
+ol ol li:last-child {margin-bottom:0;}
+
+
+#content pre code {
+    color: brown;
+    font-size: 0.8em;
+    line-height: 1em;
+    font-family:     "Courier New" Courier  monospace;
+}
+
+#content code {
+    color: brown;
+/*
+    background: #eee;
+    border: 1px solid #c0c0c0; 
+    padding: 2px 3px 2px 3px;
+*/
+    font-size: 0.8em;
+    line-height: 1em;
+    font-family:     "Courier New" Courier  monospace;
+}
+
+.added {
+    background-color: #cff;
+}
+
+.removed {
+    background-color: #fcc;
+}
+
+.changed {
+    background-color: #ff6;
+}
+
+/* tag cloud info from petefreitag.com */
+.smallestTag { font-size: xx-small; }
+.smallTag    { font-size: small; }
+.mediumTag   { font-size: medium; }
+.largeTag    { font-size: large; }
+.largestTag  { font-size: xx-large; }
+
+input {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; 
+    border: 1px solid #cccccc;
+    padding-left: .4em;
+}
+
+#headersearch {
+    float: right;
+    margin: 0 0 0 0;
+    padding: .2em;
+}
+#headersearchbox {
+    width: 200px;
+}
+
+#headersearchlink {
+    display: none;
+}
+
+.submitbutton {
+    font-size: 1em;
+    color: #f8f8f8;
+    background: #120a8f; 
+/* radius was 6px */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    border: 1px solid #120a8f;
+}
+.submitbutton:hover {
+    color: #ffffff;
+    background: #0000cd;
+}
+#homepagebutton .submitbutton {
+    font-size: 1em;
+    color: #f8f8f8;
+    background: #009900; 
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    border: 1px solid #009900;
+}
+#homepagebutton .submitbutton:hover {
+    color: #ffffff;
+    background: #00cc33; 
+}
+#followbutton {
+    font-size: 1em;
+    color: #f8f8f8;
+    background: #00cc33; 
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    border: 1px solid #00cc33;
+    font-weight: bold;
+}
+#followbutton:hover {
+    color: #ffffff;
+}
+#unfollowbutton {
+    font-size: 1em;
+    color: #666666;
+    background: #c0c0c0; 
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    border: 1px solid #c0c0c0;
+    font-weight: bold;
+}
+#unfollowbutton:hover {
+    color: #000000;
+}
+
+#headerhomelink {
+    float: left;
+    background: #120a8f;   /* ultramarine blue */
+    padding: .4em .5em .5em .5em; 
+    margin: 0 0 0 0;
+    font-size: .9em;
+    font-family: Arial, Helvetica, sans-serif;  
+}
+#headerhomelink a {
+    color: #f8f8f8;
+}
+#headerhomelink a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.smallscreens {
+    display: none;
+}
+
+/******************  nav menu on smaller screen ***************/
+@media all and (max-width: 480px) {
+    #toc {
+        display: none;
+    }
+
+#navmenu {
+    position: relative;
+    min-height: 40px;
+width: 70px;
+float: right;
+}
+#navmenu ul {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #120a8f;  
+}
+#navmenu ul li {
+    display: none;
+    margin: 0;
+}
+#navmenu .current {
+    display: block;
+}
+#navmenu ul li a {
+    display: block;
+    text-decoration: none;
+    color: #f8f8f8;
+    text-align: right;
+    padding: 0 .5em;
+}
+#navmenu ul:hover {
+    background: #000000;
+}
+#navmenu ul:hover li {
+    display: block;
+    margin: 0 0 5px;
+}
+#navmenu ul li a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+#navmenu #navmenutext {
+    display: inline;
+}
+#navmenu .current a:active {
+    display: none; 
+}
+
+    #sitewide {
+        padding: .4em .6em 0 .6em;
+    }
+
+    .largescreens {
+        display: none;
+    }
+
+    .smallscreens {
+        display: inline;
+    }
+    h2 {font-size: 1.30em; padding-top: .2em;}
+    h3 {font-size: 1.20em; border-bottom: none; padding-top: .2em;}
+    h4 {font-size: 1.15em; border-bottom: none; padding-top: .2em;}
+    h5 {font-size: 1.10em; border-bottom: none; padding-top: .2em;}
+
+} /* end media query for 480px width */
+
+@media only screen and (max-width : 640px) {
+    header {
+/* 15may2013        position: absolute; */
+        position: fixed;
+    }
+    #microblogtextareabox {
+        width: 85%;
+    }   
+    #headersearch {
+        display: none; 
+    }
+    #headersearchlink {
+        display: inline; 
+    }
+}
+
+@media only screen and (max-width: 800px) { 
+    #headersearchbox {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 700px) { 
+    #headersearchbox {
+        width: 75px;
+    }
+}
+
+@media only screen and (min-width: 320px) { 
+    #toolbar {
+        display: inline;
+    }
+    #microblogtoolbar {
+        display: inline;
+    }
+}
+@media only screen and (min-width: 1025px) { 
+    #toolbar {
+        display: none;
+    }
+    #microblogtoolbar {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 320px) { 
+    #textareaboxarticle {
+        width: 95%;
+        height: 125px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #textareaboxarticle {
+        width: 90%;
+        height: 200px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    #textareaboxarticle {
+        width: 90%;
+        height: 250px;
+    }
+}
+
+#loggedinuserinfo {
+    background: #e0eeee;
+}
+
+#leftcontent {
+background: #f8eaba; 
+border: 1px solid #ccc;   
+padding: 5px;  
+width: 45%;
+vertical-align: top;
+}
+
+#rightcontent {
+background: #ffdddd;      
+border: 1px solid #ccc;   
+padding: 5px;
+width: 45%;
+vertical-align: top;
+}
+
+.activehighlight {
+    background: #b0e2ff;
+}
+
+#enhtextareaboxarticle {
+    width: 100%;
+    height: 475px;
+}
+
+#enhmainwrap {
+    overflow:hidden;
+}
+#leftpane {
+    width: 48%;
+    float:left;
+    padding-left: 10px; 
+    position: fixed;
+}
+#rightpane {
+    width: 48%;
+    float:right;
+    padding-right: 10px; 
+}
+
+#enhtoolbar {
+margin: 0;
+padding: 0;
+text-align:left;
+}
+
+@media screen and (max-width: 1024px) {
+    #enhtoolbar {
+        padding: 0 0 40px 0;
+    }
+    #enhtextareaboxarticle {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+.tagbox {
+    float: left;
+    width: 9em; /* when sitewide width=42em */
+    height: 5em; 
+    line-height: 4.5em;
+/* portrait 
+    height: 10em; 
+    line-height: 9em;
+*/
+    border: 5px solid #666666;
+    margin: .8em;
+    font-size: 1.3em;
+    position: relative;
+    text-align: center;
+}
+
+.tagtext {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;  
+}
+
+@media all and (min-width: 320px) {
+    .tagbox {
+        width: 12em;
+        margin: .4em;
+    }
+}
+@media all and (min-width: 480px) {
+    .tagbox {
+        width: 10.5em;
+        font-size: 1.1em;
+        margin: .4em;
+    }
+}
+@media all and (min-width: 600px) {
+    .tagbox {
+        width: 12em;
+    }
+}
+@media all and (min-width: 800px) {
+    .tagbox {
+        width: 9em;
+    }
+}
+
+@media all and (max-width: 480px) {
+    #footermenu ul li a {
+        padding: 0 .3em;
+    }
+}
+
+/*  http://stackoverflow.com/questions/2295766/how-to-create-a-scrollable-div-tag-vertically-supported-in-chrome */
+.codeClass
+{
+    width: 100%;
+/*    height: 400px; */
+    overflow-y: scroll;
+    color: #000000; 
+    font-size: .9em;
+    line-height: 1em;
+    font-family: "Courier New" Courier  monospace;
+    background: #f0fff0; /* light blue */
+    /*  max-width:230px; */
+    max-height:500px; 
+}
+
+.bluebutton {
+    font-size: 1em;
+    color: #f8f8f8;
+    background: #120a8f; 
+    border: 1px solid #120a8f;
+}
+
+.greenbutton {
+    font-size: 1em;
+    color: #f8f8f8;
+    background: #00cc33; 
+    border: 1px solid #00cc33;
+}
+blockquote {
+  margin-left: .6em;
+  padding-left: 1em;
+/*  border-left: .1em solid #ddd; */ 
+}
+
+
+/* position text at bottom of div
+.tagtext {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 10px;
+}
+*/
+
+
+/* notes:
+
+letter-spacing seems to make more sense with a serif font.
+
+a sans-serif font at a large size seems to display better with the letter-spacing.
+
+ - sitewide max width:
+I tend toward the 67-72  max chars per line for blog posts.
+if content font size is 1.25em, then use 44em for max width.
+if content font size is 1.1em, then use 40em for max width.
+if content font size is 1.2em, then use 42em for max width.
+
+font-size of 1.25 to 1.3 em seems to look better with a serif font instead of a sans-serif.
+
+/*
+
+
+/* 
+   # = id - unique for a page - used once 
+   . = class - repeated usage on a page 
+   1em = 16px
+   margin/padding: top right bottom left;
+*/
+
+

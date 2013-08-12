@@ -1,0 +1,33 @@
+<!-- tmpl_include name="notloggedinheader.tmpl" -->
+
+<center>
+
+<!--
+<div style="background: #fff; color: #000; padding-bottom: 10px; padding-top: 5px; text-align: center; background-image: url(/ek/m1a.jpg); width:100%; max-width:1280px; max-height: 400px; background-repeat:no-repeat">
+-->
+<!--
+<div style="background: #fff; color: #000; padding-bottom: 10px; padding-top: 5px; text-align: center; background-image: url(/ek/m1a.jpg);  width:100%;">
+-->
+
+<div style="background: #120a8f; color: #ffffff; padding-bottom: 10px; padding-top: 5px; width:100%;">
+<div style="margin-left:auto; margin-right:auto; width:50%;"> 
+<p>
+<big>Log into <strong><!-- tmpl_var name="site_name" --></strong></big>
+</p>
+<div id="homepagebutton">
+<!-- tmpl_include name="inc_loginform.tmpl" -->
+</div>
+</div>
+</div> <!-- end background color div -->
+</center>
+
+
+<p> 
+<center>
+<form action="<!-- tmpl_var name="cgi_app" -->/signup/">
+Or  <input class="submitbutton" type="submit" value="sign-up"> to create an account.
+</form>
+</center>
+</p>
+
+<!-- tmpl_include name="notloggedinfooter.tmpl" -->

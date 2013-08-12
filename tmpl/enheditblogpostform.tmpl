@@ -1,0 +1,61 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+</div> <!-- close id=sitewide -->
+
+<div id="rightpane">
+<!-- tmpl_if viewingoldversion -->
+<p>
+<small>You're EDITING old version number <!-- tmpl_var name="versionnumber" -->. <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="parentid" -->/<!-- tmpl_var name="cleantitle" -->">Current version</a></small>
+</p>
+<!-- /tmpl_if -->
+
+<!-- tmpl_if errorexists -->
+<p>
+<h2>Article Input Error</strong></h2>
+<!-- tmpl_var name="errormessage" -->
+</p>
+<!-- /tmpl_if -->
+<small><strong>Editing article :</strong> <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->"><!-- tmpl_var name="title" --></a></small>
+<div id="content">
+<h1 id="articletitle"><!-- tmpl_var name="title" --></h1>
+<p>
+<!-- tmpl_var name="article" -->
+</p>
+</div>
+</div>
+
+<div id="leftpane">
+<p>
+<script type="text/javascript" src="/dvlp/buttons/comments-textile.js"></script>
+<form id="parulaform" method="post" action="<!-- tmpl_var name="cgi_app" -->/updateblog">
+<input type="hidden" name="articleid" value="<!-- tmpl_var name="articleid" -->"> 
+<input type="hidden" name="contentdigest" value="<!-- tmpl_var name="contentdigest" -->"> 
+<input type="hidden" name="formtype" value="enhanced">
+
+<div id="enhtoolbar"> 
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('enhtextareaboxarticle','strong')"    align="middle" title="click to make your text selection bold">B</a>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('enhtextareaboxarticle','emphasis')"  align="middle" title="click to make your text selection italicized">I</a>
+<a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('enhtextareaboxarticle','a_href')"    align="middle" title="click to add a link to the selected text">link</a>
+</div>
+<textarea id="enhtextareaboxarticle" name="markupcontent" rows="15" cols="60" autofocus><!-- tmpl_var name="editarticle" --></textarea>
+</p>
+<div style="float:right">
+<a href="<!-- tmpl_var name="cgi_app" -->/edit/<!-- tmpl_var name="articleid" -->"><small>basic</small></a>
+</div>
+<p>
+reason for edit (optional)
+<input size="50" maxlength="80" type="text" name="editreason" value="<!-- tmpl_var name="editreason" -->">
+</p>
+<p>
+<input class="submitbutton" type="submit" name="sb" value="Preview">
+</p>
+<p> 
+<input class="submitbutton" type="submit" name="sb" value="Update">
+</p>
+</form>
+</div>
+
+<div id="sitewide">
+<br style="clear:left;"/> 
+
+<!-- tmpl_include name="footer.tmpl" -->

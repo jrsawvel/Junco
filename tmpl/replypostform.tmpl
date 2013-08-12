@@ -1,0 +1,56 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<!-- Script by hscripts.com -->
+<script language=javascript>
+//Edit the counter/limiter value as your wish
+var count = "300";   // max chars
+function limiter(){
+var tex = document.myform.microblogtext.value;
+var len = tex.length;
+if(len > count){
+        // jr commented out this line: tex = tex.substring(0,count);
+        document.myform.microblogtext.value =tex;
+        document.myform.limit.value = count-len; // jr added line
+        return false;
+}
+document.myform.limit.value = count-len;
+}
+</script>
+<!-- Script by hscripts.com -->
+
+<!-- tmpl_if loggedin -->
+
+<p>
+<!-- tmpl_var name="errmsg" -->
+</p>
+
+<p>
+<!-- tmpl_include name="inc_replypostinfo.tmpl" -->
+</p>
+
+<p>
+<script type="text/javascript" src="/dvlp/buttons/comments-textile.js"></script>
+ <form name="myform" onkeyup=limiter() id="parulaform" method="post" action="<!-- tmpl_var name="cgi_app" -->/addreply">
+ <input type="hidden" name="replytocontentdigest" value="<!-- tmpl_var name="replytocontentdigest" -->" >
+ <input type="hidden" name="replytoid" value="<!-- tmpl_var name="replytoid" -->" >
+ <div id="microblogtoolbar">
+ <a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('microblogtextareabox','period')"  align="middle" title="click to add period">.</a>
+ <br style="clear:left;"/>
+ <br style="clear:left;"/>
+ <a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('microblogtextareabox','pound')"   align="middle" title="click to add pound sign"><small>#</small></a>
+ <br style="clear:left;"/>
+ </div>
+  <textarea id="microblogtextareabox" name="microblogtext" rows="5" cols="50" wrap="virtual" autofocus><!-- tmpl_var name="microblogpostingtext" --></textarea>
+<!--  <script type="text/javascript">document.getElementById('microblogtextareabox').focus()</script> -->
+  <br>
+  <input class="submitbutton" type="submit" name="sb" value="Post (300 chars max)">
+  <script language=javascript>
+document.write("<input type=text name=limit size=4 readonly value="+count+">");
+</script>
+ </form>
+</p>
+
+<!-- /tmpl_if -->
+
+
+<!-- tmpl_include name="footer.tmpl" -->

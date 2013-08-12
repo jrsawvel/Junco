@@ -1,0 +1,20 @@
+<!-- tmpl_include name="header.tmpl" -->
+
+<p class="greytext">
+<strong><!-- tmpl_var name="usertags" --></strong>  <!-- <!-- tmpl_var name="sortby_username" --> -->
+</p>
+
+<p>
+<!-- tmpl_loop name="tags_loop" -->
+<div class="tagbox">
+<span class="tagtext">
+<a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="tagfunction" -->/<!-- tmpl_var name="name" -->/<!-- tmpl_var name="sortbyusername" -->"><!-- tmpl_var name="name"></a> 
+<br />
+<small><!-- tmpl_var name="count" --> posts</small> 
+</span>
+</div>
+<!-- /tmpl_loop -->
+</p>
+
+<br style="clear:left;"/> <!-- why is this needed? todo -->
+<!-- tmpl_include name="footer.tmpl" -->

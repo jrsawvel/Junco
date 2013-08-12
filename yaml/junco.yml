@@ -1,0 +1,47 @@
+---
+    template_home:                  /home/user/Junco/tmpl
+    site_name:                      Site Name
+    cgi_app:                        /cgi-bin/junco.pl
+    home_page:                      http://<domain>.com/user/junco
+    site_description:               Simple Blogging Tool
+    admin_email:                    junco\@<domain>.com
+    email_host:                     <domain>.com
+    css_dir_url:                    http://<domain>.com/junco/css 
+    maincss_url:                    http://www.<domain>.com/junco/css/junco.css
+    max_blog_post_title_length:     150
+    max_entries_on_page:            15
+    max_microblog_posts_on_page:    30 
+    max_blog_posts_on_page:         20
+    debug_mode:                     1
+    database_host:                  dbhost
+    database_name:                  dbname
+    database_username:              dbusername
+    database_password:              dbpassword
+    dbtable_users:                  junco_users
+    dbtable_content:                junco_content
+    dbtable_tags:                   junco_tags
+    dbtable_backlinks:              junco_backlinks
+    dbtable_following:              junco_following
+    dbtable_sessionids:             junco_sessionids
+    cookie_prefix:                  junco
+    new_user_signups_allowed:       1
+    multiple_sessionids:            1
+    valid_html:                     div span table a th tr td center pre dl dt dd img code pt em strong br blockquote big small strike del ins b i u
+    top_tag_count:                  30
+    max_unique_hashtags:            8
+    archives_status:                "'o'"
+    reply_to_status:                "'o', 'p'"
+    tags_status:                    "'o'"
+    search_status:                  "'o', 'p'"
+    user_profile_status:            "'o', 'p', 'd'"
+    user_id_status:                 "'o', 'd'"
+    stream_default_display_status:  "'o'"
+    stream_user_display_status:     "'o', 'd'"
+    stream_private_display_status:  "'s'"
+    stream_draft_display_status:    "'p'"
+    get_blog_post_status:           "'o', 'v', 'p', 's'"
+    delete_blog_post_status:        "'o', 'p', 's'"
+    get_blog_source_status:         "'o', 'p', 'v'"
+    get_blog_post_edit_status:      "'o', 'v', 'p', 's'"
+    max_pwd_len:                    30
+    min_pwd_len:                    8
