@@ -58,8 +58,9 @@ No matches found.
 </p>
 
 <!-- tmpl_if logged_in_user_viewing_own_stream -->
+<!--
 <p>
-<script type="text/javascript" src="/dvlp/buttons/comments-textile.js"></script>
+<script type="text/javascript" src="/javascript/buttons/comments-textile.js"></script>
  <form name="myform" onkeyup=limiter() id="parulaform" method="post" action="<!-- tmpl_var name="cgi_app" -->/addmicroblog">
  <div id="microblogtoolbar">
  <a href="#" class="buttons" onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="return pnhEditTextarea('microblogtextareabox','period')"  align="middle" title="click to add period">.</a>
@@ -75,6 +76,7 @@ No matches found.
 document.write("<input type=text name=limit size=4 readonly value="+count+">");
 </script>
  </form>
+-->
 </p>
 <!-- /tmpl_if -->
 
@@ -91,14 +93,19 @@ document.write("<input type=text name=limit size=4 readonly value="+count+">");
 <!-- <small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="author" -->"><!-- tmpl_var name="author" --></a></small>:  -->
 <!-- /tmpl_unless -->
 <big><span class="blogposttitle"><a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="urltitle" -->"><!-- tmpl_var name="title" --></a></span></big>
-  <!-- tmpl_var name="post" --> 
+<div class="largescreens"> <!-- tmpl_var name="post" --> </div>
 <!-- tmpl_if extendedtextexists -->
-<a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="urltitle" -->"><strong>more&gt;&gt;</strong></a>
+<span class="largescreens"><a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="urltitle" -->"><strong>more&gt;&gt;</strong></a></span>
 <!-- /tmpl_if -->  
 
-<!-- tmpl_if readingtime --> <small><!-- tmpl_var name="readingtime" --> min read</small><!-- /tmpl_if -->
+<!-- tmpl_if readingtime --> 
+ <small><!-- tmpl_var name="readingtime" --> min read</small><br />
+<!-- tmpl_else -->
+<!-- tmpl_if extendedtextexists -->
+<span class="largescreens"><br /></span>
+<!-- /tmpl_if -->
+<!-- /tmpl_if -->
 
-<br />
 <small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="author" -->"><!-- tmpl_var name="author" --></a></small> 
 <small class="greytext">- <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="urltitle" -->"><!-- tmpl_var name="creationdate" --></a></small> <!-- at <!-- tmpl_var name="creationtime" --> -->
 <!-- tmpl_if blogtagsexist -->

@@ -3,7 +3,9 @@ package BlogUpdate;
 use strict;
 use warnings;
 
+use JSON::PP;
 use HTML::Entities;
+use URI::Escape::JavaScript;
 use Junco::BlogPreview;
 use Junco::BlogData;
 use Junco::Format;
@@ -27,19 +29,19 @@ sub update_blog_post {
     User::user_allowed_to_function();
 
     my $articleid = $q->param("articleid");
-#$articleid = 7;
+# $articleid = 84;
     if ( !defined($articleid) || length($articleid) < 1 ) {
         $err_msg .= "Content id missing.<br /><br />";
     }
 
     my $contentdigest = $q->param("contentdigest");
-#$contentdigest = "F99IlDpmsNSQmI291LfLTA";
+# $contentdigest = "TAcholPV9RhS3nw8l0vzfQ";
     if ( !defined($contentdigest) || length($contentdigest) < 1 ) {
         $err_msg .= "Missing content digest.<br /><br />";
     }
 
     my $markupcontent = $q->param("markupcontent");
-#$markupcontent = "test title 22jul2013\n\nhello world\n";
+# $markupcontent = "test title 20aug2013 code equals\n\ncode=yes\n\nhey\n";
     if ( !defined($markupcontent) || length($markupcontent) < 1 ) {
         $err_msg .= "You must enter content.<br /><br />";
     }
@@ -50,13 +52,17 @@ sub update_blog_post {
 
     my $sb = $q->param("sb");
 # $sb = "Preview";
-#$sb = "Update";
+# $sb = "Update";
 
     if ( !defined($sb) || length($sb) < 1 ) {
         $err_msg .= "Missing the submit button value.<br /><br />";
     }
 
     my $formtype = $q->param("formtype");
+    if ( $formtype eq "ajax" ) {
+        $markupcontent = URI::Escape::JavaScript::unescape($markupcontent);
+        $markupcontent = HTML::Entities::encode($markupcontent,'^\n\x20-\x25\x27-\x7e');
+    }
 
     my $o = BlogTitle->new();
     $o->set_article_id($articleid);
@@ -87,7 +93,7 @@ sub update_blog_post {
 
     my $clean_title   = Format::clean_title($posttitle);
 
-    $formattedcontent = Format::format_content($tmp_markupcontent);
+    $formattedcontent = Format::format_content($tmp_markupcontent, $sb);
 
     if ( $sb eq "Preview" ) {
         $formattedcontent = BlogData::include_templates($formattedcontent);
@@ -105,7 +111,23 @@ sub update_blog_post {
         my @backlinks = Backlinks::get_backlink_ids($formattedcontent);
         Backlinks::add_backlinks($aid, \@backlinks) if @backlinks;
     }
-     
+    
+    if ( $formtype eq "ajax" ) {
+        # print "Content-type: text/html\n\n";
+        # print "<h1>$posttitle</h1>" . "\n";
+        # print $formattedcontent . "\n";
+        print "Content-type: text/html\n\n";
+            my %hash;
+            $hash{'content'} = "<h1>$posttitle</h1>$formattedcontent";
+            $hash{'articleid'} = $articleid;
+            $hash{'contentdigest'} = _get_content_digest_for($articleid);
+            $hash{'errorcode'} = 0;
+            $hash{'errorstring'} = "undef"; 
+            my $json_str = encode_json \%hash;
+            print $json_str;
+        exit;
+    }
+
     my $url = Config::get_value_for("cgi_app") . "/blogpost/$aid/$clean_title";
     print $q->redirect( -url => $url);
 }
@@ -136,7 +158,7 @@ sub _update_blog_post {
         $code_post = 1;
         my $tmp_markupcontent = $markupcontent;
         $tmp_markupcontent =~ s/$title//;
-        $tmp_markupcontent = Utils::remove_power_commands($tmp_markupcontent);
+        $tmp_markupcontent = Format::remove_power_commands($tmp_markupcontent);
         $tmp_markupcontent = StrNumUtils::trim_spaces($tmp_markupcontent);
         $formattedcontent = HTML::Entities::encode($tmp_markupcontent, '<>');
 #         $formattedcontent = "<pre>\n<code>\n" . $formattedcontent . "\n</code>\n</pre>\n";
@@ -207,7 +229,7 @@ sub _update_blog_post {
     $db->execute($sql);
     Page->report_error("system", "(28) Error executing SQL", $db->errstr) if $db->err;
 
-    #####  create new content digest when article updated??? for now, now.
+    #####  todo create new content digest when article updated??? for now, no.
 
     # add new modified content
     my $version = $old{version} + 1;
@@ -291,6 +313,29 @@ sub _is_updating_correct_article {
     Page->report_error("system", "Error disconnecting from database.", $db->errstr) if $db->err;
 
     return $return_value;
+}
+
+sub _get_content_digest_for {
+    my $articleid = shift;
+
+    my $content_digest;
+
+    my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
+    return "undef" if $db->err;
+
+    my $sql = "select contentdigest from $dbtable_content where id=$articleid";
+    $db->execute($sql);
+    return "undef" if $db->err;
+
+    if ( $db->fetchrow ) {
+        $content_digest = $db->getcol("contentdigest");
+    }
+    return "undef" if $db->err;
+
+    $db->disconnect;
+    return "undef" if $db->err;
+
+    return $content_digest;
 }
 
 1;

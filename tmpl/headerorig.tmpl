@@ -1,44 +1,37 @@
-<!doctype html>
-<!--[if lt IE 7 ]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="no-js ie9" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<html lang="en">
 <head>
 <title><!-- tmpl_var name="pagetitle" --></title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<!--[if lt IE 9]> 
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<![endif]-->
-<meta name="generator" content="Junco" />
+<meta name="generator" content="Kestrel" />
 <meta name="reply-to" content="<!-- tmpl_var name="admin_email" -->" />
 <meta name="viewport" content="initial-scale=1, width=device-width" />
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> 
+
+
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
 <!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="theme" -->.css"  />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/meanmenu2.css" media="all" />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/demo2.css" media="all" />
+
+
 </head>
 <body>
 
-
-<!-- ********************************************* -->
-
 <header>
+<nav>
 <div id="headersearch">
 <form method="post" action="<!-- tmpl_var name="cgi_app" -->/search">
 <INPUT id="headersearchbox" TYPE=text name="keywords" onfocus="if(this.value==this.defaultValue)value=''" onblur="if(this.value=='')value=this.defaultValue;" value="Search">
 <INPUT class="submitbutton" type=submit name=sb VALUE="Go">
 </form>
 </div>
-<span id="homelink"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></span> 
-<nav>
+<div id="headerhomelink">
+<a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a>
+</div>
+<div id="navmenu">
 <ul>
 <!-- <li class="current" id="navmenutext"><a href="<!-- tmpl_var name="requesturi" -->">menu</a></li>  -->
-<!-- <li class="current" id="navmenutext"><a href="#">menu</a></li> -->
+<li class="current" id="navmenutext"><a href="#">menu</a></li>
 <span id="headersearchlink"><li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li></span>
 <!-- tmpl_if loggedin --> 
 <span class="largescreens"><li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li></span>
@@ -53,10 +46,9 @@
 <li><a title="Login" href="<!-- tmpl_var name="cgi_app" -->/loginform">login</a></li>
 <!-- /tmpl_if -->
 </ul>
+</div>
 </nav>
 </header>
-
-<!-- ********************************************* -->
 
 <section>
 
@@ -68,7 +60,5 @@
 </div>
 <!-- /tmpl_if -->
 
-
 <div id="sitewide">
-
 

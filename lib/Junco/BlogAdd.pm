@@ -3,6 +3,7 @@ package BlogAdd;
 use strict;
 use warnings;
 
+use JSON::PP;
 use HTML::Entities;
 use URI::Escape::JavaScript;
 use Junco::BlogData;
@@ -28,6 +29,9 @@ sub show_blog_post_form {
 sub show_splitscreen_form {
     User::user_allowed_to_function();
     my $t = Page->new("splitscreenform");
+    $t->set_template_variable("action", "addarticle");
+    $t->set_template_variable("articleid", 0);
+    $t->set_template_variable("contentdigest", "undef");
     $t->display_page_min("Blog Post Form - Split Screen");
 }
 
@@ -51,7 +55,7 @@ sub add_blog_post {
 
     my $formattedcontent = "";
 
-    my $markupcontent = $q->param("article");
+    my $markupcontent = $q->param("markupcontent");
 
 # testing my 
 # $markupcontent = "h1. this is a test 6aug2013 x\n\nmarkdown=yes\n\n--small--\n\nyoutube=embed/nfOUn6LgN3c\n";
@@ -68,7 +72,6 @@ sub add_blog_post {
     }
 
     my $formtype = $q->param("formtype");
-
     if ( $formtype eq "ajax" ) {
         $markupcontent = URI::Escape::JavaScript::unescape($markupcontent);
         $markupcontent = HTML::Entities::encode($markupcontent,'^\n\x20-\x25\x27-\x7e');
@@ -96,7 +99,7 @@ sub add_blog_post {
     $err_msg = Format::check_for_special_tag($err_msg, $tag_list_str); 
 
     if ( $err_msg ) {
-        $formattedcontent = Format::format_content($tmp_markupcontent);
+        $formattedcontent = Format::format_content($tmp_markupcontent, "preview");
         $formattedcontent = BlogData::include_templates($formattedcontent);
         BlogPreview::preview_new_blog_post($title, $markupcontent, $posttitle, $formattedcontent, $err_msg, $formtype);
 # Page->report_error("user", "debug", "$err_msg");
@@ -104,7 +107,7 @@ sub add_blog_post {
 
     my $clean_title   = Format::clean_title($posttitle);
 
-    $formattedcontent = Format::format_content($tmp_markupcontent);
+    $formattedcontent = Format::format_content($tmp_markupcontent, $sb);
 
     if ( $sb eq "Preview" ) {
         $formattedcontent = BlogData::include_templates($formattedcontent);
@@ -122,9 +125,18 @@ sub add_blog_post {
     }
 
     if ( $formtype eq "ajax" ) {
+        # print "Content-type: text/html\n\n";
+        # print "<h1>$posttitle</h1>" . "\n";
+        # print $formattedcontent . "\n";
         print "Content-type: text/html\n\n";
-        print "<h1>$posttitle</h1>" . "\n";
-        print $formattedcontent . "\n";
+            my %hash;
+            $hash{'content'} = "<h1>$posttitle</h1>$formattedcontent";
+            $hash{'articleid'} = $articleid;
+            $hash{'contentdigest'} = _get_content_digest_for($articleid);
+            $hash{'errorcode'} = 0;
+            $hash{'errorstring'} = "undef"; 
+            my $json_str = encode_json \%hash;
+            print $json_str;
         exit;
     }
 
@@ -209,6 +221,30 @@ sub _add_blog {
 
     return $articleid;
 }
+
+sub _get_content_digest_for {
+    my $articleid = shift;
+
+    my $content_digest;
+
+    my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
+    return "undef" if $db->err;
+
+    my $sql = "select contentdigest from $dbtable_content where id=$articleid";
+    $db->execute($sql);
+    return "undef" if $db->err;
+
+    if ( $db->fetchrow ) {
+        $content_digest = $db->getcol("contentdigest");
+    }
+    return "undef" if $db->err;
+
+    $db->disconnect;
+    return "undef" if $db->err;
+
+    return $content_digest;
+}
+
 
 1;
 

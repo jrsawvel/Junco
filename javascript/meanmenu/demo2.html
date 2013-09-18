@@ -1,0 +1,61 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!--[if lt IE 9]> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<![endif]-->
+<title>MeanMenu Demo</title>
+
+<link rel="stylesheet" href="meanmenu2.css" media="all" />
+<link rel="stylesheet" href="demo2a.css" media="all" />
+
+<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+</head>
+
+<body>
+
+<header>
+<span id="homelink"><a href="http://jothut.com">Jot Hut</a></span> 
+<nav>
+<!--
+<div id="homelink">
+<a href="http://jothut.com">JotHut</a>
+</div>
+-->
+<ul>
+<li><a href="http://jothut.com/cgi-bin/junco.pl/searchform">search</a></li>
+<li><a href="http://jothut.com/cgi-bin/junco.pl/user/JR">JR</a></li>
+<li><a href="http://jothut.com/cgi-bin/junco.pl/tags">tags</a></li>
+<li><a href="http://jothut.com/cgi-bin/junco.pl/followingstream">following</a></li>
+<li><a href="http://jothut.com/cgi-bin/junco.pl/repliesstream">replies</a></li>
+<li><a href="http://jothut.com/cgi-bin/junco.pl/logout">logout</a></li>
+<li><a href="http://jothut.com/cgi-bin/junco.pl/blogpostform">post</a></li>
+</ul>
+</nav>
+</header>
+
+<section>
+	<article>
+		Resize your browser to under 480 pixels
+	</article>
+</section>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+<script src="jquery.meanmenu.min.js"></script> 
+<script>
+jQuery(document).ready(function () {
+    jQuery('header nav').meanmenu();
+});
+</script>
+</body>
+</html>

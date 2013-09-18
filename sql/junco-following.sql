@@ -1,5 +1,5 @@
-drop table if exists junco_following_dvlp;
-create table junco_following_dvlp (
+-- drop table if exists junco_following;
+create table junco_following (
   id 			mediumint unsigned NOT NULL auto_increment primary key,
   type                  char(1) not null default 'u', -- u=user t=tag b=a user's tag s=search string
   userid 		mediumint(8) unsigned NOT NULL default '0',

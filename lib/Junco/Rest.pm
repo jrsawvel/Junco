@@ -7,6 +7,7 @@ use HTML::Entities;
 use Junco::Format;
 use Junco::BlogTitle;
 use Junco::Backlinks;
+use REST::Client;
 
 my $pt_db_source       = Config::get_value_for("database_host");
 my $pt_db_catalog      = Config::get_value_for("database_name");
@@ -16,6 +17,48 @@ my $pt_db_password     = Config::get_value_for("database_password");
 my $dbtable_users       = Config::get_value_for("dbtable_users");
 my $dbtable_content     = Config::get_value_for("dbtable_content");
 my $dbtable_tags        = Config::get_value_for("dbtable_tags");
+
+sub create_blogpost_draft_stub {
+    my $title = shift;
+
+    # set set up some defaults:
+    my $domain   = Config::get_value_for("email_host");
+    my $function = 'addblog';
+#    my $user = 'JR';
+    my $prog = Config::get_value_for("cgi_app");
+    my $datetime = Utils::create_datetime_stamp();
+
+    my $headers = {
+        'Content-type' => 'application/x-www-form-urlencoded'
+    };
+
+    # set up a REST session
+    my $rest = REST::Client->new( {
+           host => "http://$domain" . "$prog",
+    } );
+
+    my $markup = "$title\n\n#draftstub\ndraft=yes\n";
+
+    
+
+    # then we have to url encode the params that we want in the body
+    my $pdata = {
+        'markup'        => $markup,
+        'date'          => $datetime,
+        'createddate'   => $datetime,
+        'sb'            => 'submit',
+        'authorid'      => User::get_logged_in_userid()
+    };
+    my $params = $rest->buildQuery( $pdata );
+
+    # but buildQuery() prepends a '?' so we strip that out
+    $params =~ s/\?//;
+
+    # then sent the request:
+    # POST requests have 3 args: URL, BODY, HEADERS
+    $rest->POST( "/rest/$function" , $params , $headers );
+    return $rest->responseContent();
+}
 
 sub do_rest {
     my $tmp_hash = shift;
@@ -106,7 +149,7 @@ sub add_microblog {
 
 #    my $logged_in_username = User::get_logged_in_username();
 #    my $logged_in_userid   = User::get_logged_in_userid();
-    my $logged_in_username = "J.R.";
+    my $logged_in_username = "JR";
     my $logged_in_userid   = 1;
 
     if ( defined($err_msg) ) {
@@ -233,9 +276,18 @@ sub add_blog {
     if ( !defined($createddate) || length($createddate) < 1 ) {
         $err_msg .= "Missing the created date.<br />\n";
     }
-    my $id = $q->param("id");
 
-    my $logged_in_username = "J.R.";
+    my $logged_in_userid = $q->param("authorid");
+    if ( !defined($logged_in_userid)  ||  (length($logged_in_userid) < 1)  ||  !StrNumUtils::is_numeric($logged_in_userid) ) {
+        $err_msg .= "Missing or invalid author ID.<br />\n";
+    }
+
+    my $logged_in_username = User::get_username_for_id($logged_in_userid);
+    if ( length($logged_in_username) < 1 ) {
+        $err_msg .= "Missing or invalid username.<br />\n";
+    }
+
+    my $id = $q->param("id");
 
     my $o = BlogTitle->new();
     $o->set_logged_in_username($logged_in_username);
@@ -267,10 +319,9 @@ sub add_blog {
 
     my $clean_title   = Format::clean_title($posttitle);
 
-    $formattedcontent = Format::format_content($tmp_markupcontent);
+    $formattedcontent = Format::format_content($tmp_markupcontent, "add");
 
 #    my $logged_in_userid   = User::get_logged_in_userid();
-    my $logged_in_userid   = 1;
 
     my $articleid = _add_blog($posttitle, $logged_in_userid, $markupcontent, $formattedcontent, $tag_list_str, $postdate, $createddate);
 
@@ -281,7 +332,8 @@ sub add_blog {
 
     if ( $articleid ) {
         print "Content-type: text/plain;\n\n";
-        print "id=$id successfully added.\n";
+#        print "id=$id successfully added.\n";
+        print "$articleid";
     } else {
         print "Content-type: text/plain;\n\n";
         print "id=$id unsuccessfully added.\n";
@@ -342,8 +394,12 @@ sub _add_blog {
 
     my $sql;
 
-    $sql .= "insert into $dbtable_content (parentid, parentauthorid, title, markupcontent, formattedcontent, type, status, authorid, date, contentdigest, createdby, createddate, tags, ipaddress, importdate)";
-    $sql .= " values ($parentid, $parentauthorid, $title, $markupcontent, $formattedcontent, '$type', '$new_status', $userid, '$postdate', '$contentdigest', $userid, '$createddate', $quoted_tag_list_str, '$ENV{REMOTE_ADDR}', '$datetime')";
+# don't update import date right now. 6sep2013
+#    $sql .= "insert into $dbtable_content (parentid, parentauthorid, title, markupcontent, formattedcontent, type, status, authorid, date, contentdigest, createdby, createddate, tags, ipaddress, importdate)";
+#    $sql .= " values ($parentid, $parentauthorid, $title, $markupcontent, $formattedcontent, '$type', '$new_status', $userid, '$postdate', '$contentdigest', $userid, '$createddate', $quoted_tag_list_str, '$ENV{REMOTE_ADDR}', '$datetime')";
+
+    $sql .= "insert into $dbtable_content (parentid, parentauthorid, title, markupcontent, formattedcontent, type, status, authorid, date, contentdigest, createdby, createddate, tags, ipaddress)";
+    $sql .= " values ($parentid, $parentauthorid, $title, $markupcontent, $formattedcontent, '$type', '$new_status', $userid, '$postdate', '$contentdigest', $userid, '$createddate', $quoted_tag_list_str, '$ENV{REMOTE_ADDR}')";
 
     my $articleid = $db->execute($sql);
     "system " . "(30) Error executing SQL " . $db->errstr if $db->err;

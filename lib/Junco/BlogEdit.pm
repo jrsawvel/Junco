@@ -24,6 +24,34 @@ sub enhanced_edit_blog_post {
     edit_blog_post($tmp_hash);
 }
 
+sub splitscreen_edit {
+    my $tmp_hash = shift;  
+
+    my $articleid = $tmp_hash->{one};
+
+    if ( !$articleid or !StrNumUtils::is_numeric($articleid) ) {
+        Page->report_error("user", "Cannot access article.", "Missing article or post ID.");
+    }
+
+    User::user_allowed_to_function();
+
+    my $userid     = User::get_logged_in_userid();
+    my $sessionid  = User::get_logged_in_sessionid();
+
+    my %article_data = _get_blog_post_for_edit($userid, $articleid, $sessionid);
+
+    my $t;
+    my $t = Page->new("splitscreenform");
+    $t->set_template_variable("action", "updateblog");
+    $t->set_template_variable("articleid", $article_data{articleid});
+
+# 21aug2013    $article_data{markup} = encode_entities($article_data{markup}, '<>&');
+
+    $t->set_template_variable("editarticle", $article_data{markup});
+    $t->set_template_variable("contentdigest", $article_data{contentdigest});
+    $t->display_page_min("Edit Blog Post - Split Screen " . $article_data{title});
+}
+
 sub edit_blog_post {
     my $tmp_hash = shift;  
 

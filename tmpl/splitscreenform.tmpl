@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 <head>
-  <meta charset=utf-8>
-  <title>preview ajax demo with minified.js</title>
+  <title>enhanced typing mode</title>
+<!-- 17sep2013  <meta charset=utf-8> -->
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> 
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
-  <link rel="stylesheet" type="text/css" media="screen" href="/dvlp/junco/javascript/splitscreen/splitscreen.css" />
-  <script src="/dvlp/junco/javascript/splitscreen/jquery.min.js"></script>
-  <script src="/dvlp/junco/javascript/splitscreen/jquery.minitabs.js"></script>
-  <script src="/dvlp/junco/javascript/splitscreen/app.js"></script>
-  <script src="/dvlp/junco/javascript/splitscreen/minified.js"></script>
-  <script src="/dvlp/junco/javascript/splitscreen/splitscreen.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="<!-- tmpl_var name="home_page" -->/javascript/splitscreen/splitscreen.css" />
+  <script src="<!-- tmpl_var name="home_page" -->/javascript/splitscreen/jquery.min.js"></script>
+  <script src="<!-- tmpl_var name="home_page" -->/javascript/splitscreen/jquery.minitabs.js"></script>
+  <script src="<!-- tmpl_var name="home_page" -->/javascript/splitscreen/app.js"></script>
+  <script src="<!-- tmpl_var name="home_page" -->/javascript/splitscreen/minified.js"></script>
+  <script src="<!-- tmpl_var name="home_page" -->/javascript/splitscreen/splitscreen.js"></script>
 
 <script>
     window.onbeforeunload = function(){
@@ -55,11 +59,15 @@
 <div id="container">
 
   <div id="col_left" class="col">
-   <form id="parulaform" method="post" action="/cgi-bin/dvlpjunco.pl/addarticle">
+   <form id="parulaform" method="post" action="<!-- tmpl_var name="cgi_app" -->/addarticle">
+   <input type="hidden" id="splitscreencgiapp"     value="<!-- tmpl_var name="cgi_app" -->">
+   <input type="hidden" id="splitscreenaction"     value="<!-- tmpl_var name="action" -->">
+   <input type="hidden" id="splitscreenpostid"     value="<!-- tmpl_var name="articleid" -->">
+   <input type="hidden" id="splitscreenpostdigest" value="<!-- tmpl_var name="contentdigest" -->">
     <span class="tools">
     <!--  <input id="textilesubmitbutton" type="submit" name="sb" value="Save"> -->
     </span>
-    <textarea name="article" id="tx_input" cols="80" rows="20" class="panel" autofocus></textarea>
+    <textarea name="article" onkeypress="return countKeyStrokes()" id="tx_input" cols="80" rows="20" class="panel" autofocus><!-- tmpl_var name="editarticle" --></textarea>
    </form>
   </div> <!-- end col_left -->
 

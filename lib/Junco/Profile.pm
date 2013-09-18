@@ -11,6 +11,7 @@ my $pt_db_password     = Config::get_value_for("database_password");
 
 my $dbtable_users      = Config::get_value_for("dbtable_users");
 my $dbtable_content    = Config::get_value_for("dbtable_content");
+my $dbtable_tags       = Config::get_value_for("dbtable_tags");
 
 sub show_user {
     my $tmp_hash = shift;
@@ -61,9 +62,33 @@ sub show_user {
 ### leave disabled Web::set_template_variable("beingfollowedbycount", Following::get_followed_by_count());
         $t->set_template_variable("privateblogcount",     BlogData::get_blog_post_count("s"));
         $t->set_template_variable("draftblogcount",       BlogData::get_blog_post_count("p"));
+        $t->set_template_variable("draftstubcount",       _get_draft_stub_count($username_for_profile));
     }
 
     $t->display_page("Show User $user_data{profileusername}");
+}
+
+sub _get_draft_stub_count {
+
+    my $draft_stub_count = 0;
+
+    my $logged_in_userid = User::get_logged_in_userid();
+
+    my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
+    Page->report_error("system", "Error connecting to database.", $db->errstr) if $db->err;
+
+    my $where_str = " where name='draftstub' and status='o' and createdby=$logged_in_userid";
+
+    my $sql  = "select count(*) as tagcount from $dbtable_tags $where_str ";
+
+    $db->execute($sql);
+    Page->report_error("system", "(15) Error executing SQL", $db->errstr) if $db->err;
+
+    if ( $db->fetchrow ) {
+        $draft_stub_count = $db->getcol("tagcount");
+    }
+
+    return $draft_stub_count;
 }
 
 sub _get_user_profile {

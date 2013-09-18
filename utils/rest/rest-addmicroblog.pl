@@ -24,8 +24,9 @@ my $rest = REST::Client->new( {
 
 # then we have to url encode the params that we want in the body
 my $pdata = {
-    'microblogtext' => 'http://jothut.com test post number 2 from #rest client script. old date - test import date insert #test.',
-    'createddate'   => '2013-07-28 20:30:10',
+    'markup'        => 'http://jothut.com test post number 5 from #rest client script. old date - test import date insert #test.',
+    'date'          => '2013-09-05 20:55:10',
+    'createddate'   => '2013-09-05 20:55:10',
     'sb'            => 'submit'
 };
 my $params = $rest->buildQuery( $pdata );

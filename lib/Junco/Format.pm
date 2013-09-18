@@ -84,6 +84,7 @@ sub custom_commands {
 
 sub edit_for_bracket_case {
     my $str = shift;
+    my $action = shift;
 
     # convert user input into format displayed to the reader.
 
@@ -107,7 +108,7 @@ sub edit_for_bracket_case {
     while ( $str =~ m|\[\[(.*?)\]\]| ) {
         my $title = $1;
         my $wiki_link_title = ucfirst(clean_title($title));
-        my $wiki_page_exists = BlogData::_get_blog_post_id($title); 
+        my $wiki_page_exists = BlogData::_get_blog_post_id($title, $action); 
         my $tmp_title = ucfirst($title);
         if ( $wiki_page_exists ) {
             $str =~ s|\[\[$title\]\]|<a name="wikilink$tmp_title" href="$cgi_app/blogpost/$wiki_page_exists/$wiki_link_title">$title</a>|;
@@ -122,7 +123,7 @@ sub edit_for_bracket_case {
         my $right=$2;
         my $title = StrNumUtils::trim_spaces($left);
         my $wiki_link_title = clean_title($title);
-        my $wiki_page_exists = BlogData::_get_blog_post_id($title); 
+        my $wiki_page_exists = BlogData::_get_blog_post_id($title, $action); 
         my $new_str = ""; 
         if ( $wiki_page_exists ) {
             $new_str = "<a name=\"wikilink$title\" href=\"$cgi_app/blogpost/$wiki_page_exists/$wiki_link_title\">$right</a>";
@@ -249,7 +250,7 @@ sub post_id_to_link {
 
     my @post_ids = ();
     my $postidsearchstr = "";
-    my $postidsearchurl = Config::get_value_for("cgi_app") . "/microblogpost/";
+    my $postidsearchurl = Config::get_value_for("cgi_app") . "/post/";
     if ( (@post_ids = $str =~ m|\s/([0-9]+)/|gsi) ) {
         foreach (@post_ids) {
             $postidsearchstr = "<a href=\"$postidsearchurl$_\">/$_/</a>";
@@ -287,6 +288,9 @@ sub create_tag_list_str {
 
 sub format_content {
     my $formattedcontent = shift;
+    my $action = shift;   # preview or add
+
+    $action = lc($action);
 
     my $markdown = 0;
 
@@ -327,7 +331,7 @@ sub format_content {
 
     $formattedcontent =~ s/&#39;/'/sg;
 
-    $formattedcontent = edit_for_bracket_case($formattedcontent);
+    $formattedcontent = edit_for_bracket_case($formattedcontent, $action);
 
     $formattedcontent = check_for_external_links($formattedcontent);
 
@@ -380,7 +384,7 @@ sub process_embedded_media {
     my $cmd = "";
     my $url = "";
 
-    if ( $str =~ m|^(gmap[\s]*=[\s]*)(.*?)$|mi ) {
+    while ( $str =~ m|^(gmap[\s]*=[\s]*)(.*?)$|mi ) {
         $cmd=$1;
 #        $url=qq(trim_spaces($2));
         $url= StrNumUtils::trim_spaces($2);
@@ -388,28 +392,28 @@ sub process_embedded_media {
         $str =~ s|\Q$cmd$url|$iframe|;    
     }
 
-    if ( $str =~ m|^(kickstarter[\s]*=[\s]*)(.*?)$|mi ) {
+    while ( $str =~ m|^(kickstarter[\s]*=[\s]*)(.*?)$|mi ) {
         $cmd=$1;
         $url= StrNumUtils::trim_spaces($2);
         my $iframe = qq(<iframe width="480" height="360" frameborder="0" src="http://www.kickstarter.com/projects/$url"></iframe>);
         $str =~ s|\Q$cmd$url|$iframe|;    
     }
 
-    if ( $str =~ m|^(facebook[\s]*=[\s]*)(.*?)$|mi ) {
+    while ( $str =~ m|^(facebook[\s]*=[\s]*)(.*?)$|mi ) {
         $cmd=$1;
         $url= StrNumUtils::trim_spaces($2);
         my $iframe = qq(<iframe width="640" height="480" frameborder="0" src="http://www.facebook.com/video/embed?video_id=$url"></iframe>);
         $str =~ s|\Q$cmd$url|$iframe|;    
    }
 
-    if ( $str =~ m|^(youtube[\s]*=[\s]*)(.*?)$|mi ) {
+    while ( $str =~ m|^(youtube[\s]*=[\s]*)(.*?)$|mi ) {
         $cmd=$1;
         $url= StrNumUtils::trim_spaces($2);
         my $iframe = qq(<iframe width="480" height="360" frameborder="0" allowfullscreen src="http://www.youtube.com/embed/$url"></iframe>);
         $str =~ s|\Q$cmd$url|$iframe|;    
     }
 
-    if ( $str =~ m|^(vimeo[\s]*=[\s]*)(.*?)$|mi ) {
+    while ( $str =~ m|^(vimeo[\s]*=[\s]*)(.*?)$|mi ) {
         $cmd=$1;
         $url= StrNumUtils::trim_spaces($2);
         my $iframe = qq(<iframe src="http://player.vimeo.com/video/$url" width="400" height="300" frameborder="1" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>);

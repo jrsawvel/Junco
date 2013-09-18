@@ -9,7 +9,7 @@ use REST::Client;
 
 # set set up some defaults:
 my $domain   = 'hostname.com';
-my $function = 'addmicroblog';
+my $function = 'addblog';
 my $user = 'username';
 my $prog = 'test.pl';
 
@@ -22,10 +22,14 @@ my $rest = REST::Client->new( {
            host => "http://$domain/cgi-bin/$prog",
 } );
 
+
+my $markup = "test rest blog add 6\n\n#draftstub\ndraft=yes\n";
+
 # then we have to url encode the params that we want in the body
 my $pdata = {
-    'microblogtext' => 'http://jothut.com test post number 2 from #rest client script. old date - test import date insert #test.',
-    'createddate'   => '2013-07-28 20:30:10',
+    'markup'        => $markup,
+    'date'          => '2013-09-05 20:57:10',
+    'createddate'   => '2013-09-05 20:57:10',
     'sb'            => 'submit'
 };
 my $params = $rest->buildQuery( $pdata );

@@ -74,9 +74,9 @@ jQuery(function($){
 
 
   // load syntax guide
-  $.get('/dvlp/editor/syntax.txt', function ( txt ) {
-    $( '#syntax_guide' ).val( txt );
-  });
+//  $.get('/dvlp/editor/syntax.txt', function ( txt ) {
+//    $( '#syntax_guide' ).val( txt );
+//  });
 
   $( window ).bind( 'resize', sync_panels ).trigger( 'resize' );
 

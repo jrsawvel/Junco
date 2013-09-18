@@ -169,5 +169,32 @@ sub get_userid {
     return $userid;
 }
 
+sub get_username_for_id {
+    my $userid = shift;
+
+    my $username = "";
+
+    my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
+    Web::report_error("system", "Error connecting to database.", $db->errstr) if $db->err;
+
+    my $user_id_status = Config::get_value_for("user_id_status");
+
+    my $sql = "select username from $dbtable_users where id=$userid and status in ($user_id_status)";
+    $db->execute($sql);
+    Web::report_error("system", "(21) Error executing SQL", $db->errstr) if $db->err;
+
+    if ( $db->fetchrow ) {
+        $username = $db->getcol("username");
+    }
+    Web::report_error("system", "Error retrieving data from database.", $db->errstr) if $db->err;
+
+    $db->disconnect;
+    Web::report_error("system", "Error disconnecting from database.", $db->errstr) if $db->err;
+
+    return $username;
+}
+
+
+1;
 
 1;

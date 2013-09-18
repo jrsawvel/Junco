@@ -56,8 +56,8 @@ sub add_backlinks {
     foreach (@$backlinks) {
         my $bl = $_;
         if ( $bl ) {
-            $sql = "insert into $dbtable_backlinks (linkingfromarticleid, linkingtoarticleid) "; 
-            $sql .= " values ($articleid, $bl) "; 
+            $sql = "insert into $dbtable_backlinks (linkingfromarticleid, linkingtoarticleid, status) "; 
+            $sql .= " values ($articleid, $bl, 'o') "; 
             $db->execute($sql);
             Page->report_error("system", "(82-a) Error executing SQL", $db->errstr) if $db->err;
         }

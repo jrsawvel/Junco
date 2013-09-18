@@ -1,5 +1,5 @@
-drop table if exists junco_sessionids_dvlp ;
-create table junco_sessionids_dvlp (
+-- drop table if exists junco_sessionids;
+create table junco_sessionids (
   id 			        mediumint unsigned NOT NULL auto_increment primary key,
   userid 		        mediumint unsigned NOT NULL,
   sessionid		        varchar(255) not null default '0', -- send in cookie, maintain login 

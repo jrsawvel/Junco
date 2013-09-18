@@ -31,6 +31,12 @@
 
 <div id="content">
 
+<!-- tmpl_if canedit -->
+<div style="float:right; font-size:80%;">
+<small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/edit/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">EDIT</a></small>
+</div>
+<!-- /tmpl_if -->
+
 <h1 id="articletitle"><a title="word count <!-- tmpl_var name="wordcount" --> - char count <!-- tmpl_var name="charcount" --> - <!-- tmpl_var name="readingtime" --> min read" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="cleantitle" -->"><!-- tmpl_var name="title" --></a></h1>
 
 <!-- tmpl_var name="blogpost" -->
@@ -60,7 +66,7 @@
  - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
 <!-- /tmpl_if -->
 <br />
-<small>
+<small class="greytext">
  <a href="<!-- tmpl_var name="cgi_app" -->/source/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">source</a>
  - <a href="<!-- tmpl_var name="cgi_app" -->/versions/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">versions</a>
 <!-- tmpl_if backlinks -->

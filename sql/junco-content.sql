@@ -4,8 +4,8 @@
 -- mysql -p<pwd> -D <database> < junco.sql
 --
 
-drop table if exists junco_content_dvlp;
-create table junco_content_dvlp (
+-- drop table if exists junco_content;
+create table junco_content(
     id			mediumint unsigned auto_increment primary key,
     parentid		mediumint unsigned not null default 0, -- (refers_to) this id number shows which article the content belongs to. if type='c', then it's the article id the comment belongs to. if status='v', then it's what article the old version belongs to. 
     parentauthorid      mediumint unsigned not null default 0, -- (refers_to) this author id of the blog post that is being replied to

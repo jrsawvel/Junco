@@ -1,5 +1,5 @@
-drop table if exists junco_backlinks_dvlp ;
-create table junco_backlinks_dvlp (
+-- drop table if exists junco_backlinks;
+create table junco_backlinks (
   id 			        mediumint unsigned NOT NULL auto_increment primary key,
   linkingfromarticleid 		mediumint(8) unsigned NOT NULL default '0',
   linkingtoarticleid 		mediumint(8) unsigned NOT NULL default '0',

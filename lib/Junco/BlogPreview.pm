@@ -2,6 +2,7 @@ package BlogPreview;
 
 use strict;
 use warnings;
+use JSON::PP;
 
 sub preview_new_blog_post {
     my $title            = shift;
@@ -20,10 +21,20 @@ sub preview_new_blog_post {
     } elsif ( $formtype eq "ajax" ) {
         print "Content-type: text/html\n\n";
         if ( $err_msg ) {
-            print "Error: " . $err_msg . "\n";
+            # print "Error: " . $err_msg . "\n";
+            my %hash;
+            $hash{'content'} = "undef";
+            $hash{'errorcode'} = 1;
+            $hash{'errorstring'} = "Error: " . $err_msg; 
+            my $json_str = encode_json \%hash;
+            print $json_str;
         } else {
-            print "<h1>$posttitle</h1>" . "\n";
-            print $formattedcontent . "\n";
+            my %hash;
+            $hash{'content'} = "<h1>$posttitle</h1>$formattedcontent";
+            $hash{'errorcode'} = 0;
+            $hash{'errorstring'} = "undef"; 
+            my $json_str = encode_json \%hash;
+            print $json_str;
         }
         exit;
     } else { 
@@ -61,6 +72,25 @@ sub preview_blog_edit {
     
     if ( $formtype eq "enhanced" ) {
         $t = Page->new("enheditblogpostform");
+    } elsif ( $formtype eq "ajax" ) {
+        print "Content-type: text/html\n\n";
+        if ( $err_msg ) {
+            # print "Error: " . $err_msg . "\n";
+            my %hash;
+            $hash{'content'} = "undef";
+            $hash{'errorcode'} = 1;
+            $hash{'errorstring'} = "Error: " . $err_msg; 
+            my $json_str = encode_json \%hash;
+            print $json_str;
+        } else {
+            my %hash;
+            $hash{'content'} = "<h1>$posttitle</h1>$formattedcontent";
+            $hash{'errorcode'} = 0;
+            $hash{'errorstring'} = "undef"; 
+            my $json_str = encode_json \%hash;
+            print $json_str;
+        }
+        exit;
     } else { 
         $t = Page->new("editblogpostform");
     }

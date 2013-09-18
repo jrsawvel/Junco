@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Junco::RSS;
+use Junco::Rest;
 
 my $pt_db_source       = Config::get_value_for("database_host");
 my $pt_db_catalog      = Config::get_value_for("database_name");
@@ -23,8 +24,25 @@ sub title_exists {
     $new_article_title = $db->quote($new_article_title);
 
     my $sql;
+    my $is_old_version = 0;
+    my $parentid = 0;
 
-    if ( $articleid ) { 
+    if ( $articleid ) {
+        $sql = "select parentid, status from $dbtable_content where id=$articleid and type='b'";
+        $db->execute($sql);
+        Page->report_error("system", "(63) Error executing SQL", $db->errstr) if $db->err;
+        if ( $db->fetchrow ) {
+            $parentid  = $db->getcol("parentid");
+            my $status = $db->getcol("status");
+            if ( $parentid > 0 and $status eq "v" ) {
+                $is_old_version = 1;
+            }       
+        } 
+    }
+
+    if ( $is_old_version ) {
+        $sql = "select id from $dbtable_content where title=$new_article_title and id != $parentid and type='b' and status != 'v'";
+    } elsif ( $articleid ) { 
         $sql = "select id from $dbtable_content where title=$new_article_title and id != $articleid and type='b' and status != 'v'";
     } else {
         $sql = "select id from $dbtable_content where title=$new_article_title"; 
@@ -126,15 +144,16 @@ sub _get_formatted_content_for_template {
 
 sub _get_blog_post_id {
     my $title = shift;
+    my $action = shift;
 
     my $blog_post_id = 0;
 
     my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
     Page->report_error("system", "Error connecting to database.", $db->errstr) if $db->err;
 
-    $title = $db->quote($title);
+    my $quoted_title = $db->quote($title);
 
-    my $sql = "select id from $dbtable_content where title=$title and type='b' and status='o' limit 1";
+    my $sql = "select id from $dbtable_content where title=$quoted_title and type='b' and status in ('o','p') limit 1";
 
     $db->execute($sql);
     Page->report_error("system", "(77) Error executing SQL", $db->errstr) if $db->err;
@@ -146,6 +165,10 @@ sub _get_blog_post_id {
 
     $db->disconnect;
     Page->report_error("system", "Error disconnecting from database.", $db->errstr) if $db->err;
+
+    if ( !$blog_post_id and $action ne "preview" ) {
+        $blog_post_id = Rest::create_blogpost_draft_stub($title);    
+    }
 
     return $blog_post_id;
 }

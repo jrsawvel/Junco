@@ -1,9 +1,11 @@
 #!/usr/bin/perl -wT
 
+# Summer 2013 - migrating blog and microblog content from Kestrel codebase to Junco app
+
 use strict;
 use warnings;
 $|++;
-use lib '/home/magee/Dvlp/Junco/lib';
+use lib '/home/account/Junco/lib';
 use MIME::Base64;
 use REST::Client;
 use Junco::Config;
@@ -18,9 +20,9 @@ my $dbtable_content    = "kestrel_content";
 
 # set set up some defaults:
 my $function;
-my $domain      = 'jothut.com';
-my $user        = 'J.R.';
-my $prog        = 'dvlpjunco.pl';
+my $domain      = 'hostname.com';
+my $user        = 'username';
+my $prog        = 'test.pl';
 my $headers     = {
     'Content-type' => 'application/x-www-form-urlencoded'
 };

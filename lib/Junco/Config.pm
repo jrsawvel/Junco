@@ -4,7 +4,7 @@ use warnings;
 
 use YAML::Tiny;
 
-my $yml_file = "/home/magee/Dvlp/Junco/yaml/junco.yml";
+my $yml_file = "/home/magee/JotHut/Junco/yaml/junco.yml";
 
 my $yaml = YAML::Tiny->new;
 

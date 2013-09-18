@@ -28,7 +28,8 @@ br {
 }
 
 header {
-    background: #120a8f;   /* ultramarine blue */
+    /* background: #120a8f; */   /* ultramarine blue */
+    background: #302B54;
 	width: 100%;
 	position: fixed; 
 	top: 0;
@@ -216,7 +217,8 @@ table {
 
 #navmenu ul {
     list-style-type: none;
-    background: #120a8f;   /* ultramarine blue */
+    /* background: #120a8f; */   /* ultramarine blue */
+    background: #302B54;
     padding: .4em 0 .5em 0; 
     margin: 0 0 0 0;
     font-size: .9em;
@@ -227,13 +229,13 @@ table {
 }
 #navmenu ul li a {
     text-decoration: none;
-    color: #f8f8f8;
+    color: #d0d0d0;
     text-align: left;
     padding: 0 .5em;
 }
 #navmenu ul li a:hover {
     text-decoration: underline;
-    color: #ffffff;
+    color: #dddddd;
 }
 #navmenu #navmenutext {
     display: none;
@@ -297,12 +299,12 @@ a.extlink:hover {
 
 
 a {text-decoration: none; color: #33cccc;}
-a:visited {color: #cc3399;} 
+a:visited {color: #cc00cc;}  
 a:hover {text-decoration: underline;}
 a:active {text-decoration: underline; color: #ff0000;}
 
 #content a strong,b {color: #0000ff;}
-#content a:visited strong,b {color: #cc3399;}
+#content a:visited strong,b {color: #cc00cc;}
 #content a:hover strong,b {text-decoration: underline;}
 #content a:active strong,b {text-decoration: underline; color: #ff0000;}
 
@@ -329,7 +331,8 @@ a:active {text-decoration: underline; color: #ff0000;}
 
 
 .blogposttitle a {
-    color: #dddddd;
+ /*   color: #dddddd; */
+    color: #d0d0d0;
     font-weight: bold; 
     text-decoration: none;
 }
@@ -341,7 +344,7 @@ a:active {text-decoration: underline; color: #ff0000;}
 .highlighted {
     margin-right: .5em;
     margin-left: .5em;
-    background: #000000;
+    background: #111111;
     padding: .2em .2em 0 .2em;
     border: 1px solid #cccccc;
 }
@@ -393,14 +396,14 @@ ol ol li:last-child {margin-bottom:0;}
 
 
 #content pre code {
-    color: green;
+    color: #009933;
     font-size: 0.8em;
     line-height: 1em;
     font-family:     "Courier New" Courier  monospace;
 }
 
 #content code {
-    color: green;
+    color: #009933;
 /*
     background: #eee;
     border: 1px solid #c0c0c0; 
@@ -453,7 +456,7 @@ input {
 
 .submitbutton {
     font-size: 1em;
-    color: #f8f8f8;
+    color: #d0d0d0;
     background: #120a8f; 
 /* radius was 6px */
     -moz-border-radius: 10px;
@@ -462,7 +465,7 @@ input {
     border: 1px solid #120a8f;
 }
 .submitbutton:hover {
-    color: #222222;
+    color: #d0d0d0;
     background: #0000cd;
 }
 #homepagebutton .submitbutton {
@@ -507,17 +510,18 @@ input {
 
 #headerhomelink {
     float: left;
-    background: #120a8f;   /* ultramarine blue */
+/*    background: #120a8f; */   /* ultramarine blue */
+    background: #302B54;
     padding: .4em .5em .5em .5em; 
     margin: 0 0 0 0;
     font-size: .9em;
     font-family: Arial, Helvetica, sans-serif;  
 }
 #headerhomelink a {
-    color: #f8f8f8;
+    color: #d0d0d0;
 }
 #headerhomelink a:hover {
-    color: #ffffff;
+    color: #dddddd;
     text-decoration: none;
 }
 
@@ -542,7 +546,8 @@ float: right;
     position: absolute;
     top: 0;
     left: 0;
-    background: #120a8f;  
+    /* background: #120a8f;   */
+    background: #302B54;
 }
 #navmenu ul li {
     display: none;
@@ -567,7 +572,7 @@ float: right;
 }
 #navmenu ul li a:hover {
     text-decoration: underline;
-    color: #ffffff;
+    color: #dddddd;
 }
 #navmenu #navmenutext {
     display: inline;

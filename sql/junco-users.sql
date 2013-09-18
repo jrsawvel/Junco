@@ -4,8 +4,8 @@
 -- mysql -p<pwd> -D <database> < junco.sql
 --
 
-drop table if exists junco_users_dvlp;
-create table junco_users_dvlp (
+-- drop table if exists junco_users;
+create table junco_users (
     id			mediumint unsigned auto_increment, 
     username		varchar(30) not null,
     password		varchar(30) not null,

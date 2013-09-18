@@ -1,6 +1,6 @@
 
-drop table if exists junco_tags_dvlp;
-create table junco_tags_dvlp (
+-- drop table if exists junco_tags;
+create table junco_tags (
   id 			mediumint unsigned NOT NULL auto_increment primary key,
   name 			varchar(50) NOT NULL default '',
   articleid 		mediumint(8) unsigned NOT NULL default '0',

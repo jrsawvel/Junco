@@ -152,7 +152,7 @@ table {
 
 		#microblogtoolbar {
 			margin: 0;
-			padding: 0;
+			padding: 20px 0 0 0;
 			text-align:left;
                         float:right;
 		}
@@ -222,6 +222,7 @@ table {
 }
 #navmenu ul li {
     display: inline-block; 
+    color: #f8f8f8;
 }
 #navmenu ul li a {
     text-decoration: none;
@@ -289,8 +290,13 @@ a.extlink:hover {
 .toclevel4 {margin-left: .9em;}
 .toclevel5 {margin-left: 1.2em;}
 
-#content strong, b {
+#content strong {
     color: #000000;
+}
+
+#content b {
+    background: #ffff00;
+    font-weight: normal;
 }
 
 
@@ -299,10 +305,10 @@ a:visited {color: #cc3399;}
 a:hover {text-decoration: underline;}
 a:active {text-decoration: underline; color: #ff0000;}
 
-#content a strong,b {color: #0000ff;}
-#content a:visited strong,b {color: #cc3399;}
-#content a:hover strong,b {text-decoration: underline;}
-#content a:active strong,b {text-decoration: underline; color: #ff0000;}
+#content a strong {color: #0000ff;}
+#content a:visited strong {color: #cc3399;}
+#content a:hover strong {text-decoration: underline;}
+#content a:active strong {text-decoration: underline; color: #ff0000;}
 
 
 .greytext a {color: #888888;}
@@ -531,9 +537,10 @@ input {
 
 #navmenu {
     position: relative;
-    min-height: 40px;
-width: 70px;
-float: right;
+    min-height: 35px;
+    /* 28aug2013 width: 70px; */
+    width: 100px;
+    float: right;
 }
 #navmenu ul {
     width: 100%;
@@ -561,7 +568,10 @@ float: right;
 }
 #navmenu ul:hover li {
     display: block;
-    margin: 0 0 5px;
+/* 28aug2013   margin: 0 0 5px; */
+/* 30aug2013     margin: 25px 0 0 0; */
+    margin: 1em 0 0  0;
+    text-transform: uppercase;
 }
 #navmenu ul li a:hover {
     text-decoration: underline;
@@ -605,6 +615,7 @@ float: right;
     }
     #headersearchlink {
         display: inline; 
+        padding-right: 1em;
     }
 }
 
@@ -730,7 +741,6 @@ text-align:left;
     border: 5px solid #666666;
     margin: .8em;
     font-size: 1.3em;
-    position: relative;
     text-align: center;
 }
 
