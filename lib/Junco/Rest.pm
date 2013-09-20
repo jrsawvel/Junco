@@ -8,6 +8,7 @@ use Junco::Format;
 use Junco::BlogTitle;
 use Junco::Backlinks;
 use REST::Client;
+use JSON::PP;
 
 my $pt_db_source       = Config::get_value_for("database_host");
 my $pt_db_catalog      = Config::get_value_for("database_name");
@@ -70,7 +71,7 @@ sub do_rest {
     my $request_method = $q->request_method();
 
     if ( $request_method eq "GET" ) {
-        do_get($function, $action);
+        do_get($tmp_hash);
     } elsif ( $request_method eq "POST" and $function eq "addmicroblog" ) {
         add_microblog();
     } elsif ( $request_method eq "POST" and $function eq "addblog" ) {
@@ -83,9 +84,21 @@ sub do_rest {
 }
 
 sub do_get {
-    my $function = shift;
-    my $value    = shift;
-    Page->report_error("user", "Function - Value - Request Method", "$function - $value - GET");
+    my $tmp_hash = shift;
+
+    my $articleid = $tmp_hash->{one};
+
+    if ( !StrNumUtils::is_numeric($articleid) ) {
+        Page->report_error("user", "Invalid GET request.", "Article id $articleid is not numeric.");
+    }
+
+    my %post_info = _get_post($articleid);
+
+    my $json_str = encode_json \%post_info;
+
+    print "Content-type: text/html\n\n";
+    print $json_str;
+    exit;
 }
 
 sub do_post {
@@ -424,6 +437,43 @@ sub _add_blog {
     die "system " . "Error disconnecting from database. " . $db->errstr if $db->err;
 
     return $articleid;
+}
+
+sub _get_post {
+    my $articleid = shift;
+
+    my %hash = ();
+
+    my $offset = Utils::get_time_offset();
+
+    my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
+    Page->report_error("system", "Error connecting to database.", $db->errstr) if $db->err;
+
+#    my $sql = "select c.id, c.parentid, c.formattedcontent, c.replycount, c.importdate, ";
+#    $sql .=      "date_format(date_add(c.date, interval $offset hour), '%b %d, %Y') as createddate, ";
+#    $sql .=      "date_format(date_add(c.date, interval $offset hour), '%r') as createdtime, ";
+#    $sql .=      "u.username from $dbtable_content c, $dbtable_users u  ";
+#    $sql .=      "where c.id=$articleid and c.type='m' and c.status='o' and c.authorid=u.id";
+
+    my $sql = "select c.markupcontent, c.date as modifieddate, c.createddate, u.username as authorname ";
+    $sql .=      "from $dbtable_content c, $dbtable_users u  ";
+    $sql .=      "where c.id=$articleid and c.type in ('m','b') and c.status='o' and c.authorid=u.id";
+
+    $db->execute($sql);
+    Page->report_error("system", "(31) Error executing SQL", $db->errstr) if $db->err;
+
+    if ( $db->fetchrow ) {
+        $hash{markupcontent}    = $db->getcol("markupcontent");
+        $hash{createddate}      = $db->getcol("createddate");
+        $hash{modifieddate}     = $db->getcol("modifieddate");
+        $hash{authorname}       = $db->getcol("authorname");
+    }
+    Page->report_error("system", "Error retrieving data from database.", $db->errstr) if $db->err;
+
+    $db->disconnect();
+    Page->report_error("system", "Error disconnecting from database.", $db->errstr) if $db->err;
+
+    return %hash;
 }
 
 
