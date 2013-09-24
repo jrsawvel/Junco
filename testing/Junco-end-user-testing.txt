@@ -1,0 +1,437 @@
+h1. Junco end-user testing
+
+Manually testing the Junco Web app like a user with a browser.
+
+Related: [[Junco app user actions]]
+
+
+
+h2. Homepage
+
+Logged-out user:
+
+* visit "homepage" 
+** *fix the display issue* of this page on IE v8
+** ensure that all footer links and info work properly:
+*** about - help - contact - archives - tags - search
+*** home page link at bottom
+*** current date and time info at bottom
+
+
+
+h2. New user
+
+h3. Sign-up form
+
+* _(signup - Signup - show_signup_form)_
+* click the blue sign-up button. 
+
+h3. Create new account
+
+* _(createnewuser - Signup - create_new_user)_
+* enter valid, unique username
+* enter valid, unique e-mail address
+* test entering invalid username and e-mail address:
+** too short *(min len?)*
+** too long *(max len?)*
+** unacceptable characters (username only accepts alphanumeric and underscore) *verify*
+** invalid e-mail syntax
+
+h3. E-mail activation link
+
+* after signing-up with valid username and e-mail address, test:
+** sending of e-mail with activation link *(enable/add code)*
+
+h3. Activate account
+
+* _(acct - Signup - activate_account)_
+* clicking the activation link in e-mail to activate account
+** system automatically creates password for initial account creation, verify password in e-mail.
+* if running in debug mode, the auto-generated password and the activation link are displayed immediately after entering username and e-mail address info. when in debug, a valid, functioning e-mail address is not required. the e-mail still needs to have valid syntax, such as x@x.com and username and e-mail still need to be unique, but the system does not send a message to the e-mail address given.
+* after clicking the account activation link, login screen should display.
+
+
+
+h2. Login
+
+* _(login - Login - login)_
+* test logging in from the homepage.
+* login with e-mail address and the auto-gen password.
+
+* _(loginform - Login - show_login_form)_
+* also test logging in via the login form.
+
+
+
+h2. Lost password
+
+* _(newpassword - Password - create_new_password)_
+* at bottom of login page, a section exists to have system create and e-mail a new password.
+* enter username and e-mail address for the account.
+* click button "Mail me a new password."
+* test the system sending the e-mail.
+* if running in debug mode, the new password will be displayed in the browser.
+
+
+
+h2. User profile
+
+h3. Change password
+
+* _(user - Profile - show_user)_
+* _(settings - UserSettings - show_user_settings_form)_
+* _(changepassword - Password - change_password)_
+* after successfully logging in for the first time, change password to something more meaningful and memorable.
+** click on username
+** click "Change your password, e-mail address, or description info"
+** test incorrect info:
+*** enter incorrect old password
+*** enter two new passwords that do not match
+*** test invalid passwords *(what are the pwd requirements)*
+** test correct info:
+*** enter old password
+*** enter new password twice
+*** click the "modify/password" button
+
+h3. Change e-mail and description
+
+* _(customizeuser - UserSettings - customize_user)_
+* _(savedchanges - UserSettings - show_user_changes)_
+* click on "Change your password, e-mail address, or description info"
+** change e-mail address
+** test invalid e-mail syntax
+** enter text in description area
+** *when pages have been created, test using the include template function to include info from another page or post that will display on user profile page.*
+
+
+
+h2. Logout, login, save login
+
+* _(logout - Logout - logout)_
+* after successfully changing password, logout, and then log back in with the new password.
+* logout and then login by clicking "save login" checkbox.
+* close browser
+* re-open browser
+* visit website to verify that account is automatically logged into site.
+
+
+
+h2. Microblog Post
+
+h3. Create microblog
+
+* _(addmicroblog - Microblog - add_microblog)_
+* create microblog post
+
+h3. Display microblog
+
+* _(microblogpost - Microblog - show_microblog_post)_
+* display microblog post
+
+h3. Delete microblog
+
+* _(deletemicroblog - Microblog - delete_microblog)_
+* delete microblog post
+
+h3. Undelete microblog
+
+* _(undeletemicroblog - Microblog - undelete_microblog)_
+* undelete microblog post
+
+h3. Microblog formatting
+
+* The only formatting options permitted within a microblog post are:
+** raw URLS that get converted into a clickable link.
+** hashtags that get converted into a tag search link.
+* create microblog post with a raw URL
+
+h3. Char limit
+
+* create a microblog post with more than the max-allowed characters.
+** should receive an error
+** example:
+*** Error: 352 chars entered. Max is 300.
+
+h3. Microblog stream
+
+* _(microblog - Stream - show_microblog_stream)_
+* on user profile page, click on links following "Micro Blog posts:"
+** the microblog count link, which displays a stream of the user's microblog posts
+** the rss link for the user's microblog posts
+* when viewing the user's stream of microblog posts, click on "all microblog postings" to show stream of all users' microblog posts if the code is open to multiple authors
+
+
+
+h2. Blog Post
+
+h3. Create blog post
+
+* _(blogpostform - BlogAdd - show_blog_post_form)_
+* _(addarticle - BlogAdd - add_blog_post)_
+* click on "post" link to get the basic textarea box for creating a blog post/article (longform post)
+
+h4. no content
+
+* add no content and click:
+** preview button
+** post button
+* should receive error:
+** "You must enter content. You must give a title for your article."
+
+h4. blog titles
+
+* click the "post" link.
+* enter content in text area box for blog post.
+* click preview button.
+* click post button.
+** the first line to the first hard return should be automatically turned into the title for the post.
+
+* click the "post" link for a blog post.
+* create a blog post with a lengthy bit of content but with no hard return.
+** if no hard return, the first X-number of characters will automatically be made into the title. 
+
+* click the "post" link.
+* create a long title line with a hard return followed by body text.
+** the first X-number of characters of the title line will automatically be made into the title. *(what is max number of title chars?)*
+
+h4. existing blog titles
+
+* create blog post that is titled the same thing as an existing post.
+* should receive an error about title already existing.
+
+h3. Display blog post
+
+* _(blogpost - BlogDisplay - show_blog_post)_
+* from the home page stream, click on link for blog post to display it.
+** click on the blog title, which should be a link. it will display itself.
+** at the bottom of the blog post, click links on the "From" line:
+*** the author's name, which should display the user's profiel page.
+*** the "blog" link, which will display a stream of all blog posts created by the author
+** click the pound sign permalink for the post to display itself
+** click the links for:
+*** source
+*** versions
+*** reply
+*** EDIT
+
+h4. blog post source markup
+
+* _(source - BlogSource - show_blog_source)_
+* blog post source link:
+** displays in plain text the markup of the post.
+
+h4. blog post versions
+
+* _(versions - BlogVersions - show_version_list)_
+* blog post versions link:
+** displays all versions created for the blog post.
+** comparisons or diffs can be made between any two versions.
+
+h4. compare blog posts
+
+* _(compare - BlogCompare - compare_versions)_
+** if more than one version exists, by default, the most recent two versions are automatically selected for comparison.
+** if desire a different comparison, select the proper radio buttons, then click the "Compare Versions" button.
+** the compare page will show lines that are:
+*** + added (green background color)  
+*** - removed  (red background color)  
+*** c changed (yellow background color)  
+*** u unmodified (default background color)
+
+h4. related blog posts
+
+* _(relatedblogposts - BlogRelated - show_related_blog_posts)_
+* create two blog posts where each post contains at least two hashtags that are the same.
+* view one of the blog posts. at the bottom of the page, should see: title called "Related blog posts" with the similar blog posts displayed underneath.
+* the related blog posts list is based upon at least two hashtags that are the same and shared by more than one post.
+* up to five related blog posts are displayed.
+* if more than five exist, then a more link is added.
+* clicking the more link will list all of the related blog post title links.
+
+
+h3. Blog stream
+
+* _(stream - Stream - show_entire_stream)_
+* _(blog - Stream - show_blog_stream)_
+* on the home page stream or blog post stream, if the blog body text is greater than X-number of chars defined in config file *(what?)* then the "more" link will display.
+** if tags exist, then the list of tags will display as small, grey text links on the same line as the date the post was created.
+
+* if the blog body text is shorter than X-number of chars, then the entire post is displayed on the stream page, including the hashtags in the post. it will look similar to a microblog post.
+** the tag list will not display as small, grey links since the body text was short enough to display entirely on the home page stream.
+
+* if the power command "showintro=no" was used within the blog body text, then displayed on the home page stream will be:
+** blog post title link
+** more link
+** date created as a small grey text link
+** tag list as small grey text links
+
+h3. Delete blog post
+
+* _(deleteblog - BlogDelete - delete_blog)_
+* on the home page, delete a blog post.
+
+h3. Undelete blog post
+
+* _(undeleteblog - BlogUndelete - undelete_blog)_
+* on the home page, undelete a blog post.
+
+h3. Blog archives
+
+* _(blogarchives - Archives - show_archives)_
+* at the bottom of the site or on a user's profile page, click on the "archives" link.
+* a list of links that are months and years will be displayed from recent to oldest:
+** September 2013
+** August 2013
+* the list is based upon the creation date of blog posts.
+* if clicking the archives link on a user's profile page, then the list is based upon blog posts created by that user.
+* if clicking the archives link at the bottom of the site, then the list is based upon blog posts created by all users.
+
+h3. Blog archives stream
+
+* _(blogarchivepage - Stream - show_archives_month_year)_
+* on the archives page, click a month-year link.
+* a stream of all blog posts created that month will be displayed like any other stream, youngest to oldest.
+
+h3. Edit blog posts
+
+* _(edit - BlogEdit - edit_blog_post)_
+* _(updateblog - BlogUpdate - update_blog_post)_
+* click link on home page to display blog post.
+* at either the top of the blog post or at the bottom of the blog post, click the "EDIT" link.
+* test preview button.
+* update blog post with no changes.
+* update blog post by changing the title line to match an existing blog post.
+** should receive an error about the title already being used.
+
+
+
+h2. Split-screen Blog Editing
+
+splitscreen - BlogAdd - show_splitscreen_form
+splitscreenedit - BlogEdit - splitscreen_edit
+
+
+
+h2. Hashtags
+
+For microblog posts and for adding and updating blog posts:
+
+* _(tag - Search - tag_search)_
+* create post with one hashtag
+** hashtag should automatically be made into a clickable link, which is a tag search result
+** click hashtag links within a post both on the home page stream and within the post when displaying it.
+
+* create post with 8 hashtags or the max defined in config file.
+
+* create post with one-plus the max-allowed hashtags.
+** should receive an error
+
+* *the acceptable chars for a hashtag are what?*
+** i think it's same as username when creating an account:
+*** alphanumeric and underscore.
+* verify acceptable hashtag chars.
+** create hashtag with all non-acceptable chars.
+** create hashtag with mix of acceptable and non-acceptable chars.
+
+* a hashtag that is all numbers is not made into a hashtag.
+** test creating a hashtag with all numbers.
+
+
+
+h2. Streams
+
+* _(blog - Stream - show_blog_stream)_
+* _(stream - Stream - show_entire_stream)_ 
+* _(microblog - Stream - show_microblog_stream)_
+* _(blogarchivepage - Stream - show_archives_month_year)_ 
+* _(private - Stream - show_private_blog_stream)_
+* _(draft - Stream - show_draft_blog_stream)_
+* show stream of all microblog and blog posts for a user.
+* show stream of all microblog and blog posts by all users.
+* the entire microblog post is displayed.
+* for blog posts, content displayed includes:
+** the link title.
+** only the first X-number of characters of body text.
+** "more" link if body text exceeds the X-number of characters permitted on the stream display.
+** if showintro=no command used in body text, then display only the title and the "more" link.
+
+
+
+h2. Search and Tags
+
+* _(search - Search - search)_
+* _(searchform - Search - display_search_form)_
+* _(tag - Search - tag_search)_ 
+* _(tags - Search - show_tags)_ 
+* _(tagscounts - Search - show_tags_by_counts)_ 
+* _(tagscountstop - Search - show_tags_by_top_counts)_
+
+
+
+h2. RSS
+
+* _(rss - RSS - get_rss)_
+
+
+
+h2. Replies
+
+* _(reply - Reply - show_reply_form)_ 
+* _(addreply - Reply - add_reply)_ 
+* _(replies - Reply - show_replies)_ 
+* _(repliesstream - Reply - show_replies_stream)_
+
+
+
+h2. Following
+
+* _(follow - Following - follow_user)_
+* _(followtag - Following - follow_tag)_
+* _(following - Following - show_following)_
+* _(followedby - Following - show_followed_by (disabled))_
+* _(unfollow - Following - unfollow_user)_ 
+* _(unfollowtag - Following - unfollow_tag)_
+* _(followingstream - Following - show_following_stream)_
+
+
+
+h2. Rest
+
+* _(rest - Rest - do_rest)_
+
+
+
+h2. Backlinks
+
+* _(backlinks - Backlinks - show_backlinks)_
+
+
+
+h2. Invalid function
+
+* _(showerror - Function - do_invalid_function)_
+
+
+
+h2. Generic post display
+
+This will work for displaying either a microblog or blog post.
+
+Instread of the URL containing "microblog" or "blog," the function/action word "post" can be used.
+
+* _(post - ShowContent - show_content)_
+
+
+
+h2. Text size
+
+* _(textsize - TextSize - set_text_size)_
+
+
+
+h2. Theme
+
+* _(theme - Theme - set_theme)_
+
+
+ #junco - #testing 
