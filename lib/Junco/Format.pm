@@ -420,6 +420,13 @@ sub process_embedded_media {
         $str =~ s|\Q$cmd$url|$iframe|;    
     }
 
+    while ( $str =~ m|^(gist[\s]*=[\s]*)(.*?)$|mi ) {
+        $cmd=$1;
+        $url= StrNumUtils::trim_spaces($2);
+        my $gscript = qq(<script src="https://gist.github.com/$url"></script>);
+        $str =~ s|\Q$cmd$url|$gscript|;    
+    }
+
     return $str;
 }
 # embedding media
