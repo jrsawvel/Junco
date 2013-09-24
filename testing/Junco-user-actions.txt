@@ -1,0 +1,96 @@
+h1. Junco user actions
+
+*action - module - subroutine*
+
+blogarchives - Archives - show_archives
+
+backlinks - Backlinks - show_backlinks
+
+addarticle - BlogAdd - add_blog_post
+blogpostform - BlogAdd - show_blog_post_form
+-textileeditor - BlogAdd - show_textile_editor_form- (textile live preview editor disabled)
+splitscreen - BlogAdd - show_splitscreen_form
+
+blogpost - BlogDisplay - show_blog_post
+
+edit - BlogEdit - edit_blog_post
+splitscreenedit - BlogEdit - splitscreen_edit
+-textileeditoredit - BlogEdit - textile_editor_edit- (textile live preview editor disabled)
+
+deleteblog - BlogDelete - delete_blog
+
+undeleteblog - BlogUndelete - undelete_blog
+
+updateblog - BlogUpdate - update_blog_post
+
+versions - BlogVersions - show_version_list
+
+compare - BlogCompare - compare_versions
+
+source - BlogSource - show_blog_source
+
+relatedblogposts - BlogRelated - show_related_blog_posts
+
+follow - Following - follow_user
+followtag - Following - follow_tag
+following - Following - show_following
+-followedby - Following - show_followed_by- (disabled)
+unfollow - Following - unfollow_user 
+unfollowtag - Following - unfollow_tag
+followingstream - Following - show_following_stream
+
+showerror - Function - do_invalid_function
+
+loginform - Login - show_login_form
+login - Login - login
+
+logout - Logout - logout
+
+addmicroblog - Microblog - add_microblog
+deletemicroblog - Microblog - delete_microblog
+undeletemicroblog - Microblog - undelete_microblog
+microblogpost - Microblog - show_microblog_post
+
+changepassword - Password - change_password
+newpassword - Password - create_new_password
+
+user - Profile - show_user
+
+rss - RSS - get_rss     
+
+search - Search - search
+searchform - Search - display_search_form
+tag - Search - tag_search          
+tags - Search - show_tags            
+tagscounts - Search - show_tags_by_counts    
+tagscountstop - Search - show_tags_by_top_counts  
+
+blog - Stream - show_blog_stream       
+stream - Stream - show_entire_stream      
+microblog - Stream - show_microblog_stream   
+blogarchivepage - Stream - show_archives_month_year 
+private - Stream - show_private_blog_stream
+draft - Stream - show_draft_blog_stream   
+
+signup - Signup - show_signup_form        
+createnewuser - Signup - create_new_user         
+acct - Signup - activate_account        
+
+settings - UserSettings - show_user_settings_form 
+customizeuser - UserSettings - customize_user           
+savedchanges - UserSettings - show_user_changes       
+
+reply - Reply - show_reply_form          
+addreply - Reply - add_reply                
+replies - Reply - show_replies             
+repliesstream - Reply - show_replies_stream      
+
+rest - Rest - do_rest                 
+
+post - ShowContent - show_content            
+
+textsize - TextSize - set_text_size            
+
+theme - Theme  - set_theme
+
+ #testing - #junco - #juncocode 
