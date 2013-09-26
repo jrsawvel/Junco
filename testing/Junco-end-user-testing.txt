@@ -2,7 +2,7 @@ h1. Junco end-user testing
 
 Manually testing the Junco Web app like a user with a browser.
 
-Related: [[Junco app user actions]]
+Related: [[Junco user actions]]
 
 
 
@@ -30,12 +30,17 @@ h3. Create new account
 
 * _(createnewuser - Signup - create_new_user)_
 * enter valid, unique username
+** username must contain fewer than 31 characters, and only letters, numbers, and underscores are allowed.
 * enter valid, unique e-mail address
+** e-mail must be shorter than 256 characters long and properly syntaxed. 
 * test entering invalid username and e-mail address:
-** too short *(min len?)*
-** too long *(max len?)*
-** unacceptable characters (username only accepts alphanumeric and underscore) *verify*
+** too short 
+** too long 
+** unacceptable characters 
 ** invalid e-mail syntax
+* test entering a username that already exists in database.
+* test entering an e-mail address that already exists in database.
+
 
 h3. E-mail activation link
 
@@ -87,11 +92,20 @@ h3. Change password
 ** test incorrect info:
 *** enter incorrect old password
 *** enter two new passwords that do not match
-*** test invalid passwords *(what are the pwd requirements)*
+*** test invalid passwords 
 ** test correct info:
 *** enter old password
 *** enter new password twice
 *** click the "modify/password" button
+
+* requirements for passwords created by user:
+** must be least 8 chars long.
+** max char length is 30.
+** must contain at least 4 alpha chars.
+** must contain at least 2 numeric chars.
+** must contain at least 2 chars from the following list: !@$%^&amp;*
+* the alphas, digits, and jibberish chars do not have to be unique, so a password can contain two exclamation marks, which satisfies the jibberish requirement.
+
 
 h3. Change e-mail and description
 
@@ -101,7 +115,7 @@ h3. Change e-mail and description
 ** change e-mail address
 ** test invalid e-mail syntax
 ** enter text in description area
-** *when pages have been created, test using the include template function to include info from another page or post that will display on user profile page.*
+** when pages have been created, test using the include template function to include info from another page or post that will display on user profile page.
 
 
 
@@ -143,6 +157,7 @@ h3. Microblog formatting
 * The only formatting options permitted within a microblog post are:
 ** raw URLS that get converted into a clickable link.
 ** hashtags that get converted into a tag search link.
+** the id for a blog or microblog post surrounded by forward slashes like this /847/ which automatically gets made into a "post" link to the blog or microblog.
 * create microblog post with a raw URL
 
 h3. Char limit
@@ -192,7 +207,16 @@ h4. blog titles
 
 * click the "post" link.
 * create a long title line with a hard return followed by body text.
-** the first X-number of characters of the title line will automatically be made into the title. *(what is max number of title chars?)*
+** the first X-number of characters of the title line will automatically be made into the title. (default max_blog_post_title_length: 150)
+
+* although not required, the markup commands for heading one for Textile and Markdown are permitted on the title line within a blog post. this markup syntax gets ignored by the app, but it's good to include the markup for semantic purposes when viewing markup source or saving markup elsewhere.
+
+* the app converts the first character to uppercase in the title line for display purposes, but the markup is not altered.
+
+
+h4. namespace titles
+
+* if the title contains a colon punctuation mark, then the text preceding the punctuation mark must equal the username of the user creating the post. this namespace type of naming allows for users to create common titles with their username in the title.
 
 h4. existing blog titles
 
@@ -203,6 +227,9 @@ h3. Display blog post
 
 * _(blogpost - BlogDisplay - show_blog_post)_
 * from the home page stream, click on link for blog post to display it.
+** if blog post is private, and user trying to view the post is not logged in and not the owner/author of the post, then the post will not be displayed.
+** if older version being displayed, a related message should appear at top of page with a link to the most recent version of blog post.
+** if toc command NOT set to "no" then the table of contents should display in upper right part of page. but if browser has been resized smaller or page is displayed on a small screen, the the table of contents will not display regardless of the toc command's value.
 ** click on the blog title, which should be a link. it will display itself.
 ** at the bottom of the blog post, click links on the "From" line:
 *** the author's name, which should display the user's profiel page.
@@ -219,6 +246,7 @@ h4. blog post source markup
 * _(source - BlogSource - show_blog_source)_
 * blog post source link:
 ** displays in plain text the markup of the post.
+*** Content-type: text/plain
 
 h4. blog post versions
 
@@ -226,6 +254,7 @@ h4. blog post versions
 * blog post versions link:
 ** displays all versions created for the blog post.
 ** comparisons or diffs can be made between any two versions.
+* if the top-level blog post is private, and the user clicking the versions link is not the logged-in owner of the blog post, then the versions function will error out.
 
 h4. compare blog posts
 
@@ -237,6 +266,16 @@ h4. compare blog posts
 *** - removed  (red background color)  
 *** c changed (yellow background color)  
 *** u unmodified (default background color)
+* test user B comparing private blog posts for user A, which depends upon:
+** is top-level post public or private?
+** are old versions public or private?
+
+* verify behavior for diffs on private posts:
+** if top level post is private, and if user not logged in, then compare fails.
+** if top level post is private, and if logged-in user is not the owner of the blog post, then the compare fails.
+** if at least one of the versions being compared is private, and the author is not the logged in user, then compare fails.
+
+
 
 h4. related blog posts
 
@@ -253,7 +292,7 @@ h3. Blog stream
 
 * _(stream - Stream - show_entire_stream)_
 * _(blog - Stream - show_blog_stream)_
-* on the home page stream or blog post stream, if the blog body text is greater than X-number of chars defined in config file *(what?)* then the "more" link will display.
+* on the home page stream or blog post stream, if the blog body text is greater than X-number of chars defined in config file, then the "more" link will display. *(not yet defined in config file. the max number is 250 chars set in Stream.pm)*
 ** if tags exist, then the list of tags will display as small, grey text links on the same line as the date the post was created.
 
 * if the blog body text is shorter than X-number of chars, then the entire post is displayed on the stream page, including the hashtags in the post. it will look similar to a microblog post.
@@ -321,7 +360,7 @@ For microblog posts and for adding and updating blog posts:
 ** hashtag should automatically be made into a clickable link, which is a tag search result
 ** click hashtag links within a post both on the home page stream and within the post when displaying it.
 
-* create post with 8 hashtags or the max defined in config file.
+* create post with max number of hashtags defined in config file (default max_unique_hashtags: 8)
 
 * create post with one-plus the max-allowed hashtags.
 ** should receive an error
@@ -336,6 +375,11 @@ For microblog posts and for adding and updating blog posts:
 * a hashtag that is all numbers is not made into a hashtag.
 ** test creating a hashtag with all numbers.
 
+* when deleting and undeleting blog and microblog posts that contain hashtags, verify that the counts for those hashtags update accordingly.
+
+* *correct error message in Microblog.pm - _add_microblog subroutine,which currently states:*
+** "Only 7 unique hashtags are permitted."
+* Instead of a hardcoded number, use the config value in the error message, which is currently set at 8.
 
 
 h2. Streams
@@ -348,12 +392,17 @@ h2. Streams
 * _(draft - Stream - show_draft_blog_stream)_
 * show stream of all microblog and blog posts for a user.
 * show stream of all microblog and blog posts by all users.
+* default number of posts displayed per page = 15 (max_entries_on_page)
+* when the number of posts in the stream exceeds max_entries_on_page, then the "Older" link appears in the lower right hand corner of page.
+* when viewing page 2-plus, the "Newer" link appears in the lower left hand corner of page.
 * the entire microblog post is displayed.
 * for blog posts, content displayed includes:
 ** the link title.
 ** only the first X-number of characters of body text.
 ** "more" link if body text exceeds the X-number of characters permitted on the stream display.
 ** if showintro=no command used in body text, then display only the title and the "more" link.
+** when the browser is resized smaller or when viewing the site on a small screen, the blog post intro text is not displayed, regardless of the showintro command. the entire microblog post, however, is still displayed.
+
 
 
 
@@ -361,16 +410,51 @@ h2. Search and Tags
 
 * _(search - Search - search)_
 * _(searchform - Search - display_search_form)_
+
+h3. Search
+
+* enter search term(s)
+* enter terms separated by AND
+* enter terms separated by OR
+* after search results, test clicking on the pound sign permalink for the search
+* after search results, test clicking on the RSS link
+* the basic SQL search will match on partial words. So "junco" will also match "juncocode."
+
+h3. Tags
+
 * _(tag - Search - tag_search)_ 
 * _(tags - Search - show_tags)_ 
+* click on hashtags within blog and microblog posts
 * _(tagscounts - Search - show_tags_by_counts)_ 
 * _(tagscountstop - Search - show_tags_by_top_counts)_
+* when editing a blog post, remove and add tags to verify that the counts update correctly
+
+h3. Special blog_ tag
+
+* blog_username hashtag formats the stream differently.
+* the "username" after blog_ has to match the username of the logged in user.
+* after clicking on any blog_username, the stream will display like a typical blog.
+* the entire blog post can be shown on the stream results page, or if the author uses the "more." command, then only the contents prior to the "more." command will be displayed on the stream results page along with the more link to inform user that more info exists.
+* a photo can be displayed within blog_username blog posts on the stream results page for this special tag.
 
 
 
 h2. RSS
 
 * _(rss - RSS - get_rss)_
+* check RSS links on user profile page for:
+** blog posts
+** microblog posts
+** stream
+* search:
+** tag search 
+** normal search result
+
+h3. Feed command
+
+* use the double-curly brace feed command to display results from a RSS or atom feed within the page. {{feed= URL followed by two right curly braces.
+* do above except include the "desc" attribute within the double-curly brace and after the URL to the RSS/atom feed. 
+** the "desc" attribute should display description information if it's available within the XML file.
 
 
 
@@ -380,6 +464,19 @@ h2. Replies
 * _(addreply - Reply - add_reply)_ 
 * _(replies - Reply - show_replies)_ 
 * _(repliesstream - Reply - show_replies_stream)_
+* click reply link to get the reply form.
+* replies are microblog posts with the same formatting and max character limitations.
+** test formatting and max char count for a reply.
+* add legitimate reply.
+* view thread of replies and parent post.
+* test reply to a reply.
+* verify links for discussion thread and parent post within a reply thread.
+* test replies from another user. after clicking "replies" link in nav bar, a stream of replies from other users will appear.
+* add reply to a post created by another user.
+
+
+
+
 
 
 
@@ -393,24 +490,57 @@ h2. Following
 * _(unfollowtag - Following - unfollow_tag)_
 * _(followingstream - Following - show_following_stream)_
 
+h3. Follow Users
+
+* click on profile of another user.
+* click the follow button.
+* check own profile page for the following info:
+** show list of users being followed
+** click on stream of posts by followed users
+* click on the following link in the nav bar to show stream of posts by followed users.
+* click on the followed user's profile page and click the unfollow button.
+* verify the unfollowing changes on own profile page and within the following link in navbar.
+
+h3. Follow Tags
+
+* click on a hashtag and click on the follow button.
+* check own profile page for the following info:
+** show list of tags being followed.
+** click on stream of posts that contain the followed tags.
+* click on the following link in the nav bar to show stream of posts that contain the followed tags.
+* click on the followed tag to get a search result, and click the unfollow button.
+* verify the unfollowing changes on own profile page and within the following link in navbar.
+
 
 
 h2. Rest
 
 * _(rest - Rest - do_rest)_
+* Rest.pm - *(describe later, since not fully implemented.)*
 
 
 
 h2. Backlinks
 
 * _(backlinks - Backlinks - show_backlinks)_
+* create a blog post that contains a normal URL link or a double-bracket case link to an existing blog post within the app.
+* click the link for the other blog post.
+* at the bottom of this other blog post, should see a "backlinks" link.
+* click the "backlinks" link.
+* should see a list of all pages that link to the other blog post.
+* test linking from blog post A to blog post B multiple times within blog post A. 
+** when clicking the backlinks link at the bottom of blog post B, blog post A should appear only once, regardless of the number of times blog post A links to B.
+* *currently, if the blog post URL contains "blogpost" then it will be counted as a backlink. but the app also allows for the generic "post" command, which can be used for both blog and microblog posts. at moment, will not count the "post" function as a backlink.*
+* test remove the link to A from B to ensure that B does not appear under backlinks when viewing A.
 
 
 
 h2. Invalid function
 
 * _(showerror - Function - do_invalid_function)_
-
+* in the URL path info, if an invalid command or function is given:
+** "Invalid function: xxxxx"
+** "It's not supported."
 
 
 h2. Generic post display
@@ -422,16 +552,165 @@ Instread of the URL containing "microblog" or "blog," the function/action word "
 * _(post - ShowContent - show_content)_
 
 
+h2. Last Blog Viewed
+
+* For each blog post viewed, the user's db table is updated that stores the blog post id number for the blog post currently viewed.
+* when browser closed and re-opened or when user logs out and logs back in regardless of device, the last viewed blog post will be automatically displayed first. The last viewed blog post is the first thing the user sees after restarting browser with saved-login cookie set or when logging back in.
+
+
 
 h2. Text size
 
 * _(textsize - TextSize - set_text_size)_
+* click on the five "A" links at the bottom of the website to change the font size.
+* a cookie will be set to preserve font size on next visit after browser was closed.
+* a user does not need to be logged in to change font size.
 
 
 
 h2. Theme
 
 * _(theme - Theme - set_theme)_
+* two themes supported at moment:
+** default theme uses black and/or dark grey text on a white background.
+** nightmode theme uses light grey text on a charcoal-colored background along with a few other changes.
+
+
+h2. Template Includes
+
+* for blog posts.
+* double-curly brace command around the title of an existing blog post will include the HTML content from that post into the post initiating the include command.
+* if the tmpl. and tmpl.. commands are used in the other blog post, then only the content within those commands will be included.
+* example:
+** blog post A exists titled "This is Test A"
+** blog post B wants to include content from blog post A by using: {{This is Test A} }  within the post B body text.
+*** (except no space between the two right hand curly braces)
+* the user's profile description area can also use the double-curly brace include command.
+
+
+
+h2. Valid HTML Tags
+
+* test usage of valid and invalid HTML tags based upon setting in config file.
+* valid html defined in config file:
+** div span table a th tr td center pre dl dt dd img code pt em strong br blockquote big small strike del ins b i u
+
+
+
+h2. Custom formatting commands
+
+* Textile like.
+* defined in Format.pm
+** q. and q..
+** tmpl. and tmpl..
+** hr.
+** br.
+** more.
+** code. and code..
+
+
+
+h2. Bracket case
+
+* double-bracket case surrounding the title of an existing post will automatically be turned into a link to that post.
+** EX: [[Lake Erie West] ] 
+*** --(except no space between the right brackets)--
+
+* can also use the vertical bar to display different link text to the user.
+** EX: [[Lake Erie West | LEW] ]
+** will use LEW as the link display text.
+
+* if post defined within double brackets does not exist, then nothing happens during PREVIEW. the text and the brackets display as is. no links.
+* but after the post has been saved, then a draft post is automatically created with the hashtag draftstub.
+* a link is automatically created in the formatted content where the double-bracket case was used.
+* the stub count can be observed by the user on the user's profile page.
+
+
+
+h2. External links
+
+* URLs that point to other websites have the class="extlink" added to the HTML anchor tag.
+* currently, the CSS is defined to display red link text color when mousing over an external link. obviously, not applicable to touch screens.
+** *maybe change the external link color some, so that the link can be identified on touchscreens.*
+
+
+
+h2. Image Headers
+
+* for blog posts.
+* is not displayed during the special blog_username stream display.
+* gets displayed when viewing the blog post.
+* two command types that specify URL to image after equal sign:
+** imageheader=
+** largeimageheader=
+
+
+
+h2. Power Commands
+
+* can be used within blog posts:
+** toc=yes|no 
+** draft=yes|no
+** replies=yes|no
+** private=yes|no
+** showintro=yes|no
+** code=yes|no
+** markdown=yes|no
+** imageheader=URL
+** largeimageheader=URL
+
+
+
+h2. Embedding Media
+
+* the img HTML tag is permitted.
+* Markdown and Textile provide commands to display an image.
+* custom commands to display other media:
+** gmap=
+** kickstarter=
+** facebook=
+** youtube=
+** vimeo=
+** gist=
+
+more info:
+
+q.
+--(except replace eq with the actual equals sign)--
+
+you tube video: - use url from the youtube embed code in the command
+url to page:              http://www.youtube.com/watch?v=nfOUn6LgN3c
+command to embed:         youtube eq nfOUn6LgN3c
+
+facebook video: - grab url to use with command from the embed or share at the facebook page
+url to video:      http://www.facebook.com/video/embed?video_id=10152670330945433
+command to embed: facebook eq 10152670330945433
+
+google map: - grab url from the link command
+url to map:        http://maps.google.com/maps/ms?msa=0&amp;msid=115189530534020686385.000458eaca4e382f6e81b&amp;cd=2&amp;hl=en&amp;ie=UTF8&amp;ll=41.655824,-83.53858&amp;spn=0.021611,0.032959&amp;z=15 
+command to embed:  gmap eq maps/ms?msa=0&amp;msid=115189530534020686385.000458eaca4e382f6e81b&amp;cd=2&amp;hl=en&amp;ie=UTF8&amp;ll=41.648656,-83.538566&amp;spn=0.017445,0.004533&amp;output=embed
+
+kickstarter video: - grab url to use with the command from the embed code
+url to video page:   http://www.kickstarter.com/projects/lanceroper/actual-coffee-a-toledo-coffee-roaster
+command to embed:    kickstarter eq lanceroper/actual-coffee-a-toledo-coffee-roaster/widget/video.html
+
+vimeo:
+url to video page:  http://vimeo.com/8578344
+command to embed:   vimeo eq 8578344
+
+gist:
+src="https://gist.github.com/adactio/6575229.js"
+command to embed: gist eq 6575229
+q..
+
+
+
+
+
+h2. HTML Entities
+
+* less than and greater than symbols are converted to their respective entities if not part of valid HTML list.
+
 
 
  #junco - #testing 
