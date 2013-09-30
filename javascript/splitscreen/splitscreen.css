@@ -1,149 +1,152 @@
+/* splitscreen.css - September 30, 2013 
+   Much of the CSS is adaptated from the CSS used in the
+   Textile live preview editor found at:
+   http://borgar.github.io/textile-js/
+*/
+
 html {
-  overflow: hidden;
-  height: 100%;
+    overflow: hidden;
+    height: 100%;
 }
 
 body {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;  
-/*  font-size: 100%;   */
-  background: #ddd;  
-  margin: 0;
-  padding: 0;
-  height: 100%;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;  
+    background: #ddd;  
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 #container {
 }
 
-/* textarea { */
-
 #tx_input {
-/*  font-family: "Open Sans", Arial, Helvetica, sans-serif;   */
-/*    font-size: 1.1em;   */
-/*    color: #111111; */
-font-family: 'Droid Sans Mono', "Courier New", Courier,  monospace, sans-serif;
-/* font-family: "Courier New" Courier  monospace; */
-font-size: 1.1em;   
-color: #222;
-/*  line-height: 1.5em; */
-line-height: 1.7em;
-  display: block;
-  resize: none;
-/*  background: #f5f6f6; light grey */
-/*  background: #e0eeee; /* light blue */
-  background: #f8f8ff;
+    font-family: 'Droid Sans Mono', "Courier New", Courier,  monospace, sans-serif;
+    font-size: 1.1em;   
+    color: #222;
+    line-height: 1.7em;
+    display: block;
+    resize: none;
+    background: #f8f8ff;
 }
+
 label {
-  display: block;
-  padding: 4px 0;
-  font-weight: bold;
-  color: #777;
+    display: block;
+    padding: 4px 0;
+    font-weight: bold;
+    color: #777;
 }
+
 .col {
-/* 22aug2013   padding-top: 1em; */
-  margin: 0;
-/* 22aug2013 width: 48%; */
-  width: 49%;
-  height: 95%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-/* 22aug2013  left: 1%; */
+    margin: 0;
+    width: 49%;
+    height: 95%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
+
 .singlecol {
-  margin: 0;
-/* 22aug2013   padding-top: 1em; */
-  width: 60%;
-  height: 95%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  left: 19%;
+    margin: 0;
+    width: 60%;
+    height: 95%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    left: 19%;
 }
+
 .prevsinglecol {
-/* 22aug2013   padding-top: 1em; */
-/* 25aug2013  width: 60%; */
-/* 25aug2013  left: 19%; */
-
-  height: 95%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  z-index: 999;
+    height: 95%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    z-index: 999;
 }
+
 body > h1 {
-  margin : 0;
-  padding : 10px 3% 0;
-  font-size : 20px;
-  color : #444;
+    margin : 0;
+    padding : 10px 3% 0;
+    font-size : 20px;
+    color : #444;
 }
+
 #col_left {
-  float: left;
-/*  left: 1%;  */
-  position: absolute;
-  z-index: 100; 
+    float: left;
+    position: absolute;
+    z-index: 100; 
 }
+
 #col_right {
-  float: right; 
-  right: 1%; 
+    float: right; 
+    right: 1%; 
 }
+
 .panel {
-  background: #fff;
-  border: 1px solid #aaaaaa;
-  outline: none;
-  display: block;
-  margin: 0;
-  padding: 4px;
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
-  height: 400px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-#text_preview {
-  overflow: auto;
-}
-.tools {
-  position: absolute;
-  top: .2em;
-  right: 0;
-  padding: 0;
-}
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #dddddd), color-stop(1, #ffffff));
-}
-::-webkit-scrollbar:horizontal {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #dddddd), color-stop(1, #ffffff));
-}
-::-webkit-scrollbar-corner {
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0, #dddddd), color-stop(0.6, #ffffff));
-}
-::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
-  height: 0;
-  width: 0;
-  display: block;
-  background-color: transparent;
-}
-::-webkit-scrollbar-track-piece {
-  background-color: transparent;
-}
-::-webkit-scrollbar-thumb:horizontal, ::-webkit-scrollbar-thumb:vertical {
-  border: 1px solid #bbbbbb;
-  height: 50px;
-  width: 50px;
-  -webkit-border-radius: 6px;
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #dddddd), color-stop(1, #bbbbbb));
-}
-::-webkit-scrollbar-thumb:horizontal {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #dddddd), color-stop(1, #bbbbbb));
+    background: #fff;
+    border: 1px solid #aaaaaa;
+    outline: none;
+    display: block;
+    margin: 0;
+    padding: 4px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 400px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 #text_preview {
-/* 25aug2013    padding: 0 1em 4px 1em; */
+    overflow: auto;
+}
+
+.tools {
+    position: absolute;
+    top: .2em;
+    right: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #dddddd), color-stop(1, #ffffff));
+}
+
+::-webkit-scrollbar:horizontal {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #dddddd), color-stop(1, #ffffff));
+}
+
+::-webkit-scrollbar-corner {
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0, #dddddd), color-stop(0.6, #ffffff));
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
+    height: 0;
+    width: 0;
+    display: block;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb:horizontal, ::-webkit-scrollbar-thumb:vertical {
+    border: 1px solid #bbbbbb;
+    height: 50px;
+    width: 50px;
+    -webkit-border-radius: 6px;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #dddddd), color-stop(1, #bbbbbb));
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #dddddd), color-stop(1, #bbbbbb));
+}
+
+#text_preview {
     line-height: 1.7em;
     font-size: 1.2em;  
     color: #222222;
@@ -158,19 +161,23 @@ body > h1 {
     font-size: .9em;
     font-family: Arial, Helvetica, sans-serif;  
 }
+
 #navmenu ul li {
     display: inline-block; 
 }
+
 #navmenu ul li a {
     text-decoration: none;
     color: #f8f8f8;
     text-align: left;
     padding: 0 .5em;
 }
+
 #navmenu ul li a:hover {
     text-decoration: underline;
     color: #ffffff;
 }
+
 #navmenu #navmenutext {
     display: none;
 }
@@ -184,13 +191,23 @@ body > h1 {
 img {
     max-width: 100%;
 }
-a {text-decoration: none; color: #0000ff;}
-a:visited {color: #cc3399;} 
-a:hover {text-decoration: underline;}
-a:active {text-decoration: underline; color: #ff0000;}
 
-#textilesubmitton {
+a {
+    text-decoration: none; 
+    color: #0000ff;
+}
 
+a:visited {
+    color: #cc3399;
+} 
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline; 
+    color: #ff0000;
 }
 
 .bluebutton {
@@ -215,7 +232,6 @@ a:active {text-decoration: underline; color: #ff0000;}
     color: #ffffff;
 }
 
-
 br {
     padding: 50px;
 }
@@ -238,15 +254,35 @@ h1, h2, h3, h4, h5 {
     border-bottom: 1px solid #cccccc;
 }
 
-h1 {font-size: 1.40em;}
-h2 {font-size: 1.30em; padding-top: 1.5em;}
-h3 {font-size: 1.20em; border-bottom: none; padding-top: 1.5em;}
-h4 {font-size: 1.15em; border-bottom: none; padding-top: 1.5em;}
-h5 {font-size: 1.10em; border-bottom: none; padding-top: 1.5em;}
+h1 {
+    font-size: 1.40em;
+}
+
+h2 {
+    font-size: 1.30em; 
+    padding-top: 1.5em;
+}
+
+h3 {
+    font-size: 1.20em; 
+    border-bottom: none; padding-top: 1.5em;
+}
+
+h4 {
+    font-size: 1.15em; 
+    border-bottom: none; padding-top: 1.5em;
+}
+
+h5 {
+    font-size: 1.10em; 
+    border-bottom: none; 
+    padding-top: 1.5em;
+}
 
 a.extlink {
     text-decoration: none;
 }
+
 a.extlink:hover {
     color: red;
 }
@@ -260,17 +296,18 @@ a.extlink:hover {
     font-weight: normal;
 }
 
-/*
-#content a strong,b {color: #0000ff;}
-#content a:visited strong,b {color: #cc3399;}
-#content a:hover strong,b {text-decoration: underline;}
-#content a:active strong,b {text-decoration: underline; color: #ff0000;}
-*/
+.greytext a {
+    color: #888888;
+}
 
+.greytext a:visited {
+    color: #888888;
+}
 
-.greytext a {color: #888888;}
-.greytext a:visited {color: #888888;}
-.greytext a:hover {color: #000000; text-decoration: underline;}
+.greytext a:hover {
+    color: #000000; 
+    text-decoration: underline;
+}
 
 .highlighted {
     margin-right: .5em;
@@ -285,12 +322,14 @@ ol {
     margin-left:0; /* Remove the default left margin */
     padding-left:0; /* Remove the default left padding */
 }
+
 ol > li {
     position:relative; /* Create a positioning context */
     margin:0 0 6px 2em; /* Give each list item a left margin to make room for the numbers */
     padding:4px 8px; /* Add some spacing around the content */
     list-style:none; /* Disable the normal item numbering */
 }
+
 ol > li:before {
     content:counter(li) ". "; /* Use the counter as content */
     counter-increment:li; /* Increment the counter by 1 */
@@ -306,108 +345,98 @@ ol > li:before {
     font-weight:bold;
     text-align:center;
 }
-li ol,
-/* 3may2013 I think it's suppose to be ol not ul  li ul {margin-top:6px;} */
- li ol {margin-top:6px;} 
-ol ol li:last-child {margin-bottom:0;}
 
+li ol {
+    margin-top:6px;
+} 
+
+ol ol li:last-child {
+    margin-bottom:0;
+}
 
 pre code {
     color: brown;
     font-size: 0.8em;
     line-height: 1em;
-    font-family:     "Courier New" Courier  monospace;
+    font-family: "Courier New" Courier  monospace;
 }
 
 code {
     color: brown;
-/*
-    background: #eee;
-    border: 1px solid #c0c0c0; 
-    padding: 2px 3px 2px 3px;
-*/
     font-size: 0.8em;
     line-height: 1em;
-    font-family:     "Courier New" Courier  monospace;
+    font-family: "Courier New" Courier  monospace;
 }
 
-
 /*  http://stackoverflow.com/questions/2295766/how-to-create-a-scrollable-div-tag-vertically-supported-in-chrome */
-.codeClass
-{
+.codeClass {
     width: 100%;
-/*    height: 400px; */
     overflow-y: scroll;
     color: #000000; 
     font-size: .9em;
     line-height: 1em;
     font-family: "Courier New" Courier  monospace;
     background: #f0fff0; /* light blue */
-    /*  max-width:230px; */
     max-height:500px; 
 }
+
 blockquote {
   margin-left: .6em;
   padding-left: 1em;
-/*  border-left: .1em solid #ddd; */ 
 }
 
 @media screen and (min-width: 320px) {
-.singlecol, .prevsinglecol {
-  margin: 0;
-/* 22aug2013   padding-top: 1em; */
-  width: 95%;
-  left: 2%;
-  height: 95%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
+    .singlecol, .prevsinglecol {
+        margin: 0;
+        width: 95%;
+        left: 2%;
+        height: 95%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
 }
 
 @media screen and (min-width: 768px) {
-.singlecol, .prevsinglecol {
-  margin: 0;
-/* 22aug2013   padding-top: 1em; */
-  width: 85%;
-  left: 7%;
-  height: 95%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
+    .singlecol, .prevsinglecol {
+        margin: 0;
+        width: 85%;
+        left: 7%;
+        height: 95%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
 }
 
 @media screen and (min-width: 1025px) {
-.singlecol, .prevsinglecol {
-  margin: 0;
-/* 22aug2013   padding-top: 1em; */
-  width: 75%;
-  left: 12%;
-  height: 95%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
+    .singlecol, .prevsinglecol {
+        margin: 0;
+        width: 75%;
+        left: 12%;
+        height: 95%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
 }
 
 @media screen and (min-width: 1224px) {
-/* .singlecol, .prevsinglecol { */ 
- .singlecol { 
-  margin: 0; 
-/* 22aug2013   padding-top: 1em; */
-  width: 65%;  
-  height: 95%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  left: 17%;
-}
- .prevsinglecol { 
-    left: 0%;
-    margin: 0 auto;
-    padding: 0;
-    max-width: 43em;
-}
+    .singlecol { 
+        margin: 0; 
+        width: 65%;  
+        height: 95%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        left: 17%;
+    }
+
+   .prevsinglecol { 
+        left: 0%;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 43em;
+    }
 }
 
