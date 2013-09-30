@@ -1,3 +1,4 @@
+
 /* @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);  */
 
 body {
@@ -332,8 +333,9 @@ a.extlink:hover {
 }
 
 #content {
-    line-height: 1.7em;
+    color: #000000;
     font-size: 1.2em;
+    line-height: 1.7em;
 }
 
 #streamcontent {
@@ -667,53 +669,54 @@ a.extlink:hover {
 
 /******************* MEDIA QUERIES START **********************/
 
-/********* smartphone **********/
-@media screen and (max-device-width: 480px) {
+/********** desktop or laptop >= 1224px **********/
+/* 76.5em = 1224 px */
+@media only screen and (min-width: 76.5em) { 
     #content {
-        color: #000000;
-        font-size: 1.15em;
-        line-height: 1.4em;
+        color: #222222;
     }
+}    
 
-    #streamcontent {
-        font-size: 1em;
-    }
-}
-
-/********** tablet **********/
-
-/* use @media screen and (min-width: 768px) and (max-width: 1024px) { */
-@media screen and (min-device-width: 768px) and (max-device-width: 1024px) { 
+/********** tablet 768-1024px **********/
+/* 75em = 1200px */
+@media only screen and (max-width: 75em) { 
     #sitewide {
         max-width: 40em; 
     }
 
     #content {
-        color: #000000;
-        font-size: 1.2em;
-        line-height: 1.7em; 
     }
 
-    #streamcontent {
-        font-size: 1em; 
+    #toolbar {
+        display: inline;
+    }
+
+    #microblogtoolbar {
+        display: inline;
     }
 }
 
-/********** desktop or laptop **********/
-@media screen and (min-device-width: 1224px) {
+/********* smartphone 320-480px  **********/
+/* 37.5em = 600px */
+@media only screen and (max-width: 37.5em) {
     #content {
-        line-height: 1.7em;
-        font-size: 1.2em;  
-        color: #222222;
+        font-size: 1.15em;
+        line-height: 1.4em;
     }
-}    
 
-/******************  nav menu on smaller screen ***************/
-@media all and (max-width: 480px) {
     #toc {
         display: none;
     }
 
+    #toolbar {
+        display: inline;
+    }
+
+    #microblogtoolbar {
+        display: inline;
+    }
+
+    /* pure css dropdown menu */
     #navmenu {
         position: relative;
         min-height: 35px;
@@ -805,10 +808,6 @@ a.extlink:hover {
         padding-top: .2em;
     }
 
-} /* end media query for 480px width */
-
-
-@media only screen and (max-width : 640px) {
     header {
         position: fixed;
     }
@@ -825,6 +824,10 @@ a.extlink:hover {
         display: inline; 
         padding-right: 1em;
     }
+
+    #footermenu ul li a {
+        padding: 0 .3em;
+    }
 }
 
 @media only screen and (max-width: 800px) { 
@@ -840,48 +843,27 @@ a.extlink:hover {
 }
 
 @media only screen and (min-width: 320px) { 
-    #toolbar {
-        display: inline;
-    }
-
-    #microblogtoolbar {
-        display: inline;
-    }
-}
-
-@media only screen and (min-width: 1025px) { 
-    #toolbar {
-        display: none;
-    }
-
-    #microblogtoolbar {
-        display: none;
-    }
-}
-
-@media only screen and (min-width: 320px) { 
     #textareaboxarticle {
         width: 95%;
         height: 125px;
     }
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
     #textareaboxarticle {
         width: 90%;
         height: 200px;
     }
 }
 
-@media screen and (min-width: 1025px) {
+@media only screen and (min-width: 1025px) {
     #textareaboxarticle {
         width: 90%;
         height: 250px;
     }
 }
 
-
-@media screen and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
     #enhtoolbar {
         padding: 0 0 40px 0;
     }
@@ -892,14 +874,14 @@ a.extlink:hover {
     }
 }
 
-@media all and (min-width: 320px) {
+@media only screen and (min-width: 320px) {
     .tagbox {
         width: 12em;
         margin: .4em;
     }
 }
 
-@media all and (min-width: 480px) {
+@media only screen and (min-width: 480px) {
     .tagbox {
         width: 10.5em;
         font-size: 1.1em;
@@ -907,21 +889,15 @@ a.extlink:hover {
     }
 }
 
-@media all and (min-width: 600px) {
+@media only screen and (min-width: 600px) {
     .tagbox {
         width: 12em;
     }
 }
 
-@media all and (min-width: 800px) {
+@media only screen and (min-width: 800px) {
     .tagbox {
         width: 9em;
-    }
-}
-
-@media all and (max-width: 480px) {
-    #footermenu ul li a {
-        padding: 0 .3em;
     }
 }
 
@@ -933,3 +909,4 @@ a.extlink:hover {
    1em = 16px
    margin/padding: top right bottom left;
 */
+
