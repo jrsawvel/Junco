@@ -1,5 +1,5 @@
 <!-- tmpl_include name="header.tmpl" -->
-
+<article class="h-entry">
 <!-- tmpl_if usingtoc -->
 <div id="toc">
 <!-- tmpl_loop name="toc_loop" -->
@@ -37,14 +37,14 @@
 </div>
 <!-- /tmpl_if -->
 
-<h1 id="articletitle"><a title="word count <!-- tmpl_var name="wordcount" --> - char count <!-- tmpl_var name="charcount" --> - <!-- tmpl_var name="readingtime" --> min read" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="cleantitle" -->"><!-- tmpl_var name="title" --></a></h1>
+<h1 class="p-name" id="articletitle"><a title="word count <!-- tmpl_var name="wordcount" --> - char count <!-- tmpl_var name="charcount" --> - <!-- tmpl_var name="readingtime" --> min read" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="cleantitle" -->"><!-- tmpl_var name="title" --></a></h1>
 
 <!-- tmpl_var name="blogpost" -->
 
 </div>
 
 <p>
-<small class="greytext">From <a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="authorname" -->"><!-- tmpl_var name="authorname" -->'s</a> : <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="authorname" -->">blog</a></small>
+<small class="greytext">From <a class="p-author h-card" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="authorname" -->"><!-- tmpl_var name="authorname" -->'s</a> : <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="authorname" -->">blog</a></small>
 <br />
 <small><!-- tmpl_var name="wordcount" --> words - <!-- tmpl_var name="charcount" --> chars 
 <!-- tmpl_if readingtime -->
@@ -52,16 +52,16 @@
 <!-- /tmpl_if -->
 </small>
 <br />
-<small>created on <!-- tmpl_var name="createddate" --> at <!-- tmpl_var name="createdtime" --></small> 
+<small>created on <time class="dt-published" datetime="<!-- tmpl_var name="createddbdatetime" -->"><!-- tmpl_var name="createddate" --> at <!-- tmpl_var name="createdtime" --></time></small> 
 <!-- tmpl_if updated -->
 <br />
-<small>updated on <!-- tmpl_var name="modifieddate" --> at <!-- tmpl_var name="modifiedtime" --></small> 
+<small>updated on <time class="dt-updated" datetime="<!-- tmpl_var name="updateddbdatetime" -->"><!-- tmpl_var name="modifieddate" --> at <!-- tmpl_var name="modifiedtime" --></time></small> 
 <!-- /tmpl_if -->
 <!-- tmpl_if importdateexists -->
 <br />
 <small><em>import date <!-- tmpl_var name="importdate" --></em></small>
 <!-- /tmpl_if -->
- - <a title="permalink" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="cleantitle" -->"><small>#</small></a>
+ - <a class="u-url" title="permalink" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="cleantitle" -->"><small>#</small></a>
 <!-- tmpl_if replycount -->
  - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
 <!-- /tmpl_if -->
@@ -94,4 +94,17 @@
 </p>
 <!-- /tmpl_if -->
 
+<!-- tmpl_if webmention -->
+<form method="post" action="<!-- tmpl_var name="cgi_app" -->/webmention">
+<!-- <p>Have you published a response to this? <label for="webmention-source">Let me know the <abbr title="Uniform Resource Locator">URL</abbr></label>:</p> -->
+<input type="url" name="source" id="webmention-source" onfocus="if(this.value==this.defaultValue)value=''" onblur="if(this.value=='')value=this.defaultValue;" value="Your response URL" />
+<input type="hidden" name="target" value="http://<!-- tmpl_var name="email_host" --><!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->" />
+<input type="hidden" name="posttype" value="manual" />
+<input type="submit" value="Ping" class="greenbutton" style="font-size: 80%;"/> <small><a title="shorter URL for WebMention source post" href="http://<!-- tmpl_var name="email_host" --><!-- tmpl_var name="cgi_app" -->/b/<!-- tmpl_var name="articleid" -->">short url</a></small>
+</form>
+<!-- /tmpl_if -->
+
+<br />
+
+</article>
 <!-- tmpl_include name="footer.tmpl" -->

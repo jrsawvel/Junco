@@ -1,10 +1,15 @@
 <!-- tmpl_include name="header.tmpl" -->
 
 <!-- tmpl_if doingsearch -->
-<small> 
-Search Results For &ldquo;<!-- tmpl_var name="keywords" -->&rdquo; 
- - <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->">#</a>
+<p class="greytext">
+<small>
+
+<div style="float:right;">
+<!-- Search Results For &ldquo;<!-- tmpl_var name="keywords" -->&rdquo;  -->
+ <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->">home</a>
  - <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->/rss">rss</a>
+</div>
+
 <!-- tmpl_unless nomatches -->
 <!-- tmpl_if singletagsearch -->
 <!-- tmpl_if isalreadyfollowingtag -->
@@ -19,7 +24,7 @@ Search Results For &ldquo;<!-- tmpl_var name="keywords" -->&rdquo;
 <!-- /tmpl_if -->
 <!-- /tmpl_unless -->
 </small>
-
+</p>
 <!-- tmpl_if nomatches -->
 <p>
 No matches found.

@@ -18,6 +18,7 @@ my $dispatch_for = {
     blogpostform       =>   sub { return \&do_sub(        "BlogAdd",       "show_blog_post_form"      ) },
     textileeditor      =>   sub { return \&do_sub(        "BlogAdd",       "show_textile_editor_form" ) },
     splitscreen        =>   sub { return \&do_sub(        "BlogAdd",       "show_splitscreen_form"    ) },
+    b                  =>   sub { return \&do_sub(    "BlogDisplay",       "show_blog_post"           ) },
     blogpost           =>   sub { return \&do_sub(    "BlogDisplay",       "show_blog_post"           ) },
     edit               =>   sub { return \&do_sub(       "BlogEdit",       "edit_blog_post"           ) },
     splitscreenedit    =>   sub { return \&do_sub(       "BlogEdit",       "splitscreen_edit"         ) },
@@ -43,6 +44,7 @@ my $dispatch_for = {
     addmicroblog       =>   sub { return \&do_sub(      "Microblog",       "add_microblog"            ) },
     deletemicroblog    =>   sub { return \&do_sub(      "Microblog",       "delete_microblog"         ) },
     undeletemicroblog  =>   sub { return \&do_sub(      "Microblog",       "undelete_microblog"       ) },
+    m                  =>   sub { return \&do_sub(      "Microblog",       "show_microblog_post"      ) },
     microblogpost      =>   sub { return \&do_sub(      "Microblog",       "show_microblog_post"      ) },
     changepassword     =>   sub { return \&do_sub(       "Password",       "change_password"          ) },
     newpassword        =>   sub { return \&do_sub(       "Password",       "create_new_password"      ) },
@@ -72,8 +74,10 @@ my $dispatch_for = {
     repliesstream      =>   sub { return \&do_sub(          "Reply",       "show_replies_stream"      ) },
     rest               =>   sub { return \&do_sub(           "Rest",       "do_rest"                  ) },
     post               =>   sub { return \&do_sub(    "ShowContent",       "show_content"             ) },
+    p                  =>   sub { return \&do_sub(    "ShowContent",       "show_content"             ) },
     textsize           =>   sub { return \&do_sub(       "TextSize",       "set_text_size"            ) },
     theme              =>   sub { return \&do_sub(          "Theme",       "set_theme"                ) },
+    webmention         =>   sub { return \&do_sub(     "WebMention",       "post_webmention"          ) },
 };
 
 sub execute {

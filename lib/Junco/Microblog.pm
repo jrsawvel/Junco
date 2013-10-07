@@ -61,6 +61,7 @@ sub add_microblog {
     $formattedcontent = Format::hashtag_to_link($formattedcontent);
     $formattedcontent = Format::post_id_to_link($formattedcontent);
     $formattedcontent = Format::check_for_external_links($formattedcontent);
+    $formattedcontent = Format::format_webmention_replyto_links($formattedcontent);
 
     _add_microblog($title, $logged_in_userid, $markupcontent, $formattedcontent);
 
@@ -126,13 +127,16 @@ sub show_microblog_post {
     my $t = Page->new("microblogpost");
 
     $t->set_template_variable("cgi_app",       $microblog_post->{cgi_app});
-    $t->set_template_variable("parentid",     $microblog_post->{parentid});
+    $t->set_template_variable("cleantitle",    $microblog_post->{cleantitle});
+    $t->set_template_variable("urldate",       $microblog_post->{urldate});
+    $t->set_template_variable("parentid",      $microblog_post->{parentid});
     $t->set_template_variable("articleid",     $microblog_post->{articleid});
     $t->set_template_variable("microblogpost", $microblog_post->{microblogpost});
     $t->set_template_variable("createddate",   $microblog_post->{createddate});
     $t->set_template_variable("createdtime",   $microblog_post->{createdtime});
     $t->set_template_variable("authorname",    $microblog_post->{authorname});
     $t->set_template_variable("replycount",    $microblog_post->{replycount});
+    $t->set_template_variable("articlepage", 1);
 
     if ( $microblog_post->{importdate} ) {
         $t->set_template_variable("importdateexists", 1);
@@ -150,7 +154,17 @@ sub show_microblog_post {
         $t->set_template_variable("microblogposttype", $replytoinfo{microblogpost});
     }
 
-    $t->display_page("$microblog_post->{authorname}'s Micro Blog: " . $articleid);
+    # $t->display_page("$microblog_post->{authorname}'s Micro Blog: " . $articleid);
+    if ( length($microblog_post->{title}) > 75 ) {
+        $microblog_post->{title} = substr $microblog_post->{title}, 0, 75;
+        $microblog_post->{title} .= "...";
+    }
+    $t->set_template_variable("title", $microblog_post->{title});
+
+    my $article_url = "http://" . Config::get_value_for("email_host") . $microblog_post->{cgi_app} . "/microblogpost/" . $microblog_post->{articleid} . "/" . $microblog_post->{urldate} . "/" . $microblog_post->{cleantitle};
+    $t->set_template_variable("article_url", $article_url);
+
+    $t->display_page($microblog_post->{title} . " - by $microblog_post->{authorname} "); 
 }
 
 ########## private procedures
@@ -230,9 +244,10 @@ sub _get_microblog_post {
     my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
     Page->report_error("system", "Error connecting to database.", $db->errstr) if $db->err;
 
-    my $sql = "select c.id, c.parentid, c.formattedcontent, c.replycount, c.importdate, ";
+    my $sql = "select c.id, c.parentid, c.title, c.formattedcontent, c.replycount, c.importdate, ";
     $sql .=      "date_format(date_add(c.date, interval $offset hour), '%b %d, %Y') as createddate, ";
     $sql .=      "date_format(date_add(c.date, interval $offset hour), '%r') as createdtime, ";
+    $sql .=      "date_format(date_add(c.date, interval $offset hour), '%d%b%Y') as urldate, "; 
     $sql .=      "u.username from $dbtable_content c, $dbtable_users u  ";
     $sql .=      "where c.id=$articleid and c.type='m' and c.status='o' and c.authorid=u.id";
 
@@ -242,7 +257,15 @@ sub _get_microblog_post {
     while ( $db->fetchrow ) {
         $hash{articleid}        = $db->getcol("id");
         $hash{parentid}         = $db->getcol("parentid");
+        $hash{title}            = $db->getcol("title");
+
+        $hash{cleantitle}       = Format::clean_title($hash{title}); 
+        if ( length($hash{cleantitle}) > 75 ) {
+            $hash{cleantitle} = substr $hash{cleantitle}, 0, 75;
+        }
+
         $hash{microblogpost}    = $db->getcol("formattedcontent");
+        $hash{urldate}          = $db->getcol("urldate");
         $hash{createddate}      = $db->getcol("createddate");
         $hash{createdtime}      = $db->getcol("createdtime");
         $hash{authorname}       = $db->getcol("username");

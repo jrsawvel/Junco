@@ -90,7 +90,7 @@ use NEXT;
         __set_template_variable($self, "username",   User::get_logged_in_username());
         __set_template_variable($self, "cgi_app",    Config::get_value_for("cgi_app"));
         __set_template_variable($self, "site_name",  $site_name); 
-        __set_template_variable($self, "pagetitle",          "$function - $site_name");
+        __set_template_variable($self, "pagetitle",          "$function | $site_name");
         __set_template_variable($self, "site_description",   Config::get_value_for("site_description"));
         __set_template_variable($self, "maincss_url",        Config::get_value_for("maincss_url"));  
         __set_template_variable($self, "admin_email",        Config::get_value_for("admin_email"));  

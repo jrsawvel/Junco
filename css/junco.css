@@ -20,9 +20,15 @@ header {
 }
 
 section {
-    margin: 10px auto 0px;
+    /* margin: 10px auto 0px; 3oct2013 */
+    margin: 0px auto 0px;
     position: relative;
     padding-top: 20px; 
+}
+
+article {
+    margin: 0;
+    padding: 0;
 }
 
 br {
@@ -304,6 +310,7 @@ a.extlink:hover {
 
 #footermenu {
     clear: right;
+    clear: left;
     font-size: .8em;
     text-align: center;
 }

@@ -116,13 +116,20 @@ sub show_blog_post {
         }    
     }
 
+    $t->set_template_variable("webmention", $blog_post{webmention});
+    $t->set_template_variable("email_host", Config::get_value_for("email_host"));
+    $t->set_template_variable("articlepage", 1);
+
     if ( Backlinks::backlinks_exist($articleid) ) {
         $t->set_template_variable("backlinks", 1);
     }
 
+    my $article_url = "http://" . Config::get_value_for("email_host") . $blog_post{cgi_app} . "/blogpost/" . $blog_post{articleid} . "/" . $blog_post{urldate} . "/" . $blog_post{cleantitle};
+    $t->set_template_variable("article_url", $article_url);
+
     _update_last_blog_post_viewed($articleid, $logged_in_userid);
 
-    $t->display_page($blog_post{title}); 
+    $t->display_page($blog_post{title} . " - by $blog_post{authorname} "); 
 }
 
 sub _create_table_of_contents {
@@ -217,6 +224,13 @@ sub _get_blog_post {
         }
 
         $hash{toc} = Utils::get_power_command_on_off_setting_for("toc", $tmp_markup, 1);
+
+        $hash{webmention} = 0;
+        if ( $tmp_markup =~ m|#blog_$hash{authorname}|ig ) {
+            $hash{webmention} = Utils::get_power_command_on_off_setting_for("webmention", $tmp_markup, 1);
+        } else {
+            $hash{webmention} = Utils::get_power_command_on_off_setting_for("webmention", $tmp_markup, 0);
+        }
 
         if ( $hash{status} eq 's' and !BlogData::user_owns_blog_post($hash{articleid}, $hash{authorid}) ) {
             %hash = ();

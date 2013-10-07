@@ -7,12 +7,14 @@
 <!-- <!-- tmpl_var name="streamtype" --> -->
 
 <!-- tmpl_if replytoparentid -->
+<p class="greytext">
 <!-- tmpl_if replytoparentmicroblogpost -->
 <small><a title="<!-- tmpl_var name="replytoparenttitle" -->" href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="replytoparentid" -->">parent post</a></small>
 <!-- tmpl_else -->
 <small><a title="<!-- tmpl_var name="replytoparenttitle" -->" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="replytoparentid" -->">parent post</a></small>
 <!-- /tmpl_if -->
 <small> - <a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="replytoparentid" -->">discussion thread</a></small>
+</p>
 <!-- /tmpl_if -->
 
 <div id="streamcontent">
@@ -29,7 +31,7 @@
 <small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="author" -->"><!-- tmpl_var name="author" --></a></small>: 
  <!-- tmpl_var name="post" -->   
 <br />
-<small class="greytext">- <a href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="articleid" -->"><!-- tmpl_var name="creationdate" --></a></small> <!-- at <!-- tmpl_var name="creationtime" --> -->
+<small class="greytext">- <a href="<!-- tmpl_var name="cgi_app" -->/microblogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="urltitle" -->"><!-- tmpl_var name="creationdate" --></a></small> <!-- at <!-- tmpl_var name="creationtime" --> -->
  - <small><a title="permalink" href="#<!-- tmpl_var name="articleid" -->">#</a></small>
 <!-- <!-- tmpl_var name="parentid" --> -->
 <!-- tmpl_if replycount -->

@@ -199,6 +199,7 @@ sub _set_page_and_user_data {
     }
 
     $hash{max_entries} = Config::get_value_for("max_entries_on_page");
+    $hash{max_entries} = Config::get_value_for("max_replies_on_page") if $stream_type eq "replies";
     $hash{page_offset} = $hash{max_entries} * ($hash{page} - 1);
     $hash{max_entries_plus_one} = $hash{max_entries} + 1;
     $hash{cgiapp} = Config::get_value_for("cgi_app");
@@ -340,12 +341,13 @@ sub _prepare_stream_data {
         $hash{logged_in_user_viewing_own_stream} = $values->{logged_in_user_viewing_own_stream};
         $hash{blogposttype} = 0;
         %hash = _process_blog_post(\%hash, $hash_ref, $values) if $hash_ref->{type} eq "b"; 
+        %hash = _process_microblog_post(\%hash, $hash_ref, $values) if $hash_ref->{type} eq "m"; 
 
         # only microblog posts can be replies.
         # parentid > 0 and type = m and status =o is a reply post, 
         #     and parentid refers to the post being replied to.
-        if ( $hash_ref->{parentid}  ) {
-            $hash{post} = "<strong>RE:</strong> " . $hash{post}; 
+        if ( $hash_ref->{parentid} && $values->{streamtype} ne "replies"  ) {
+            $hash{post} = "<em>(RE:)</em> " . $hash{post}; 
             $hash{parentid} = $hash_ref->{parentid};
         }
 
@@ -354,6 +356,21 @@ sub _prepare_stream_data {
         push(@posts, \%hash);
     }
     return @posts;
+}
+
+sub _process_microblog_post {
+    my $hash = shift;
+    my $hash_ref = shift;
+    my $values = shift;
+
+    $hash->{urldate}         = $hash_ref->{urldate};
+    $hash->{urltitle}        = Format::clean_title($hash->{title});
+
+    if ( length($hash->{urltitle}) > 75 ) {
+        $hash->{urltitle} = substr $hash->{urltitle}, 0, 75;
+    }
+
+    return %$hash;
 }
 
 sub _process_blog_post {

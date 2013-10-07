@@ -335,6 +335,8 @@ sub format_content {
 
     $formattedcontent = check_for_external_links($formattedcontent);
 
+    $formattedcontent = format_webmention_replyto_links($formattedcontent);
+
     $formattedcontent = create_heading_list($formattedcontent);
 
     return $formattedcontent;
@@ -366,6 +368,7 @@ sub remove_power_commands {
     # showintro=yes|no
     # code=yes|no
     # markdown=yes|no
+    # webmention=yes|no
 
     $str =~ s|^toc[\s]*=[\s]*[noNOyesYES]+||mig;
     $str =~ s|^draft[\s]*=[\s]*[noNOyesYES]+||mig;
@@ -374,6 +377,7 @@ sub remove_power_commands {
     $str =~ s|^showintro[\s]*=[\s]*[noNOyesYES]+||mig;
     $str =~ s|^code[\s]*=[\s]*[noNOyesYES]+||mig;
     $str =~ s|^markdown[\s]*=[\s]*[noNOyesYES]+||mig;
+    $str =~ s|^webmention[\s]*=[\s]*[noNOyesYES]+||mig;
 
     return $str;
 }
@@ -586,6 +590,22 @@ sub process_custom_code_block_decode {
 
     $str =~ s/\[lt;/&lt;/gs;
     $str =~ s/gt;\]/&gt;/gs;
+
+    return $str;
+}
+
+sub format_webmention_replyto_links {
+    my $str = shift;
+
+    my @a;
+
+    if ( @a = $str =~ m/replyto\(([^\)]*)\)/igs ) {
+        my $len = @a;
+        for (my $i=0; $i<$len; $i++) {
+            my $replytolink = "<a href=\"$a[$i]\" rel=\"in-reply-to\" class=\"u-in-reply-to\">in reply to</a>";
+            $str =~ s/replyto\($a[$i]\)/$replytolink/g;
+        }
+    }
 
     return $str;
 }

@@ -10,6 +10,7 @@
     maincss_url:                    http://www.hostname.com/css/junco.css
     max_blog_post_title_length:     150
     max_entries_on_page:            15
+    max_replies_on_page:            100
     max_microblog_posts_on_page:    30 
     max_blog_posts_on_page:         20
     debug_mode:                     0
@@ -26,7 +27,7 @@
     cookie_prefix:                  junco
     new_user_signups_allowed:       0
     multiple_sessionids:            1
-    valid_html:                     div span table a th tr td center pre dl dt dd img code pt em strong br blockquote big small strike del ins b i u
+    valid_html:                     div span table a th tr td center pre dl dt dd img code pt em strong br blockquote big small strike del ins b i u section article
     top_tag_count:                  30
     max_unique_hashtags:            8
     archives_status:                "'o'"

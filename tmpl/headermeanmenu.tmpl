@@ -12,9 +12,18 @@
 <!--[if lt IE 9]> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <![endif]-->
+<meta property="og:site_name"   content="<!-- tmpl_var name="site_name" -->" />
+ <!-- tmpl_if articlepage -->
+<meta property="og:title"       content="<!-- tmpl_var name="title" -->" />
+<meta property="og:type"        content="article" />
+<meta property="og:url"         content="<!-- tmpl_var name="article_url" -->" />
+<meta property="og:description" content="<!-- tmpl_var name="title" -->" />
+<meta name="author"             content="<!-- tmpl_var name="authorname" -->" />
+<!-- /tmpl_if -->
 <meta name="generator" content="Junco" />
 <meta name="reply-to" content="<!-- tmpl_var name="admin_email" -->" />
 <meta name="viewport" content="initial-scale=1, width=device-width" />
+<link rel="webmention" href="http://jothut.com<!-- tmpl_var name="cgi_app" -->/webmention" />
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> 
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
 <!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
@@ -23,9 +32,6 @@
 <link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/demo2.css" media="all" />
 </head>
 <body>
-
-
-<!-- ********************************************* -->
 
 <header>
 <div id="headersearch">

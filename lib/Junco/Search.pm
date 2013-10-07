@@ -307,7 +307,11 @@ sub _create_sql_where_str {
         $sqlstr .= "($tmp)";
     }
 
-    $sqlstr .= " order by c.date desc limit $hash_ref->{max_entries_plus_one} offset $hash_ref->{page_offset} ";
+    if ( $hash_ref->{topshelfblog} ) {
+        $sqlstr .= " order by c.createddate desc limit $hash_ref->{max_entries_plus_one} offset $hash_ref->{page_offset} ";
+    } else {
+        $sqlstr .= " order by c.date desc limit $hash_ref->{max_entries_plus_one} offset $hash_ref->{page_offset} ";
+    }
 
     return $sqlstr;
 }
