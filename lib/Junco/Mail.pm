@@ -8,11 +8,14 @@ sub send_new_account_email {
     my $username = shift;
     my $digest = shift;
 
+    Page->report_error("user", "Action unsupported.", "Sending e-mail is not enabled at this time.");
+
     $digest = Utils::url_encode($digest);
 
+    my $site_name = Config::get_value_for("site_name");
     my $email_host = Config::get_value_for("email_host");
 
-    my $subject_line = "$email_host new account activation";
+    my $subject_line = "$site_name new account activation";
     my $msg;
 
     $msg .= "Hello $username,\n\n";
@@ -30,8 +33,8 @@ sub _send_email {
     my $subject = shift;
     my $msg = shift;
 
-    my $email_host  = Config::get_value_for("email_host");
-    my $admin_email = Config::get_value_for("admin_email");
+    my $email_host  = Config::get_value_for("email_host_2");
+    my $admin_email = Config::get_value_for("admin_email_2");
     my $site_name   = Config::get_value_for("site_name");
 
     # todo - use datetimeformatter
@@ -66,9 +69,11 @@ sub send_password {
     my $rcpt = shift;
     my $pwd  = shift;
 
+    Page->report_error("user", "Action unsupported.", "Sending e-mail is not enabled at this time.");
+
     my $site_name  = Config::get_value_for("site_name");
     my $home_page  = Config::get_value_for("home_page");
-    my $email_host = Config::get_value_for("email_host");
+    my $email_host = Config::get_value_for("email_host_2");
 
     my $msg = "A request to create a new password to $site_name has been submitted.\n";
     $msg .= "The password is only being sent to this e-mail address.\n";
@@ -77,9 +82,30 @@ sub send_password {
     $msg .= "$pwd\n\n";
     $msg .= "After logging in with your new password, you can click on your username and change it.\n";
 
-    my $subject_line = "$email_host new password created";
+    my $subject_line = "$site_name password created";
 
     _send_email($rcpt, $subject_line, $msg);
+}
+
+sub _get_date_time_for_email {
+
+    my $offset = -4;  # change the -0500 below
+
+    my $epochsecs = time();
+
+    # set to Eastern U.S.
+    $epochsecs = $epochsecs + ($offset * 3600);
+
+    my @months = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+    my @days   = qw(Sun Mon Tue Wed Thu Fri Sat);
+
+    my ($sec, $mi, $h)    = (gmtime($epochsecs))[0, 1, 2];
+
+    my ($d, $m, $y, $dow) = (gmtime($epochsecs))[3,4,5,6];
+
+    my $dt = sprintf "%s, %02d %s %04d %02d:%02d:%02d -0400", $days[$dow], $d, $months[$m], 2000+($y-100), $h, $mi, $sec;
+
+    return $dt;
 }
 
 1;

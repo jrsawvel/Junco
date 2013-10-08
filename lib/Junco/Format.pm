@@ -111,13 +111,15 @@ sub edit_for_bracket_case {
         my $wiki_page_exists = BlogData::_get_blog_post_id($title, $action); 
         my $tmp_title = ucfirst($title);
         if ( $wiki_page_exists ) {
-            $str =~ s|\[\[$title\]\]|<a name="wikilink$tmp_title" href="$cgi_app/blogpost/$wiki_page_exists/$wiki_link_title">$title</a>|;
+# todo 8oct2013 name attribute unsupported in html5. do i need this info anyway?
+#            $str =~ s|\[\[$title\]\]|<a name="wikilink$tmp_title" href="$cgi_app/blogpost/$wiki_page_exists/$wiki_link_title">$title</a>|;
+            $str =~ s|\[\[$title\]\]|<a title="wikilink$tmp_title" href="$cgi_app/blogpost/$wiki_page_exists/$wiki_link_title">$title</a>|;
         } else {
             $str =~ s|\[\[$title\]\]|&#091;&#091;$title&#093;&#093;|;
         }
     }
 
-        # Curly brace case with the vertical bar in the middle
+        # bracket case with the vertical bar in the middle
     while ( $str =~ m/~~([\w\s\-:'\.,]+?)[\|]([\w\s\-:'\.,]+?)~~/s ) {
         my $left=$1;
         my $right=$2;
@@ -126,7 +128,9 @@ sub edit_for_bracket_case {
         my $wiki_page_exists = BlogData::_get_blog_post_id($title, $action); 
         my $new_str = ""; 
         if ( $wiki_page_exists ) {
-            $new_str = "<a name=\"wikilink$title\" href=\"$cgi_app/blogpost/$wiki_page_exists/$wiki_link_title\">$right</a>";
+# todo 8oct2013 name attribute unsupported in html5. do i need this info anyway?
+#            $new_str = "<a name=\"wikilink$title\" href=\"$cgi_app/blogpost/$wiki_page_exists/$wiki_link_title\">$right</a>";
+            $new_str = "<a title=\"wikilink$title\" href=\"$cgi_app/blogpost/$wiki_page_exists/$wiki_link_title\">$right</a>";
          } else {
             $new_str = "[[$left|$right]]";
         }
@@ -212,8 +216,10 @@ sub hashtag_to_link {
 sub clean_title {
     my $str = shift;
 
+    $str =~ s|[-]||g;
     $str =~ s|[ ]|-|g;
     $str =~ s|[:]|-|g;
+    $str =~ s|--|-|g;
 
     # only use alphanumeric, underscore, and dash in friendly link url
     $str =~ s|[^\w-]+||g;

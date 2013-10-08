@@ -8,7 +8,7 @@
 <!--<![endif]-->
 <head>
 <title><!-- tmpl_var name="pagetitle" --></title>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta charset="UTF-8" />
 <!--[if lt IE 9]> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <![endif]-->
@@ -21,7 +21,6 @@
 <meta name="author"             content="<!-- tmpl_var name="authorname" -->" />
 <!-- /tmpl_if -->
 <meta name="generator" content="Junco" />
-<meta name="reply-to" content="<!-- tmpl_var name="admin_email" -->" />
 <meta name="viewport" content="initial-scale=1, width=device-width" />
 <link rel="webmention" href="http://jothut.com<!-- tmpl_var name="cgi_app" -->/webmention" />
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> 
@@ -45,10 +44,11 @@
 <ul>
 <!-- <li class="current" id="navmenutext"><a href="<!-- tmpl_var name="requesturi" -->">menu</a></li>  -->
 <!-- <li class="current" id="navmenutext"><a href="#">menu</a></li> -->
-<span id="headersearchlink"><li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li></span>
+<!-- <span class="headersearchlink"><li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li></span> -->
+<li class="headersearchlink"><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
 <!-- tmpl_if loggedin --> 
-<span class="largescreens"><li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li></span>
-<span class="smallscreens"><li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->">YOU</a></li></span>
+<li class="largescreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li>
+<li class="smallscreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->">YOU</a></li>
 <li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags/<!-- tmpl_var name="username" -->">tags</a></li> 
 <li><a title="Posts by users that you are following" href="<!-- tmpl_var name="cgi_app" -->/followingstream">following</a></li>
 <li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li>

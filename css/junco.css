@@ -235,14 +235,14 @@ a.extlink:hover {
     color: brown;
     font-size: 0.8em;
     line-height: 1em;
-    font-family:     "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier, monospace;
 }
 
 #content code {
     color: brown;
     font-size: 0.8em;
     line-height: 1em;
-    font-family:     "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier, monospace;
 }
 
 #navmenu ul {
@@ -319,7 +319,7 @@ a.extlink:hover {
     color: #000000; 
     font-size: .8em;
     line-height: 1em;
-    font-family: "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier, monospace;
     background: #f0fff0; /* light blue */
 }
 
@@ -371,30 +371,35 @@ a.extlink:hover {
 /* the button CSS, javascript, and html code is from metafilter.com */
 .buttons {
     background: #ccc;
+    margin: 1px;
     border: 1px solid #ccc; 
-    margin: 1;
     float:left;
     width: 30px;
 }
 
 .raise	{
+/*
     border-top: 1px solid buttonhighlight;
     border-left: 1px solid buttonhighlight;
     border-bottom: 1px solid buttonshadow;
     border-right: 1px solid buttonshadow;
+*/
     background: #ccc;
-    margin:1;
-    float:left;
+    margin: 1px;
+    border: 1px solid #000; 
+    float: left;
     width: 30px;
 }
 
 .press {
+/*
     border-top: 1px solid buttonshadow;
     border-left: 1px solid buttonshadow;
     border-bottom: 1px solid buttonhighlight;
     border-right: 1px solid buttonhighlight;
+*/
     background: #ccc;
-    margin:1;
+    margin: 1px;
     float:left;
     width: 30px;
 }
@@ -429,7 +434,7 @@ a.extlink:hover {
     color: #000000; 
     font-size: .9em;
     line-height: 1em;
-    font-family: "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier, monospace;
     background: #f0fff0; /* light blue */
     max-height:500px; 
 }
@@ -537,7 +542,7 @@ a.extlink:hover {
     width: 200px;
 }
 
-#headersearchlink {
+.headersearchlink {
     display: none;
 }
 
@@ -827,7 +832,7 @@ a.extlink:hover {
         display: none; 
     }
 
-    #headersearchlink {
+    .headersearchlink {
         display: inline; 
         padding-right: 1em;
     }

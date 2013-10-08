@@ -23,7 +23,7 @@ float: left;
 /*	padding: 4px 0; JRS */
 /*	z-index: 999999; JRS */
 /*	min-height: 42px; JRS */
-        padding 0 0 0 0;
+        padding: 0 0 0 0;
         z-index: 1;
         background: #120a8f;
 }
@@ -52,15 +52,15 @@ float: left;
 	display: block;
 	background: #f8f8f8;
 	height: 3px;
-	margin-top: 3px;
+	margin-top: 2px;
 }
 
 .mean-container .mean-nav {
 	float: left;
 	width: 100%;
 	background: #120a8f;
-	margin-top: 33px;
-        padding-bottom: 8px; /* JRS */
+	margin-top: 34px; /* control height of nav bar on small screen 8oct2013 was 33px */
+        /* padding-bottom: 8px; */ /* JRS commented out on 8oct2013 */
 }
 
 .mean-container .mean-nav ul {
@@ -107,8 +107,10 @@ float: left;
 	padding: 1em 10%;
 	border-bottom: 1px solid #f1f1f1;
 	border-bottom: 1px solid rgba(255,255,255,0.25);
+/* 8oct2013 jrs - causes errors in validator. are these lines needed?
 	opacity: 0.75;
 	filter: alpha(opacity=75);
+*/
 	text-shadow: none !important;
 	visibility: visible;
 }

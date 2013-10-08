@@ -134,6 +134,7 @@ sub show_microblog_post {
     $t->set_template_variable("microblogpost", $microblog_post->{microblogpost});
     $t->set_template_variable("createddate",   $microblog_post->{createddate});
     $t->set_template_variable("createdtime",   $microblog_post->{createdtime});
+    $t->set_template_variable("dtpublished",   $microblog_post->{dtpublished});
     $t->set_template_variable("authorname",    $microblog_post->{authorname});
     $t->set_template_variable("replycount",    $microblog_post->{replycount});
     $t->set_template_variable("articlepage", 1);
@@ -244,7 +245,7 @@ sub _get_microblog_post {
     my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
     Page->report_error("system", "Error connecting to database.", $db->errstr) if $db->err;
 
-    my $sql = "select c.id, c.parentid, c.title, c.formattedcontent, c.replycount, c.importdate, ";
+    my $sql = "select c.id, c.parentid, c.title, c.formattedcontent, c.replycount, c.importdate, c.createddate as dbcreateddate, ";
     $sql .=      "date_format(date_add(c.date, interval $offset hour), '%b %d, %Y') as createddate, ";
     $sql .=      "date_format(date_add(c.date, interval $offset hour), '%r') as createdtime, ";
     $sql .=      "date_format(date_add(c.date, interval $offset hour), '%d%b%Y') as urldate, "; 
@@ -268,6 +269,7 @@ sub _get_microblog_post {
         $hash{urldate}          = $db->getcol("urldate");
         $hash{createddate}      = $db->getcol("createddate");
         $hash{createdtime}      = $db->getcol("createdtime");
+        $hash{dtpublished}      = $db->getcol("dbcreateddate");
         $hash{authorname}       = $db->getcol("username");
         $hash{replycount}       = $db->getcol("replycount");
         $hash{importdate}       = $db->getcol("importdate");

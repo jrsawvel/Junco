@@ -54,6 +54,8 @@ sub show_blog_post {
     $t->set_template_variable("blogpost",      $blog_post{blogpost});
     $t->set_template_variable("createddate",   $blog_post{createddate});
     $t->set_template_variable("createdtime",   $blog_post{createdtime});
+    $t->set_template_variable("dtpublished",   $blog_post{dbcreateddate});
+    $t->set_template_variable("dtupdated",     $blog_post{dbdate});
     $t->set_template_variable("replycount",    $blog_post{replycount});
 
     my $logged_in_username = User::get_logged_in_username();

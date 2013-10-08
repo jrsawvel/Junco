@@ -93,7 +93,6 @@ use NEXT;
         __set_template_variable($self, "pagetitle",          "$function | $site_name");
         __set_template_variable($self, "site_description",   Config::get_value_for("site_description"));
         __set_template_variable($self, "maincss_url",        Config::get_value_for("maincss_url"));  
-        __set_template_variable($self, "admin_email",        Config::get_value_for("admin_email"));  
         __set_template_variable($self, "serverdatetime",     $datetimestr);
         __set_template_variable($self, "requesturi", $ENV{REQUEST_URI});
         __set_template_variable($self, "css_dir_url",  Config::get_value_for("css_dir_url")); 

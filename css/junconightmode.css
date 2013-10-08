@@ -236,14 +236,14 @@ a.extlink:hover {
     color: #009933;
     font-size: 0.8em;
     line-height: 1em;
-    font-family:     "Courier New" Courier  monospace;
+    font-family:     "Courier New", Courier, monospace;
 }
 
 #content code {
     color: #009933;
     font-size: 0.8em;
     line-height: 1em;
-    font-family:     "Courier New" Courier  monospace;
+    font-family:     "Courier New", Courier, monospace;
 }
 
 #navmenu ul {
@@ -319,7 +319,7 @@ a.extlink:hover {
     color: #c0c0c0; 
     font-size: .8em;
     line-height: 1em;
-    font-family: "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier, monospace;
     background: #000000; 
 }
 
@@ -372,29 +372,34 @@ a.extlink:hover {
 .buttons {
     background: #000000;
     border: 1px solid #ccc; 
-    margin: 1;
+    margin: 1px;
     float:left;
     width: 30px;
 }
 
 .raise	{
+/*
     border-top: 1px solid buttonhighlight;
     border-left: 1px solid buttonhighlight;
     border-bottom: 1px solid buttonshadow;
     border-right: 1px solid buttonshadow;
+*/
     background: #000000;
-    margin:1;
+    border: 1px solid #fff; 
+    margin:1px;
     float:left;
     width: 30px;
 }
 
 .press {
+/*
     border-top: 1px solid buttonshadow;
     border-left: 1px solid buttonshadow;
     border-bottom: 1px solid buttonhighlight;
     border-right: 1px solid buttonhighlight;
+*/
     background: #000000;
-    margin:1;
+    margin:1px;
     float:left;
     width: 30px;
 }
@@ -429,7 +434,7 @@ a.extlink:hover {
     color: #dddddd; 
     font-size: .9em;
     line-height: 1em;
-    font-family: "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier, monospace;
     background: #000000;
     max-height:500px; 
 }
@@ -537,7 +542,7 @@ a.extlink:hover {
     width: 200px;
 }
 
-#headersearchlink {
+.headersearchlink {
     display: none;
 }
 
@@ -827,7 +832,7 @@ a.extlink:hover {
         display: none; 
     }
 
-    #headersearchlink {
+    .headersearchlink {
         display: inline; 
         padding-right: 1em;
     }

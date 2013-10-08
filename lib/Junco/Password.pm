@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Junco::DigestMD5;
+use Junco::Mail;
 
 my $pt_db_source       = Config::get_value_for("database_host");
 my $pt_db_catalog      = Config::get_value_for("database_name");
@@ -224,7 +225,7 @@ sub create_new_password {
         Page->report_error("user", "debug", "email=$h[0]{EMAIL} new-pwd=$h[0]{PWD}"); 
     }
 
-# todo    Mail::send_password($h[0]{EMAIL}, $h[0]{PWD});
+    Mail::send_password($h[0]{EMAIL}, $h[0]{PWD});
     $t->display_page("Creating New Password");
 }
 
@@ -265,7 +266,7 @@ sub _create_new_password {
     my $username = $db->quote($tmp_username);
     my $email    = $db->quote($tmp_email);
 
-    my $sql = "select username, createddate, origemail from $dbtable_users where username=$username and email=$email and status='o'";
+    my $sql = "select username, createddate, origemail from $dbtable_users where username=$username and email=$email and status in ('o','p')";
 
     $db->execute($sql);
     Page->report_error("system", "Error executing SQL", $db->errstr) if $db->err;
