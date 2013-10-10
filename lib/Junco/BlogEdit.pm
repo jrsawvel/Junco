@@ -88,7 +88,8 @@ sub edit_blog_post {
 
     $t->set_template_variable("article", $article_data{formatted}) if $enhanced;
 
-    $article_data{markup} = encode_entities($article_data{markup}, '<>&');
+# 9oct2013 $article_data{markup} = encode_entities($article_data{markup}, '<>&');
+ $article_data{markup} = decode_entities($article_data{markup}, '<>&');
 
     $t->set_template_variable("editarticle", $article_data{markup});
 

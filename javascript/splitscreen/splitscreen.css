@@ -240,7 +240,7 @@ br {
     color: #000000; 
     font-size: .8em;
     line-height: 1em;
-    font-family: "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier,  monospace;
     background: #f0fff0; /* light blue */
 }
 
@@ -358,14 +358,14 @@ pre code {
     color: brown;
     font-size: 0.8em;
     line-height: 1em;
-    font-family: "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier,  monospace;
 }
 
 code {
     color: brown;
     font-size: 0.8em;
     line-height: 1em;
-    font-family: "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier,  monospace;
 }
 
 /*  http://stackoverflow.com/questions/2295766/how-to-create-a-scrollable-div-tag-vertically-supported-in-chrome */
@@ -375,7 +375,7 @@ code {
     color: #000000; 
     font-size: .9em;
     line-height: 1em;
-    font-family: "Courier New" Courier  monospace;
+    font-family: "Courier New", Courier,  monospace;
     background: #f0fff0; /* light blue */
     max-height:500px; 
 }

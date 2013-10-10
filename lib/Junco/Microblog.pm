@@ -2,6 +2,7 @@ package Microblog;
 
 use strict;
 
+use Encode qw(decode encode);
 use Junco::Format;
 use Junco::Reply;
 use HTML::Entities;
@@ -25,7 +26,9 @@ sub add_microblog {
     User::user_allowed_to_function();
 
     my $user_submitted_microblogtext = $q->param("microblogtext");
+
     my $microblogtext    = StrNumUtils::trim_spaces($user_submitted_microblogtext);
+    $microblogtext = Encode::decode_utf8($microblogtext);
 
     if ( !defined($microblogtext) || length($microblogtext) < 1 )  { 
        $err_msg .= "You must enter text .<br />\n";
@@ -55,6 +58,8 @@ sub add_microblog {
     } 
 
     my $markupcontent = $microblogtext;
+    # next two lines added on 9oct2013
+    $markupcontent = HTML::Entities::encode($markupcontent,'^\n^\r\x20-\x25\x27-\x7e');
     my $title = HTML::Entities::encode($markupcontent, '<>');
     my $formattedcontent = HTML::Entities::encode($markupcontent, '<>');
     $formattedcontent = StrNumUtils::url_to_link($formattedcontent);

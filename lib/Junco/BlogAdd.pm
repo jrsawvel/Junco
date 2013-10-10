@@ -3,6 +3,7 @@ package BlogAdd;
 use strict;
 use warnings;
 
+use Encode qw(decode encode);
 use JSON::PP;
 use HTML::Entities;
 use URI::Escape::JavaScript;
@@ -75,6 +76,9 @@ sub add_blog_post {
     if ( $formtype eq "ajax" ) {
         $markupcontent = URI::Escape::JavaScript::unescape($markupcontent);
         $markupcontent = HTML::Entities::encode($markupcontent,'^\n\x20-\x25\x27-\x7e');
+    } else {
+        $markupcontent = Encode::decode_utf8($markupcontent);
+        $markupcontent = HTML::Entities::encode($markupcontent,'^\n^\r\x20-\x25\x27-\x7e');
     }
 
     my $o = BlogTitle->new();

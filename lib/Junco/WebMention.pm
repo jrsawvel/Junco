@@ -152,6 +152,7 @@ sub add_webmention {
     my $formattedcontent = HTML::Entities::encode($markupcontent, '<>');
     $formattedcontent .= " <a  rel=\"nofollow\"  href=\"$source_url\">more &gt;&gt;</a>" if $extended_text;
     $formattedcontent = StrNumUtils::url_to_link($formattedcontent);
+    $formattedcontent = Format::hashtag_to_link($formattedcontent);
     $formattedcontent = Format::check_for_external_links($formattedcontent);
 
     if ( length($source_author) > 0 )  { 

@@ -8,7 +8,8 @@
 <!--<![endif]-->
 <head>
 <title><!-- tmpl_var name="pagetitle" --></title>
-<meta charset="UTF-8" />
+<meta charset="UTF-8" /> 
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /> -->
 <!--[if lt IE 9]> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <![endif]-->
@@ -27,8 +28,11 @@
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
 <!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="theme" -->.css"  />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/meanmenu2.css" media="all" />
 <link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/demo2.css" media="all" />
+<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/meanmenu2.css" media="all" />
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
 
@@ -47,8 +51,9 @@
 <!-- <span class="headersearchlink"><li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li></span> -->
 <li class="headersearchlink"><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
 <!-- tmpl_if loggedin --> 
-<li class="largescreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li>
-<li class="smallscreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->">YOU</a></li>
+<!-- <li class="largescreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> -->
+<li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li>
+<!-- <li class="smallscreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->">YOU</a></li> -->
 <li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags/<!-- tmpl_var name="username" -->">tags</a></li> 
 <li><a title="Posts by users that you are following" href="<!-- tmpl_var name="cgi_app" -->/followingstream">following</a></li>
 <li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li>
