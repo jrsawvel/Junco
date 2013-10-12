@@ -8,7 +8,7 @@ use NEXT;
     $CGI::HEADERS_ONCE=1;
 
     use HTML::Template;
-    use Junco::Config;
+# jrs todo 11oct2013 can i comment this out here since it's called in Modules.pm?   use Junco::Config;
 
     sub new {
         my ($class, $template_name) = @_;

@@ -19,5 +19,17 @@ sub get_value_for {
     return $yaml->[0]->{$name};
 }
 
+sub set_value_for {
+    my $name = shift;
+    my $value = shift;
+
+    if ( !exists($yaml->[0]->{$name}) ) {
+        return 0;
+    }
+    $yaml->[0]->{$name} = $value;
+  
+    return 1;
+}
+
 1;
 
