@@ -8,6 +8,9 @@ use lib '/home/magee/Dvlp/Junco/lib';
 use Test::More qw(no_plan);
 # use Test::More tests => 8;
 use REST::Client;
+use LWP;
+use Data::Dumper;
+
 
 my $DISPLAY_HTML_RESPONSE = 0;
 
@@ -107,6 +110,8 @@ sub test_signup_1 {
     ok($hr =~ m|Account Enabled|s, 'activate_account() - account activated');
 
     print "\n\n HTML Response from activate_account:\n\n" . $hr . "\n\n" if $DISPLAY_HTML_RESPONSE;
+
+    $hr = test_log_into_account($test_email, $password);
 }
 
 sub test_signup_2 {
@@ -158,7 +163,6 @@ sub test_signup_5 {
     print "\n\n HTML Response from create_new_user:\n\n" . $hr . "\n\n" if $DISPLAY_HTML_RESPONSE;
 }
 
-
 sub test_create_user_account {
     my $username = shift;
     my $email = shift;
@@ -190,6 +194,37 @@ sub test_create_user_account {
     # POST requests have 3 args: URL, BODY, HEADERS
     $rest->POST( "/$function" , $params , $headers );
     return $rest->responseContent();
+}
+
+sub test_log_into_account {
+    my $email = shift;
+    my $password = shift;
+    
+    my $function = "login";
+    my $domain   = Config::get_value_for("email_host");
+    my $prog     = Config::get_value_for("cgi_app");
+
+    my $url = "http://$domain" . "$prog/$function";
+
+    my $browser = LWP::UserAgent->new;
+
+    my $response = $browser->post( $url,
+        [
+            'password'      => $password,
+            'email'         => $email
+        ],
+    );
+ 
+    # print Dumper $response; 
+    # print Dumper $response->header('set-cookie');
+    my @cookies= $response->header('set-cookie');
+
+    foreach my $c (@cookies) {
+        my @a = split(/;/, $c);
+        my @b = split(/=/, $a[0]);
+        print "name=$b[0]\n";
+        print "value=$b[1]\n\n";
+    }
 }
 
 sub test_activate_account {
