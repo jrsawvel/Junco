@@ -7,10 +7,8 @@ use lib '/home/magee/Dvlp/Junco/lib';
 
 use Test::More qw(no_plan);
 # use Test::More tests => 8;
-use REST::Client;
-use LWP;
 use Data::Dumper;
-
+use WWW::Mechanize;
 
 my $DISPLAY_HTML_RESPONSE = 0;
 
@@ -84,7 +82,6 @@ test_signup_5($test_username, $test_email);
 test_email_syntax();
 
 
-
 sub test_signup_1 {
     my $test_username = shift;
     my $test_email = shift;
@@ -111,7 +108,6 @@ sub test_signup_1 {
 
     print "\n\n HTML Response from activate_account:\n\n" . $hr . "\n\n" if $DISPLAY_HTML_RESPONSE;
 
-    $hr = test_log_into_account($test_email, $password);
 }
 
 sub test_signup_2 {
@@ -171,60 +167,17 @@ sub test_create_user_account {
     my $domain   = Config::get_value_for("email_host");
     my $prog     = Config::get_value_for("cgi_app");
 
-    my $headers = {
-        'Content-type' => 'application/x-www-form-urlencoded'
-    };
-
-    # set up a REST session
-    my $rest = REST::Client->new( {
-           host => "http://$domain" . "$prog",
-    } );
-
-    # then we have to url encode the params that we want in the body
-    my $pdata = {
-        'username'      => $username,
-        'email'         => $email
-    };
-    my $params = $rest->buildQuery( $pdata );
-
-    # but buildQuery() prepends a '?' so we strip that out
-    $params =~ s/\?//;
-
-    # then sent the request:
-    # POST requests have 3 args: URL, BODY, HEADERS
-    $rest->POST( "/$function" , $params , $headers );
-    return $rest->responseContent();
-}
-
-sub test_log_into_account {
-    my $email = shift;
-    my $password = shift;
-    
-    my $function = "login";
-    my $domain   = Config::get_value_for("email_host");
-    my $prog     = Config::get_value_for("cgi_app");
-
-    my $url = "http://$domain" . "$prog/$function";
-
-    my $browser = LWP::UserAgent->new;
-
-    my $response = $browser->post( $url,
-        [
-            'password'      => $password,
-            'email'         => $email
-        ],
+    my $mech = WWW::Mechanize->new();
+    my $url = "http://jothut.com/cgi-bin/d16augjunco.pl/signup";
+    $mech->get($url);
+    $mech->submit_form (
+        form_number => 2,
+        fields => {
+            username => $username,
+            email    => $email
+        }
     );
- 
-    # print Dumper $response; 
-    # print Dumper $response->header('set-cookie');
-    my @cookies= $response->header('set-cookie');
-
-    foreach my $c (@cookies) {
-        my @a = split(/;/, $c);
-        my @b = split(/=/, $a[0]);
-        print "name=$b[0]\n";
-        print "value=$b[1]\n\n";
-    }
+    return $mech->content();
 }
 
 sub test_activate_account {
@@ -234,13 +187,22 @@ sub test_activate_account {
     my $domain   = Config::get_value_for("email_host");
     my $prog     = Config::get_value_for("cgi_app");
 
-    # set up a REST session
-    my $rest = REST::Client->new();
-    
     my $url = "http://$domain" . "$prog/$function/$digest";
 
-    $rest->GET($url);
-    return $rest->responseContent();
+    my $mech = WWW::Mechanize->new();
+    $mech->get($url);
+    return $mech->content();
+
+
+    # my $browser = LWP::UserAgent->new;
+    # my $response = $browser->get($url);
+    # return $response->content;
+
+    # set up a REST session
+    # my $rest = REST::Client->new();
+    # my $url = "http://$domain" . "$prog/$function/$digest";
+    # $rest->GET($url);
+    # return $rest->responseContent();
 }
 
 sub test_email_syntax {
