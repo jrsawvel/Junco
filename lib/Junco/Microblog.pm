@@ -124,33 +124,32 @@ sub show_microblog_post {
         Page->report_error("user", "Invalid input", "Missing or invalid article id: $articleid.");
     }
 
-    # reference to an array of hashes used for looping in HTML::Template
-    my $microblog_post = _get_microblog_post($articleid);
+    my %microblog_post = _get_microblog_post($articleid);
 
-    Page->report_error("user", "Invalid article access.", "Data doesn't exist.") if ( !$microblog_post );
+    Page->report_error("user", "Invalid article access.", "Data doesn't exist.") if ( !%microblog_post );
 
     my $t = Page->new("microblogpost");
 
-    $t->set_template_variable("cgi_app",       $microblog_post->{cgi_app});
-    $t->set_template_variable("cleantitle",    $microblog_post->{cleantitle});
-    $t->set_template_variable("urldate",       $microblog_post->{urldate});
-    $t->set_template_variable("parentid",      $microblog_post->{parentid});
-    $t->set_template_variable("articleid",     $microblog_post->{articleid});
-    $t->set_template_variable("microblogpost", $microblog_post->{microblogpost});
-    $t->set_template_variable("createddate",   $microblog_post->{createddate});
-    $t->set_template_variable("createdtime",   $microblog_post->{createdtime});
-    $t->set_template_variable("dtpublished",   $microblog_post->{dtpublished});
-    $t->set_template_variable("authorname",    $microblog_post->{authorname});
-    $t->set_template_variable("replycount",    $microblog_post->{replycount});
+    $t->set_template_variable("cgi_app",       $microblog_post{cgi_app});
+    $t->set_template_variable("cleantitle",    $microblog_post{cleantitle});
+    $t->set_template_variable("urldate",       $microblog_post{urldate});
+    $t->set_template_variable("parentid",      $microblog_post{parentid});
+    $t->set_template_variable("articleid",     $microblog_post{articleid});
+    $t->set_template_variable("microblogpost", $microblog_post{microblogpost});
+    $t->set_template_variable("createddate",   $microblog_post{createddate});
+    $t->set_template_variable("createdtime",   $microblog_post{createdtime});
+    $t->set_template_variable("dtpublished",   $microblog_post{dtpublished});
+    $t->set_template_variable("authorname",    $microblog_post{authorname});
+    $t->set_template_variable("replycount",    $microblog_post{replycount});
     $t->set_template_variable("articlepage", 1);
 
-    if ( $microblog_post->{importdate} ) {
+    if ( $microblog_post{importdate} ) {
         $t->set_template_variable("importdateexists", 1);
-        $t->set_template_variable("importdate",   $microblog_post->{importdate});
+        $t->set_template_variable("importdate",   $microblog_post{importdate});
     }
 
-    if ( $microblog_post->{parentid} ) {
-        my %replytoinfo = Reply::get_reply_to_info($microblog_post->{parentid});
+    if ( $microblog_post{parentid} ) {
+        my %replytoinfo = Reply::get_reply_to_info($microblog_post{parentid});
 #        if ( $replytoinfo{microblogpost} ) {
 #            $t->set_template_variable("replytotitle", $replytoinfo{replytomarkup});
 #        } else {
@@ -160,17 +159,17 @@ sub show_microblog_post {
         $t->set_template_variable("microblogposttype", $replytoinfo{microblogpost});
     }
 
-    # $t->display_page("$microblog_post->{authorname}'s Micro Blog: " . $articleid);
-    if ( length($microblog_post->{title}) > 75 ) {
-        $microblog_post->{title} = substr $microblog_post->{title}, 0, 75;
-        $microblog_post->{title} .= "...";
+    # $t->display_page("$microblog_post{authorname}'s Micro Blog: " . $articleid);
+    if ( length($microblog_post{title}) > 75 ) {
+        $microblog_post{title} = substr $microblog_post{title}, 0, 75;
+        $microblog_post{title} .= "...";
     }
-    $t->set_template_variable("title", $microblog_post->{title});
+    $t->set_template_variable("title", $microblog_post{title});
 
-    my $article_url = "http://" . Config::get_value_for("email_host") . $microblog_post->{cgi_app} . "/microblogpost/" . $microblog_post->{articleid} . "/" . $microblog_post->{urldate} . "/" . $microblog_post->{cleantitle};
+    my $article_url = "http://" . Config::get_value_for("email_host") . $microblog_post{cgi_app} . "/microblogpost/" . $microblog_post{articleid} . "/" . $microblog_post{urldate} . "/" . $microblog_post{cleantitle};
     $t->set_template_variable("article_url", $article_url);
 
-    $t->display_page($microblog_post->{title} . " - by $microblog_post->{authorname} "); 
+    $t->display_page($microblog_post{title} . " - by $microblog_post{authorname} "); 
 }
 
 ########## private procedures
@@ -285,7 +284,7 @@ sub _get_microblog_post {
     $db->disconnect();
     Page->report_error("system", "Error disconnecting from database.", $db->errstr) if $db->err;
 
-    return \%hash;
+    return %hash;
 }
 
 sub _delete_microblog_post {

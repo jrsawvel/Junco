@@ -381,7 +381,10 @@ sub _process_blog_post {
     $hash->{blogposttype} = 1;
 
     my $tmp_post = StrNumUtils::remove_html($hash->{post});
-    my $tmp_word_count = scalar(split(/\s+/s, $tmp_post));
+    # this idiom throws a warning message so split into two statements. 17oct2013.
+    # my $tmp_word_count = scalar(split(/\s+/s, $tmp_post));
+    my @tmp_arr = split(/\s+/s, $tmp_post);
+    my $tmp_word_count = @tmp_arr;
     $hash->{readingtime} = 0;
     $hash->{readingtime} = int($tmp_word_count / 180) if $tmp_word_count >= 180;
 

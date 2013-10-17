@@ -415,7 +415,7 @@ sub _add_blog {
     $sql .= " values ($parentid, $parentauthorid, $title, $markupcontent, $formattedcontent, '$type', '$new_status', $userid, '$postdate', '$contentdigest', $userid, '$createddate', $quoted_tag_list_str, '$ENV{REMOTE_ADDR}')";
 
     my $articleid = $db->execute($sql);
-    "system " . "(30) Error executing SQL " . $db->errstr if $db->err;
+    die "system " . "(30) Error executing SQL " . $db->errstr if $db->err;
  
     # remove beginning and ending pipe delimeter to make a proper delimited string
     $tag_list_str =~ s/^\|//;
