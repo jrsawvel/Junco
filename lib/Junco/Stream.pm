@@ -215,6 +215,12 @@ sub _display_stream {
     my $no_posts = 0;
 
     my $webpage_title = $hash->{username} . " " . $hash->{streamtype} . " posts";
+    
+    if ( $hash->{topshelfblog} ) {
+        if ( $hash->{searchstring} =~ m/blog_(.*)/ ) {
+            $webpage_title = $1 .  "'s Blog"; 
+        }
+    }
 
     $T->set_template_variable("username_of_favorite_articles", $hash->{username});
     $T->set_template_variable("display_username", "$hash->{username}'s");
@@ -278,7 +284,7 @@ sub _display_stream {
             $T->set_template_variable("singletagsearch", 1); 
             $T->set_template_variable("isalreadyfollowingtag", $hash->{isalreadyfollowingtag}); 
         }
-        $webpage_title = "Search Results For $hash->{searchstring}";
+        $webpage_title = "Search Results For $hash->{searchstring}" if !$hash->{topshelfblog};
     } 
 
     $T->set_template_variable("nextpageurl", $nextpageurl);

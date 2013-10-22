@@ -1,0 +1,104 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+<title><!-- tmpl_var name="pagetitle" --></title>
+<meta charset="UTF-8" /> 
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /> -->
+<!--[if lt IE 9]> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<![endif]-->
+<meta property="og:site_name"   content="<!-- tmpl_var name="site_name" -->" />
+ <!-- tmpl_if articlepage -->
+<meta property="og:title"       content="<!-- tmpl_var name="title" -->" />
+<meta property="og:type"        content="article" />
+<meta property="og:url"         content="<!-- tmpl_var name="article_url" -->" />
+<meta property="og:description" content="<!-- tmpl_var name="title" -->" />
+<meta name="author"             content="<!-- tmpl_var name="authorname" -->" />
+<!-- /tmpl_if -->
+<meta name="generator" content="Junco" />
+<meta name="viewport" content="initial-scale=1, width=device-width" />
+<link rel="webmention" href="http://jothut.com<!-- tmpl_var name="cgi_app" -->/webmention" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> 
+<link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
+<!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
+<link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="theme" -->.css"  />
+<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/demo2.css" media="all" />
+<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/meanmenu2.css" media="all" />
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+
+    <!--
+<header>
+    -->
+
+    <!--
+<div id="headersearch">
+<form method="post" action="<!-- tmpl_var name="cgi_app" -->/search">
+<INPUT id="headersearchbox" TYPE=text name="keywords" onfocus="if(this.value==this.defaultValue)value=''" onblur="if(this.value=='')value=this.defaultValue;" value="Search">
+<INPUT class="submitbutton" type=submit name=sb VALUE="Go">
+</form>
+</div>
+    -->
+
+<div id="headertopshelf">
+<span class="largescreens" id="headerhomelinktopshelf"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></span>
+</div>
+
+    <!--
+<nav>
+    -->
+    <!-- <ul> -->
+<!-- <li class="current" id="navmenutext"><a href="<!-- tmpl_var name="requesturi" -->">menu</a></li>  -->
+<!-- <li class="current" id="navmenutext"><a href="#">menu</a></li> -->
+<!-- <span class="headersearchlink"><li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li></span> -->
+    <!-- <li class="headersearchlink"><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li> -->
+<!-- tmpl_if loggedin --> 
+<!-- <li class="largescreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> -->
+    <!-- <li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> -->
+<!-- <li class="smallscreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->">YOU</a></li> -->
+    <!-- 
+<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags/<!-- tmpl_var name="username" -->">tags</a></li> 
+<li><a title="Posts by users that you are following" href="<!-- tmpl_var name="cgi_app" -->/followingstream">following</a></li>
+<li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li>
+<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
+<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
+    -->
+<!-- tmpl_else --> 
+
+    <!--
+<li><a title="Create an Account" href="<!-- tmpl_var name="cgi_app" -->/signup">sign-up</a></li> 
+<li><a title="Login" href="<!-- tmpl_var name="cgi_app" -->/loginform">login</a></li>
+    -->
+
+<!-- /tmpl_if -->
+    <!-- </ul> -->
+    <!--
+</nav>
+</header>
+    -->
+
+<!-- ********************************************* -->
+
+<section style="padding-top: 0px;">
+
+<!-- tmpl_if usinglargeimageheader -->
+<div id="imageheader">
+<center>
+<img src="<!-- tmpl_var name="largeimageheaderurl" -->">
+</center>
+</div>
+<!-- /tmpl_if -->
+
+
+<div id="sitewide" style="padding: 0 .2em 0 .2em;">
+
+

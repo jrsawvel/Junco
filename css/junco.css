@@ -19,6 +19,13 @@ header {
     z-index: 100; 
 }
 
+#headertopshelf {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 100; 
+}
+
 section {
     /* margin: 10px auto 0px; 3oct2013 */
     margin: 0px auto 0px;
@@ -299,6 +306,23 @@ a.extlink:hover {
     float: left;
     background: #120a8f;   /* ultramarine blue */
     padding: .4em .5em .5em .5em; 
+    margin: 0 0 0 0;
+    font-size: .9em;
+    font-family: Arial, Helvetica, sans-serif;  
+}
+
+#headerhomelinktopshelf a {
+    color: #120a8f;   /* ultramarine blue */
+}
+
+#headerhomelinktopshelf a:hover {
+    color: #4d4dff; /* neonblue */
+    text-decoration: none;
+}
+
+#headerhomelinktopshelf {
+    float: left;
+    padding: .4em .5em .5em .5em;  
     margin: 0 0 0 0;
     font-size: .9em;
     font-family: Arial, Helvetica, sans-serif;  

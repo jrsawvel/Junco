@@ -21,9 +21,6 @@ document.myform.limit.value = count-len;
 <!-- tmpl_if doingsearch -->
 <p class="greytext">
 <small> 
-Search Results For &ldquo;<!-- tmpl_var name="keywords" -->&rdquo; 
- - <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->">#</a>
- - <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->/rss">rss</a>
 <!-- tmpl_unless nomatches -->
 <!-- tmpl_if singletagsearch -->
 <!-- tmpl_if isalreadyfollowingtag -->
@@ -37,6 +34,9 @@ Search Results For &ldquo;<!-- tmpl_var name="keywords" -->&rdquo;
 <!-- /tmpl_if -->
 <!-- /tmpl_if -->
 <!-- /tmpl_unless -->
+Search Results For &ldquo;<!-- tmpl_var name="keywords" -->&rdquo; 
+ - <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->">#</a>
+ - <a href="<!-- tmpl_var name="cgi_app" -->/<!-- tmpl_var name="streamtype" -->/<!-- tmpl_var name="searchurlstr" -->/rss">rss</a>
 </small>
 </p>
 <!-- tmpl_if nomatches -->

@@ -1,4 +1,4 @@
-<!-- tmpl_include name="header.tmpl" -->
+<!-- tmpl_include name="header.tmpl" --> 
 
 <!-- tmpl_if doingsearch -->
 <p class="greytext">
@@ -13,13 +13,17 @@
 <!-- tmpl_unless nomatches -->
 <!-- tmpl_if singletagsearch -->
 <!-- tmpl_if isalreadyfollowingtag -->
+<!--
 <form style="padding-left: 10px; display:inline!important;"  action="<!-- tmpl_var name="cgi_app" -->/unfollowtag/<!-- tmpl_var name="searchurlstr" -->/">
 <input id="unfollowbutton" type="submit" value="Unfollow">  
 </form>
+-->
 <!-- tmpl_else -->
+<!--
 <form style="padding-left: 10px; display:inline!important;"  action="<!-- tmpl_var name="cgi_app" -->/followtag/<!-- tmpl_var name="searchurlstr" -->/">
 <input id="followbutton" type="submit" value="Follow">  
 </form>
+-->
 <!-- /tmpl_if -->
 <!-- /tmpl_if -->
 <!-- /tmpl_unless -->

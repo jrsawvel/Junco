@@ -2,6 +2,8 @@ var MINI = require('minified');
 var $ = MINI.$, $$ = MINI.$$, EE = MINI.EE;
 
 var keyCounter=0;
+var autoSaveInterval=300000   // in milliseconds. default = 5 minutes.
+var intervalID=0;
 
 function countKeyStrokes () {
     keyCounter++;    
@@ -37,7 +39,8 @@ Mousetrap.bindGlobal('ctrl+shift+p', function() {
     }
 
     // autosave every five minutes
-    setInterval(function(){savePost()},300000); 
+//    setInterval(function(){savePost()},300000); 
+    intervalID = setInterval(function(){savePost()},autoSaveInterval); 
 
 
 // ******************** 
@@ -102,6 +105,17 @@ Mousetrap.bindGlobal('ctrl+shift+p', function() {
         } 
 
         var markup = $$('#tx_input').value;
+
+        var regex = /^autosave=(\d+)$/m;
+        var myArray;
+        if ( myArray = regex.exec(markup) ) {
+            if ( myArray[1] > 0  &&  (myArray[1] * 1000) != autoSaveInterval ) {
+                autoSaveInterval = myArray[1] * 1000; 
+                clearInterval(intervalID);
+                intervalID = setInterval(function(){savePost()},autoSaveInterval); 
+            }
+        }
+
         markup=escape(markup);
 
         var paramstr;
