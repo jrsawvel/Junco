@@ -4,6 +4,8 @@ var $ = MINI.$, $$ = MINI.$$, EE = MINI.EE;
 var keyCounter=0;
 var autoSaveInterval=300000   // in milliseconds. default = 5 minutes.
 var intervalID=0;
+var prevLength=0;
+var currLength=0;
 
 function countKeyStrokes () {
     keyCounter++;    
@@ -29,6 +31,7 @@ Mousetrap.bindGlobal('ctrl+shift+p', function() {
 
         if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
             e.preventDefault();
+            keyCounter++; // force a save even if no editing occurred since user clicked the save link.
             savePost();
         }
 
@@ -144,14 +147,25 @@ Mousetrap.bindGlobal('ctrl+shift+p', function() {
 // SAVE
 // ********** 
 
-    $('#saveButton').on('click', savePost);
+    $('#saveButton').on('click', forceSave);
+
+    function forceSave () {
+        keyCounter++;
+        savePost();
+    }
 
     function savePost () {
-        if ( keyCounter == 0 ) {
+        var markup = $$('#tx_input').value;
+
+        currLength = markup.length;
+
+        if ( keyCounter == 0 && currLength == prevLength ) {
             return;
         }
-     
-        keyCounter=0; 
+    
+        prevLength = currLength; 
+        keyCounter=0;
+ 
         var col_type = $('#col_left').get('@class');
 
         var action        = $('#splitscreenaction').get('@value');
@@ -159,7 +173,7 @@ Mousetrap.bindGlobal('ctrl+shift+p', function() {
         var postid        = $('#splitscreenpostid').get('@value');
         var postdigest    = $('#splitscreenpostdigest').get('@value');
 
-        var markup = $$('#tx_input').value;
+
         markup=escape(markup);
 
 //        $.request('post', cgiapp + '/' + action, {markupcontent: markup, sb: 'Save', formtype: 'ajax'})
