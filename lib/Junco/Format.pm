@@ -348,6 +348,27 @@ sub format_content {
     return $formattedcontent;
 }
 
+sub remove_profile_blog_settings {
+    my $str = shift;
+
+    while ( $str =~ m|^blog-description[\s]*=[\s]*(.+)|im ) {
+        my $url = $1;
+        $str =~ s|^blog-description[\s]*=[\s]*$url||im;
+    }
+
+    while ( $str =~ m|^blog-author-image[\s]*=[\s]*(.+)|im ) {
+        my $url = $1;
+        $str =~ s|^blog-author-image[\s]*=[\s]*$url||im;
+    }
+
+    while ( $str =~ m|^blog-banner-image[\s]*=[\s]*(.+)|im ) {
+        my $url = $1;
+        $str =~ s|^blog-banner-image[\s]*=[\s]*$url||im;
+    }
+
+    return $str;
+}
+
 sub remove_image_header_commands {
     my $str = shift;
     while ( $str =~ m|^imageheader[\s]*=[\s]*(.+)|im ) {

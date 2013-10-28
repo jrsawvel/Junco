@@ -152,6 +152,8 @@ sub _set_page_and_user_data {
 
     my %hash;
 
+    my $valid_user = User::valid_user();
+
     $T = Page->new($template);
 
     $hash{streamtype} = $stream_type;
@@ -184,7 +186,7 @@ sub _set_page_and_user_data {
     $hash{logged_in_username} = User::get_logged_in_username();
 
     $hash{logged_in_user_viewing_own_stream}  = 0; 
-    if ( $hash{userid} > 0 and User::valid_user() and ($hash{logged_in_username} eq $hash{username})  ) {
+    if ( $hash{userid} > 0 and $valid_user and ($hash{logged_in_username} eq $hash{username})  ) {
         $hash{logged_in_user_viewing_own_stream} = 1;
         $hash{status} = "c.status in (" . Config::get_value_for("stream_user_display_status") . ")";
 # 22apr2013        Web::set_template_variable("logged_in_user_viewing_own_favorites", $hash{username}) if ($hash{streamtype} eq "microblog" or $hash{streamtype} eq "stream") and $template ne "rss" ;
@@ -196,6 +198,10 @@ sub _set_page_and_user_data {
         }
     } elsif ( $hash{userid} == 0 and User::valid_user() and $hash{username} eq "All"  ) {
         $T->set_template_variable("logged_in_user_viewing_own_stream", $hash{username}) if ($hash{streamtype} eq "microblog" or $hash{streamtype} eq "stream") and $template ne "rss" ;
+    }
+
+    if ( $valid_user ) {
+        $hash{logged_in_user} = 1;
     }
 
     $hash{max_entries} = Config::get_value_for("max_entries_on_page");
@@ -345,6 +351,7 @@ sub _prepare_stream_data {
         }
 
         $hash{logged_in_user_viewing_own_stream} = $values->{logged_in_user_viewing_own_stream};
+        $hash{logged_in_user} = $values->{logged_in_user};
         $hash{blogposttype} = 0;
         %hash = _process_blog_post(\%hash, $hash_ref, $values) if $hash_ref->{type} eq "b"; 
         %hash = _process_microblog_post(\%hash, $hash_ref, $values) if $hash_ref->{type} eq "m"; 

@@ -91,6 +91,7 @@ sub customize_user {
     ######## Description
     if ( defined($descmarkup) ) {
         $descformat = StrNumUtils::trim_spaces($descmarkup);
+        $descformat = Format::remove_profile_blog_settings($descformat);
         $descformat = HTML::Entities::encode($descformat, '<>');
         $descformat = Format::permit_some_html_tags($descformat);
         $descformat = Format::custom_commands($descformat);

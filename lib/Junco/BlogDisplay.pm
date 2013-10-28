@@ -131,6 +131,12 @@ sub show_blog_post {
 
     _update_last_blog_post_viewed($articleid, $logged_in_userid);
 
+    my $tmp_str = "blog_" . $blog_post{authorname};
+    if ( $blog_post{tags} =~ m|$tmp_str| ) {
+        $t->set_template_variable("topshelfblogpost", 1); 
+        $t->set_template_variable("topshelfblogowner", $blog_post{authorname}); 
+    }
+
     $t->display_page($blog_post{title} . " - by $blog_post{authorname} "); 
 }
 

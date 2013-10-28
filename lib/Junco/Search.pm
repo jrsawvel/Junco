@@ -153,13 +153,30 @@ sub do_search {
     $searchurlstr    =~ s/ /\+/g;
     $searchurlstr = uri_escape($searchurlstr);
 
-    my $tmp_topshelfblog = 0;
-    $tmp_topshelfblog = 1 if ( ( $search_string =~ m/^blog_/i ) and ( @search_terms == 1 ) );
     my $template_type = "stream";
-    $template_type = "topshelfblog" if $tmp_topshelfblog;
+
+    my $tmp_topshelfblog = 0;
+    my $tmp_topshelfblog_owner;
+
+    if ( ( $search_string =~ m/^blog_(.*)/i ) and ( @search_terms == 1 ) ) {
+        $tmp_topshelfblog = 1;
+        $template_type = "topshelfblog";
+        $tmp_topshelfblog_owner = $1; 
+    }
     
     my %values = Stream::_set_page_and_user_data("", $page_num, $search_type, $template_type); 
     $values{topshelfblog} = $tmp_topshelfblog;
+
+    my %extra_values;
+
+    if ( $tmp_topshelfblog ) {
+        $extra_values{topshelfblogowner} = $tmp_topshelfblog_owner;
+        $extra_values{topshelfbloghome} = 1; 
+        $extra_values{blogdescription} = "nature, food, technology, media, sports, politics, etc.";
+        $extra_values{blogauthorimage} = "http://mageemarsh.com/ek/magee-tower-3.JPG";
+        $extra_values{blogbannerimage} = "http://mageemarsh.com/ek/lake-erie-fall-sunrise-a.jpg";
+    }
+
     my $sql_where_str = _create_sql_where_str($type, \@search_terms, \%values, $tmp_hash->{sortby_userid}, $search_type);
     my $stream_data = Stream::_get_content($sql_where_str);
 
@@ -185,7 +202,7 @@ sub do_search {
         $values{isalreadyfollowingtag} = Following::is_already_following("t", $search_string);
     }
 
-    Stream::_display_stream(\%values, \@posts);
+    Stream::_display_stream(\%values, \@posts, \%extra_values);
 }
 
 sub show_tags_by_counts {
