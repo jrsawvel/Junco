@@ -221,7 +221,17 @@ sub _display_stream {
     my $no_posts = 0;
 
     my $webpage_title = $hash->{username} . " " . $hash->{streamtype} . " posts";
-    
+
+    if ( $hash->{streamtype} eq "replies" ) {
+        my $tmp_page_title = $extra_hash->{replytomarkup};
+        if ( length($tmp_page_title) > 75 ) {
+             $tmp_page_title = substr $tmp_page_title, 0, 75;
+             $tmp_page_title .= "...";
+        }
+        $webpage_title = "Replies to: " . $tmp_page_title;
+    }
+    delete $extra_hash->{replytomarkup};
+ 
     if ( $hash->{topshelfblog} ) {
         if ( $hash->{searchstring} =~ m/blog_(.*)/ ) {
             $webpage_title = $1 .  "'s Blog"; 
@@ -306,8 +316,9 @@ sub _display_stream {
         $pageheadingurl = " <a href=\"$hash->{cgiapp}/$hash->{streamtype}/All\">all $hash->{streamtype} postings</a>"; 
         $T->set_template_variable("pageheadingurl", $pageheadingurl);
     } elsif ( $hash->{streamtype} eq "blogarchivepage" ) {
-        $pageheadingurl = " blog archive - $hash->{month}/$hash->{year} - <a href=\"$hash->{cgiapp}/blogarchives\">all archives</a>"; 
+        $pageheadingurl = " article archive - $hash->{month}/$hash->{year} - <a href=\"$hash->{cgiapp}/blogarchives\">all archives</a>"; 
         $T->set_template_variable("pageheadingurl", $pageheadingurl);
+        $webpage_title = "$hash->{username} -  article archive - $hash->{month}/$hash->{year}";
     }
 
     if ( $extra_hash ) {

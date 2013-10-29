@@ -22,7 +22,7 @@ sub show_archives {
     if ( $username ) {
         $t->set_template_variable("userblog", 1);
         $t->set_template_variable("userarchives", $username);
-        $str = "for $username\'s workspace";
+        $str = "for $username\'s articles";
     }
     $t->display_page("Archives $str");
 }

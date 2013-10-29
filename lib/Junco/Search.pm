@@ -15,6 +15,7 @@ my $pt_db_user_id      = Config::get_value_for("database_username");
 my $pt_db_password     = Config::get_value_for("database_password");
 
 my $dbtable_tags       = Config::get_value_for("dbtable_tags");
+my $dbtable_users      = Config::get_value_for("dbtable_users");
 
 sub display_search_form {
     my $t = Page->new("searchform");
@@ -170,11 +171,14 @@ sub do_search {
     my %extra_values;
 
     if ( $tmp_topshelfblog ) {
-        $extra_values{topshelfblogowner} = $tmp_topshelfblog_owner;
+        my %blog_info = get_topshelf_blog_info($tmp_topshelfblog_owner);
         $extra_values{topshelfbloghome} = 1; 
-        $extra_values{blogdescription} = "nature, food, technology, media, sports, politics, etc.";
-        $extra_values{blogauthorimage} = "http://mageemarsh.com/ek/magee-tower-3.JPG";
-        $extra_values{blogbannerimage} = "http://mageemarsh.com/ek/lake-erie-fall-sunrise-a.jpg";
+        if ( %blog_info ) {
+            $extra_values{blogdescription} = $blog_info{blogdescription};
+            $extra_values{blogauthorimage} = $blog_info{blogauthorimage};
+            $extra_values{blogbannerimage} = $blog_info{blogbannerimage};
+            $extra_values{topshelfblogowner} = $blog_info{blogauthorname};
+        }
     }
 
     my $sql_where_str = _create_sql_where_str($type, \@search_terms, \%values, $tmp_hash->{sortby_userid}, $search_type);
@@ -455,6 +459,45 @@ sub _get_tag_cloud {
     }
 
     return @loop_data;
+}
+
+sub get_topshelf_blog_info {
+    my $username = shift;
+
+    my %hash;
+
+    my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
+    Page->report_error("system", "Error connecting to database.", $db->errstr) if $db->err;
+
+    $username = $db->quote($username);
+
+    my $sql = "select username, descmarkup from $dbtable_users where username=$username and status ='o'";
+    $db->execute($sql);
+    Page->report_error("system", "(20) Error executing SQL", $db->errstr) if $db->err;
+
+    my $descmarkup;
+    while ( $db->fetchrow ) {
+        $hash{blogauthorname}   = $db->getcol("username");
+        $descmarkup = $db->getcol("descmarkup");
+    }
+    Page->report_error("system", "Error retrieving data from database.", $db->errstr) if $db->err;
+
+    $db->disconnect;
+    Page->report_error("system", "Error disconnecting from database.", $db->errstr) if $db->err;
+
+    if ( $descmarkup =~ m|^blog-description[\s]*=[\s]*(.+)|im ) {
+        $hash{blogdescription} = $1;
+    }
+
+    if ( $descmarkup =~ m|^blog-author-image[\s]*=[\s]*(.+)|im ) {
+        $hash{blogauthorimage} = $1;
+    }
+
+    if ( $descmarkup =~ m|^blog-banner-image[\s]*=[\s]*(.+)|im ) {
+        $hash{blogbannerimage} = $1;
+    }
+
+    return %hash;
 }
 
 1;

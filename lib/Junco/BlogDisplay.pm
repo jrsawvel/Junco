@@ -76,10 +76,12 @@ sub show_blog_post {
         $t->set_template_variable("importdate",   $blog_post{importdate});
     }
 
+    my $old_version_title_string = "";
     if ( $blog_post{status} eq "v" ) {
         $t->set_template_variable("versionlinkarticleid", $blog_post{parentid});
         $t->set_template_variable("viewingoldversion", 1);
         $t->set_template_variable("versionnumber", $blog_post{version});
+        $old_version_title_string = "Old version number $blog_post{version}: ";
     } 
 
     if ( $blog_post{usingimageheader} ) {
@@ -132,12 +134,12 @@ sub show_blog_post {
     _update_last_blog_post_viewed($articleid, $logged_in_userid);
 
     my $tmp_str = "blog_" . $blog_post{authorname};
-    if ( $blog_post{tags} =~ m|$tmp_str| ) {
+    if ( $blog_post{tags} =~ m|$tmp_str|i ) {
         $t->set_template_variable("topshelfblogpost", 1); 
         $t->set_template_variable("topshelfblogowner", $blog_post{authorname}); 
     }
 
-    $t->display_page($blog_post{title} . " - by $blog_post{authorname} "); 
+    $t->display_page($old_version_title_string . $blog_post{title} . " - by $blog_post{authorname} "); 
 }
 
 sub _create_table_of_contents {

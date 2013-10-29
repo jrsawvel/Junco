@@ -57,7 +57,7 @@ sub show_replies {
     } 
     my %replytoinfo = get_reply_to_info($replytoid);
     Page->report_error("user", "Sorry.", "Post not found.") if !%replytoinfo;
-
+ 
     my %values = Stream::_set_page_and_user_data($replytoid, $tmp_page_num, $stream_type, "replies"); 
     my $offset = Utils::get_time_offset();
     my $sql_where_str = " where c.parentid=$replytoid and c.type='m' and c.status='o' and c.authorid=u.id ";
@@ -72,6 +72,7 @@ sub show_replies {
     $extra{replytourldate}     = $replytoinfo{replytourldate};
     $extra{replytocleantitle}  = $replytoinfo{replytocleantitle};
     $extra{replytotitle}       = $replytoinfo{replytotitle};
+    $extra{replytomarkup}      = $replytoinfo{replytomarkup};
     $extra{replytocount}       = $replytoinfo{replytocount};
     $extra{replytostring}      = $replytoinfo{replytocount} == 1 ? "reply" : "replies";
     $extra{showreplylink}      = 1;
@@ -111,14 +112,15 @@ sub get_reply_to_info {
         $hash{replytoauthorid}      = $db->getcol("authorid");
         $hash{replytoauthorname}    = $db->getcol("username");
         $hash{replytotitle}         = $db->getcol("title");
-        $hash{replytomarkup}        = $db->getcol("markupcontent");
+        $hash{replytomarkup}        = $hash{replytotitle};
         $hash{replytourldate}       = $db->getcol("urldate");
         $hash{replytocontentdigest} = $db->getcol("contentdigest");
         $hash{replytocount}         = $db->getcol("replycount");
         $hash{replytotype}          = $db->getcol("type");
         $hash{replytocreateddate}   = $db->getcol("createddate");
         if ( $hash{replytotype} eq "m" ) {
-            $hash{replytotitle} = $db->getcol("formattedcontent");
+            $hash{replytotitle}  = $db->getcol("formattedcontent");
+            $hash{replytomarkup} = $db->getcol("markupcontent");
             $hash{microblogpost} = 1;
         } else {
             $hash{microblogpost} = 0;

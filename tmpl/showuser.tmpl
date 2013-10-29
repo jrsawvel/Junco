@@ -26,8 +26,8 @@
 
 <ul>
 <li>Member since: <!-- tmpl_var name="creationdate" --></li>
-<li>Blog posts: <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="profileusername" -->"><!-- tmpl_var name="blogcount" --></a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/blog/<!-- tmpl_var name="profileusername" -->">rss</a></li>
-<li>Micro Blog posts: <a href="<!-- tmpl_var name="cgi_app" -->/microblog/<!-- tmpl_var name="profileusername" -->"><!-- tmpl_var name="microblogcount" --></a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/microblog/<!-- tmpl_var name="profileusername" -->">rss</a></li>
+<li>Articles: <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="profileusername" -->"><!-- tmpl_var name="blogcount" --></a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/blog/<!-- tmpl_var name="profileusername" -->">rss</a></li>
+<li>Notes: <a href="<!-- tmpl_var name="cgi_app" -->/microblog/<!-- tmpl_var name="profileusername" -->"><!-- tmpl_var name="microblogcount" --></a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/microblog/<!-- tmpl_var name="profileusername" -->">rss</a></li>
 <!-- tmpl_if ownerloggedin -->
 <!-- /tmpl_if -->
 <li><a href="<!-- tmpl_var name="cgi_app" -->/stream/<!-- tmpl_var name="profileusername" -->">Stream</a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/stream/<!-- tmpl_var name="profileusername" -->">rss</a> -- (<a title="All posts by all users" href="<!-- tmpl_var name="cgi_app" -->/stream/All">All</a>)</li>
@@ -44,8 +44,8 @@
 <li><a href="<!-- tmpl_var name="cgi_app" -->/following/users">Following Users</a> : <!-- tmpl_var name="followingcount" -->  <small><a href="<!-- tmpl_var name="cgi_app" -->/followingstream/users">stream</a></small></li>
 <li><a href="<!-- tmpl_var name="cgi_app" -->/following/tags">Following Tags</a> : <!-- tmpl_var name="followingtagcount" -->  <small><a href="<!-- tmpl_var name="cgi_app" -->/followingstream/tags">stream</a></small></li>
 <!-- <li><a href="<!-- tmpl_var name="cgi_app" -->/followedby">Followed By</a> : <!-- tmpl_var name="beingfollowedbycount" --></li> -->
-<li><a href="<!-- tmpl_var name="cgi_app" -->/private">Private Blog Posts</a> : <!-- tmpl_var name="privateblogcount" --></li>
-<li><a href="<!-- tmpl_var name="cgi_app" -->/draft">Draft Blog Posts</a> : <!-- tmpl_var name="draftblogcount" --> -- <a href="<!-- tmpl_var name="cgi_app" -->/tag/draftstub/<!-- tmpl_var name="profileusername" -->">Stubs</a> : <!-- tmpl_var name="draftstubcount" --></li>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/private">Private Articles</a> : <!-- tmpl_var name="privateblogcount" --></li>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/draft">Draft Articles</a> : <!-- tmpl_var name="draftblogcount" --> -- <a href="<!-- tmpl_var name="cgi_app" -->/tag/draftstub/<!-- tmpl_var name="profileusername" -->">Stubs</a> : <!-- tmpl_var name="draftstubcount" --></li>
 </ul> 
 </p>
 </div>

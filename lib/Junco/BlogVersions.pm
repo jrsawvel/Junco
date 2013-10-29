@@ -51,7 +51,7 @@ sub show_version_list {
     $t->set_template_variable("currenteditreason",   $article_data{editreason});   
 
     $t->set_template_loop_data("versions_loop", \@loop_data);
-    $t->display_page("Versions");
+    $t->display_page("Versions for: $article_data{title}");
 }
 
 sub _get_versions {

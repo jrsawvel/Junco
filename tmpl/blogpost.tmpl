@@ -13,6 +13,7 @@
 <!-- /tmpl_if -->
 
 <!-- tmpl_if redirectedpage -->
+<p>
 <small>
 (Redirected here from : 
  <!-- tmpl_if canedit -->
@@ -21,10 +22,13 @@
   <strong>"<!-- tmpl_var name="originaltitle" -->"</strong>)
  <!-- /tmpl_if -->
 </small>
+</p>
 <!-- /tmpl_if -->
 
 <!-- tmpl_if viewingoldversion -->
+<p>
 <strong>You're viewing old version number <!-- tmpl_var name="versionnumber" -->.</strong> - <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="versionlinkarticleid" -->/<!-- tmpl_var name="cleantitle" -->">Current version</a>
+</p>
 <!-- /tmpl_if -->
 
 <!-- tmpl_if usingimageheader -->
@@ -48,7 +52,7 @@
 </div>
 
 <p>
-<small class="greytext">From <a class="p-author h-card" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="authorname" -->"><!-- tmpl_var name="authorname" -->'s</a> : <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="authorname" -->">blog</a></small>
+<small class="greytext">From <a class="p-author h-card" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="authorname" -->"><!-- tmpl_var name="authorname" -->'s</a> : <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="authorname" -->">articles</a></small>
 <br />
 <small><!-- tmpl_var name="wordcount" --> words - <!-- tmpl_var name="charcount" --> chars 
 <!-- tmpl_if readingtime -->
@@ -88,7 +92,7 @@
 
 <!-- tmpl_if relatedarticlesexist -->
 <p> 
-<strong>Related blog posts</strong><br />
+<strong>Related articles</strong><br />
 <!-- tmpl_loop name="relatedarticles_loop" -->
 <a href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urltitle" -->"><tmpl_var name="title"></a>  - <!-- tmpl_var name="date" --><br /> 
 <!-- /tmpl_loop -->
