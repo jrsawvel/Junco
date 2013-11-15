@@ -316,7 +316,7 @@ sub format_content {
 
     $formattedcontent = process_embedded_media($formattedcontent);
 
-    $formattedcontent = StrNumUtils::url_to_link($formattedcontent); 
+    $formattedcontent = StrNumUtils::url_to_link($formattedcontent) if !$markdown;
 
     $formattedcontent = custom_commands($formattedcontent); 
 

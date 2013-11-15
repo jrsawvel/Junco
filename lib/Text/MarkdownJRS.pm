@@ -606,6 +606,8 @@ sub _EscapeSpecialChars {
             # with the escape values by accident.
             $cur_token->[1] =~  s! \* !$g_escape_table{'*'}!ogx;
             $cur_token->[1] =~  s! _  !$g_escape_table{'_'}!ogx;
+            $cur_token->[1] =~  s! \- !$g_escape_table{'-'}!ogx;
+            $cur_token->[1] =~  s! \+ !$g_escape_table{'+'}!ogx;
             $text .= $cur_token->[1];
         } else {
             my $t = $cur_token->[1];
@@ -634,6 +636,8 @@ sub _EscapeSpecialCharsWithinTagAttributes {
             $cur_token->[1] =~  s{ (?<=.)</?code>(?=.)  }{$g_escape_table{'`'}}gox;
             $cur_token->[1] =~  s! \* !$g_escape_table{'*'}!gox;
             $cur_token->[1] =~  s! _  !$g_escape_table{'_'}!gox;
+            $cur_token->[1] =~  s! \- !$g_escape_table{'-'}!gox;
+            $cur_token->[1] =~  s! \+ !$g_escape_table{'+'}!gox;
         }
         $text .= $cur_token->[1];
     }
@@ -747,6 +751,8 @@ sub _GenerateAnchor {
 
     $url =~ s! \* !$g_escape_table{'*'}!gox;    # We've got to encode these to avoid
     $url =~ s!  _ !$g_escape_table{'_'}!gox;    # conflicting with italics/bold.
+    $url =~ s! \- !$g_escape_table{'-'}!gox;    # 
+    $url =~ s! \+ !$g_escape_table{'+'}!gox;    # 
     $url =~ s{^<(.*)>$}{$1};                    # Remove <>'s surrounding URL, if present
 
     $result = qq{<a href="$url"};
@@ -759,6 +765,8 @@ sub _GenerateAnchor {
         $title =~ s/"/&quot;/g;
         $title =~ s! \* !$g_escape_table{'*'}!gox;
         $title =~ s!  _ !$g_escape_table{'_'}!gox;
+        $title =~ s! \- !$g_escape_table{'-'}!gox;
+        $title =~ s! \+ !$g_escape_table{'+'}!gox;
         $result .=  qq{ title="$title"};
     }
 
@@ -861,6 +869,8 @@ sub _GenerateImage {
 
     $url =~ s! \* !$g_escape_table{'*'}!ogx;     # We've got to encode these to avoid
     $url =~ s!  _ !$g_escape_table{'_'}!ogx;     # conflicting with italics/bold.
+    $url =~ s! \- !$g_escape_table{'-'}!ogx;     # 
+    $url =~ s! \+ !$g_escape_table{'+'}!ogx;     # 
     $url =~ s{^<(.*)>$}{$1};                    # Remove <>'s surrounding URL, if present
 
     if (!defined $title && length $link_id && defined $self->{_titles}{$link_id} && length $self->{_titles}{$link_id}) {
@@ -871,6 +881,8 @@ sub _GenerateImage {
     if (defined $title && length $title) {
         $title =~ s! \* !$g_escape_table{'*'}!ogx;
         $title =~ s!  _ !$g_escape_table{'_'}!ogx;
+        $title =~ s! \- !$g_escape_table{'-'}!ogx;
+        $title =~ s! \+ !$g_escape_table{'+'}!ogx;
         $title    =~ s/"/&quot;/g;
         $result .=  qq{ title="$title"};
     }
@@ -1275,6 +1287,8 @@ sub _EncodeCode {
     # Now, escape characters that are magic in Markdown:
     s! \* !$g_escape_table{'*'}!ogx;
     s! _  !$g_escape_table{'_'}!ogx;
+    s! \- !$g_escape_table{'-'}!ogx;
+    s! \+ !$g_escape_table{'+'}!ogx;
     s! {  !$g_escape_table{'{'}!ogx;
     s! }  !$g_escape_table{'}'}!ogx;
     s! \[ !$g_escape_table{'['}!ogx;

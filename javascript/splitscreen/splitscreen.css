@@ -356,14 +356,16 @@ ol ol li:last-child {
 
 pre code {
     color: brown;
-    font-size: 0.8em;
+/*    font-size: 0.8em; */
+    font-size: 1em;
     line-height: 1em;
     font-family: "Courier New", Courier,  monospace;
 }
 
 code {
     color: brown;
-    font-size: 0.8em;
+/*    font-size: 0.8em; */
+    font-size: 1em;
     line-height: 1em;
     font-family: "Courier New", Courier,  monospace;
 }

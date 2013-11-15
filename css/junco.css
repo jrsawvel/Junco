@@ -224,7 +224,7 @@ a.extlink:hover {
 
 #imageheader img {
     width: 100%;
-    max-width: 990px; 
+    max-width: 990px;   
 }
 
 .blogposttitle a {
@@ -238,16 +238,26 @@ a.extlink:hover {
     text-decoration: underline;
 }
 
+/*
+#content pre {
+    background: #c0c0c0;
+    padding: 10px;
+    overflow: auto;
+}
+*/
+
 #content pre code {
     color: brown;
-    font-size: 0.8em;
+/*    font-size: 0.8em; */
+    font-size: 1em;
     line-height: 1em;
     font-family: "Courier New", Courier, monospace;
 }
 
 #content code {
     color: brown;
-    font-size: 0.8em;
+/*    font-size: 0.8em; */
+    font-size: 1em;
     line-height: 1em;
     font-family: "Courier New", Courier, monospace;
 }
