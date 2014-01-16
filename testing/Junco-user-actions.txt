@@ -12,6 +12,7 @@ blogpostform - BlogAdd - show_blog_post_form
 splitscreen - BlogAdd - show_splitscreen_form
 
 blogpost - BlogDisplay - show_blog_post
+b - BlogDisplay - show_blog_post
 
 edit - BlogEdit - edit_blog_post
 splitscreenedit - BlogEdit - splitscreen_edit
@@ -50,6 +51,7 @@ addmicroblog - Microblog - add_microblog
 deletemicroblog - Microblog - delete_microblog
 undeletemicroblog - Microblog - undelete_microblog
 microblogpost - Microblog - show_microblog_post
+m - Microblog - show_microblog_post
 
 changepassword - Password - change_password
 newpassword - Password - create_new_password
@@ -87,10 +89,15 @@ repliesstream - Reply - show_replies_stream
 
 rest - Rest - do_rest                 
 
-post - ShowContent - show_content            
+post - ShowContent - show_content
+p - ShowContent - show_content            
 
 textsize - TextSize - set_text_size            
 
 theme - Theme  - set_theme
 
- #testing - #junco - #juncocode 
+webmention - WebMention - post_webmention
+
+
+ #testing - #junco - #juncocode
+

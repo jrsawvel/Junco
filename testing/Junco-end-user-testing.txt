@@ -1,4 +1,11 @@
-h1. Junco end-user testing
+h1. In Progress - Junco end-user testing
+
+#inprogress
+
+#juncotodo add webmention info
+ - webmention endpoint for receiving mentions
+ - replyto(link) comment in microblog posts
+
 
 Manually testing the Junco Web app like a user with a browser.
 
@@ -19,14 +26,14 @@ Logged-out user:
 
 
 
-h2. New user
+h2. [X] New user
 
 h3. Sign-up form
 
 * _(signup - Signup - show_signup_form)_
 * click the blue sign-up button. 
 
-h3. Create new account
+h3. [X] Create new account
 
 * _(createnewuser - Signup - create_new_user)_
 * enter valid, unique username
@@ -47,7 +54,7 @@ h3. E-mail activation link
 * after signing-up with valid username and e-mail address, test:
 ** sending of e-mail with activation link *(enable/add code)*
 
-h3. Activate account
+h3. [X] Activate account
 
 * _(acct - Signup - activate_account)_
 * clicking the activation link in e-mail to activate account
@@ -57,7 +64,7 @@ h3. Activate account
 
 
 
-h2. Login
+h2. [X] Login
 
 * _(login - Login - login)_
 * test logging in from the homepage.
@@ -68,7 +75,7 @@ h2. Login
 
 
 
-h2. Lost password
+h2. [X] Lost password
 
 * _(newpassword - Password - create_new_password)_
 * at bottom of login page, a section exists to have system create and e-mail a new password.
@@ -103,7 +110,7 @@ h3. Change password
 ** max char length is 30.
 ** must contain at least 4 alpha chars.
 ** must contain at least 2 numeric chars.
-** must contain at least 2 chars from the following list: !@$%^&amp;*
+** must contain at least 2 chars from the following list: !@$%^&*
 * the alphas, digits, and jibberish chars do not have to be unique, so a password can contain two exclamation marks, which satisfies the jibberish requirement.
 
 
@@ -132,27 +139,27 @@ h2. Logout, login, save login
 
 h2. Microblog Post
 
-h3. Create microblog
+h3. [X] Create microblog
 
 * _(addmicroblog - Microblog - add_microblog)_
 * create microblog post
 
-h3. Display microblog
+h3. [X] Display microblog
 
 * _(microblogpost - Microblog - show_microblog_post)_
 * display microblog post
 
-h3. Delete microblog
+h3. [X] Delete microblog
 
 * _(deletemicroblog - Microblog - delete_microblog)_
 * delete microblog post
 
-h3. Undelete microblog
+h3. [X] Undelete microblog
 
 * _(undeletemicroblog - Microblog - undelete_microblog)_
 * undelete microblog post
 
-h3. Microblog formatting
+h3. [X] Microblog formatting
 
 * The only formatting options permitted within a microblog post are:
 ** raw URLS that get converted into a clickable link.
@@ -167,7 +174,7 @@ h3. Char limit
 ** example:
 *** Error: 352 chars entered. Max is 300.
 
-h3. Microblog stream
+h3. [X] Microblog stream
 
 * _(microblog - Stream - show_microblog_stream)_
 * on user profile page, click on links following "Micro Blog posts:"
@@ -179,7 +186,7 @@ h3. Microblog stream
 
 h2. Blog Post
 
-h3. Create blog post
+h3. [X] Create blog post
 
 * _(blogpostform - BlogAdd - show_blog_post_form)_
 * _(addarticle - BlogAdd - add_blog_post)_
@@ -223,7 +230,7 @@ h4. existing blog titles
 * create blog post that is titled the same thing as an existing post.
 * should receive an error about title already existing.
 
-h3. Display blog post
+h3. [X] Display blog post
 
 * _(blogpost - BlogDisplay - show_blog_post)_
 * from the home page stream, click on link for blog post to display it.
@@ -304,12 +311,12 @@ h3. Blog stream
 ** date created as a small grey text link
 ** tag list as small grey text links
 
-h3. Delete blog post
+h3. [X] Delete blog post
 
 * _(deleteblog - BlogDelete - delete_blog)_
 * on the home page, delete a blog post.
 
-h3. Undelete blog post
+h3. [X] Undelete blog post
 
 * _(undeleteblog - BlogUndelete - undelete_blog)_
 * on the home page, undelete a blog post.
@@ -687,8 +694,8 @@ url to video:      http://www.facebook.com/video/embed?video_id=1015267033094543
 command to embed: facebook eq 10152670330945433
 
 google map: - grab url from the link command
-url to map:        http://maps.google.com/maps/ms?msa=0&amp;msid=115189530534020686385.000458eaca4e382f6e81b&amp;cd=2&amp;hl=en&amp;ie=UTF8&amp;ll=41.655824,-83.53858&amp;spn=0.021611,0.032959&amp;z=15 
-command to embed:  gmap eq maps/ms?msa=0&amp;msid=115189530534020686385.000458eaca4e382f6e81b&amp;cd=2&amp;hl=en&amp;ie=UTF8&amp;ll=41.648656,-83.538566&amp;spn=0.017445,0.004533&amp;output=embed
+url to map:        http://maps.google.com/maps/ms?msa=0&msid=115189530534020686385.000458eaca4e382f6e81b&cd=2&hl=en&ie=UTF8&ll=41.655824,-83.53858&spn=0.021611,0.032959&z=15 
+command to embed:  gmap eq maps/ms?msa=0&msid=115189530534020686385.000458eaca4e382f6e81b&cd=2&hl=en&ie=UTF8&ll=41.648656,-83.538566&spn=0.017445,0.004533&output=embed
 
 kickstarter video: - grab url to use with the command from the embed code
 url to video page:   http://www.kickstarter.com/projects/lanceroper/actual-coffee-a-toledo-coffee-roaster
@@ -713,4 +720,5 @@ h2. HTML Entities
 
 
 
- #junco - #testing 
+ #junco - #testing
+
