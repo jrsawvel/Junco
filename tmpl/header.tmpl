@@ -28,58 +28,330 @@
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
 <!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="theme" -->.css"  />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/demo2.css" media="all" />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/meanmenu2.css" media="all" />
+
+
+<!-- mmenu start -->
+<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.css" />
+<!--[if lt IE 9]>
+<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.ie8.css" />
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.positioning.css" />
+<!-- mmenu end -->
+
+
+<style>
+nav {
+display: none;
+}
+
+
+ /* Big cover image on the home page */
+#site-head {
+    position: relative;
+    display: table;
+    width: 100%;
+    /* height: 60%;  see NOTE above to make this work */
+    text-align: center;
+    color: #fff;
+    background: #303538 no-repeat center center;
+    background-size: cover;
+    padding-top: 2em;  
+    padding-bottom: 1em;
+}
+
+/* Creates a responsive wrapper that makes our content scale nicely */
+/* jrs - may not need this .inner */
+.inner {
+    position: relative;
+    width: 80%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#blog-author-image {
+    width:50px;
+    height:50px;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -khtml-border-radius: 25px;
+    -webkit-border-radius: 25px;
+}
+
+#blog-title {
+    font-size: 2em;
+    line-height: 1em; 
+}
+
+#blog-description {
+    font-size: 1em;
+    line-height: 1.5em; 
+}
+
+section {
+    padding-top: 0;
+}
+sitewide {
+    padding-top: 0;
+}
+ 
+
+#content h1 {
+    padding-top: 0;
+    margin-top: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+header #homelink a, header #homelink {
+    color: #888888;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#homelink a:hover, header a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+.largescreens2 {
+    display: inline;
+}
+
+.smallscreens2 {
+    display: none;
+}
+
+
+
+/* mmenu start */
+
+                    header {
+                       display: block;
+                       float: left;
+                       width: 100%;
+                       left: auto;
+                       position: fixed;
+                   }
+
+#header a
+{
+	display: block;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	left: 10px;
+}
+#header a.right
+{
+	left: auto;
+	right: 10px;
+}
+
+                   #header {
+                       height: 30px;
+                       /* border-bottom: 1px solid #ccc; */
+                   }
+                   #header a {
+                       display: none;
+                       display: inherit;
+                       background: none;
+                       width: 0;
+                       height: 0;
+                       top: 0;
+                       left: 0;
+                       padding: 0 20px 0 0;
+                       margin: 0;
+                       line-height: 1em;
+                   }
+
+                   #homelink {
+                       font-size: 80%;
+                       color: #ccc;
+                       padding: 5px 5px 0 5px;
+                   }
+                   #content {
+                       margin: 0px auto;
+                       padding: 0;
+                       max-width: 42em;
+                       /* padding: 0em .2em 0 .2em; for large screen view */
+                       /* padding: 2em .2em 0 .2em; for small screen view */
+                       padding: 0em .2em 0 .2em;
+                   }
+                   
+                   .mm-menu {
+                        background: #666;
+                    } 
+                   .mm-list {
+                       font-size: 1em;
+                       color: #ccc;
+                       text-align: right;
+                    }
+                    .mm-list > li { 
+                        /* margin-right: 10px; */
+                        /* font-weight: bold; */
+                    }
+                    .mm-list a:hover {
+                        background: #777; 
+                    }
+                   .mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults)::after {
+                       border: none;
+                   }
+                   #mm-blocker {
+                       background: #000;
+                   }
+                   .mm-menu.mm-right {
+                     width: 100px;
+                   } 
+                   html.mm-right.mm-opened.mm-opening .mm-page,
+                   html.mm-right.mm-opened.mm-opening #mm-blocker,
+                   html.mm-right.mm-opened.mm-opening .mm-fixed-top,
+                   html.mm-right.mm-opened.mm-opening .mm-fixed-bottom {
+                       right: 100px;
+                   }
+
+#hamburger {
+    padding: 10px 5px 0 0;
+    width: 20px;
+}
+
+#hamburger div {
+    background-color: #ccc;
+    height: 2px;
+    width: 90%;
+    margin-bottom: 2px; 
+}
+
+
+/* mmenu end */
+
+
+
+
+@media only screen and (max-width: 47em) { 
+    header {
+        background-color: #ffffff;
+        position: fixed;
+        border-bottom: 1px solid #888888;
+    }
+    section {
+        padding-top: 20px;
+    }
+    .largescreens2 {
+        display: inline;
+    }
+    .smallscreens2 {
+        display: inline;
+    }
+}
+
+</style>
+
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+
 </head>
 <body>
+<div id="page">
 
-<header>
+<!-- <header> -->
+<!--
 <div id="headersearch">
 <form method="post" action="<!-- tmpl_var name="cgi_app" -->/search">
 <INPUT id="headersearchbox" TYPE=text name="keywords" onfocus="if(this.value==this.defaultValue)value=''" onblur="if(this.value=='')value=this.defaultValue;" value="Search">
 <INPUT class="submitbutton" type=submit name=sb VALUE="Go">
 </form>
 </div>
-<span id="homelink"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></span> 
-<nav>
-<ul>
+-->
+<!-- <span id="homelink"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></span>  -->
+<!-- <nav> -->
+<!-- <ul> -->
 <!-- <li class="current" id="navmenutext"><a href="<!-- tmpl_var name="requesturi" -->">menu</a></li>  -->
 <!-- <li class="current" id="navmenutext"><a href="#">menu</a></li> -->
 <!-- <span class="headersearchlink"><li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li></span> -->
-<li class="headersearchlink"><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
+<!-- <li class="headersearchlink"><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li> -->
+<!-- <li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->"> <!-- tmpl_var name="topshelfblogowner" -->'s blog</a></li> -->
+<!-- <li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog RSS"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->/rss">rss</a></li> -->
 <!-- tmpl_if loggedin --> 
 <!-- <li class="largescreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> -->
-<li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li>
 <!-- <li class="smallscreens"><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->">YOU</a></li> -->
-<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags/<!-- tmpl_var name="username" -->">tags</a></li> 
-<li><a title="Posts by users that you are following" href="<!-- tmpl_var name="cgi_app" -->/followingstream">following</a></li>
-<li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li>
-<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
-<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
+<!-- <li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags/<!-- tmpl_var name="username" -->">tags</a></li>  -->
+<!-- <li><a title="Posts by users that you are following" href="<!-- tmpl_var name="cgi_app" -->/followingstream">following</a></li> -->
+<!-- <li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li> -->
+<!-- <li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li> -->
+<!-- <li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li> -->
 <!-- tmpl_else --> 
-<li><a title="Create an Account" href="<!-- tmpl_var name="cgi_app" -->/signup">sign-up</a></li>
-<li><a title="Login" href="<!-- tmpl_var name="cgi_app" -->/loginform">login</a></li>
+<!-- <li><a title="Create an Account" href="<!-- tmpl_var name="cgi_app" -->/signup">sign-up</a></li> -->
+<!-- <li><a title="Login" href="<!-- tmpl_var name="cgi_app" -->/loginform">login</a></li> -->
 <!-- /tmpl_if -->
+<!--
 </ul>
 </nav>
 </header>
+-->
 
-<!-- ********************************************* -->
+
+<!-- tmpl_if topshelfbloghome -->
+<div id="site-head" style="background-image: url(<!-- tmpl_var name="blogbannerimage" -->)"> 
+<!-- /tmpl_if -->
+
+<header>
+<div id="header">
+<a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><div id="homelink"><!-- tmpl_var name="site_name"--></div></a>
+<a class="right" title="menu" href="#menu">
+<div id="hamburger">
+<div></div>
+<div></div>
+<div></div>
+</div>
+</a>
+<nav id="menu">
+<ul>
+<!-- tmpl_if loggedin --> 
+<li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> 
+<li><a title="<!-- tmpl_var name="username" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="username" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>
+<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
+<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
+<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
+<!-- tmpl_else -->
+<!-- tmpl_if topshelfblogowner -->
+<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>
+<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog RSS"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->/rss">rss</a></li>
+<!-- /tmpl_if -->
+<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags">tags</a></li> 
+<li><a title="Archives" href="<!-- tmpl_var name="cgi_app" -->/blogarchives">archives</a></li> 
+<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
+<!-- /tmpl_if -->
+</ul>
+</nav>
+</div>
+</header>
+
+<!-- tmpl_if topshelfbloghome -->
+  <div class="vertical">
+    <div id="site-head-content" class="inner">
+      <div style="margin:0;padding:0;">
+        <a title="<!-- tmpl_var name="topshelfblogowner" -->'s profile page"  href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="topshelfblogowner" -->">
+        <img id="blog-author-image" src="<!-- tmpl_var name="blogauthorimage" -->" border="0" />
+        </a>
+      </div>
+      <div id="blog-title"><!-- tmpl_var name="topshelfblogowner" --></div>
+      <div id="blog-description"><!-- tmpl_var name="blogdescription" --></div>
+    </div>
+  </div>
+</div>
+<!-- /tmpl_if -->
 
 <section>
 
 <!-- tmpl_if usinglargeimageheader -->
-<div id="imageheader">
+<div id="imageheader"> 
 <center>
 <img src="<!-- tmpl_var name="largeimageheaderurl" -->">
 </center>
 </div>
 <!-- /tmpl_if -->
 
-
 <div id="sitewide">
-
 

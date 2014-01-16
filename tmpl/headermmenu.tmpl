@@ -28,10 +28,23 @@
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
 <!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="theme" -->.css"  />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/demo2.css" media="all" />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/meanmenu2.css" media="all" />
+
+
+<!-- mmenu start -->
+<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.css" />
+<!--[if lt IE 9]>
+<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.ie8.css" />
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.positioning.css" />
+<!-- mmenu end -->
+
 
 <style>
+nav {
+display: none;
+}
+
+
  /* Big cover image on the home page */
 #site-head {
     position: relative;
@@ -74,50 +87,13 @@
     line-height: 1.5em; 
 }
 
-/* override defaults */
-
-header {
-    position: fixed;
-}
-
-header nav {
-    background: #000;
-}
-
-header nav ul {
-    padding: 0;
-    margin: 0;
-}
-
-header nav ul li {
-    display: none;
-}
-
 section {
     padding-top: 0;
 }
+sitewide {
+    padding-top: 0;
+}
  
-.mean-container .mean-bar {
-    background-color: transparent;
-    position: fixed;
-}
-
-.mean-container .mean-nav {
-    background-color: #666;
-}
-
-.mean-container .mean-nav ul li a {
-    color: #ccc;
-    border-top: 0px solid #000;
-}
-
-.mean-container a.meanmenu-reveal {
-    color: #ccc;
-}
-
-.mean-container a.meanmenu-reveal span {
-    background: #ccc;
-}
 
 #content h1 {
     padding-top: 0;
@@ -129,9 +105,10 @@ section {
 header #homelink a, header #homelink {
     color: #888888;
     text-decoration: none;
+    font-weight: bold;
 }
 
-#homelink a:hover {
+#homelink a:hover, header a:hover {
     color: #000000;
     text-decoration: none;
 }
@@ -144,15 +121,125 @@ header #homelink a, header #homelink {
     display: none;
 }
 
+
+
+/* mmenu start */
+
+
+                    header {
+                       display: block;
+                       float: left;
+                       width: 100%;
+                       position: fixed;
+                       left: auto;
+                   }
+
+#header a
+{
+	display: block;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	left: 10px;
+}
+#header a.right
+{
+	left: auto;
+	right: 10px;
+}
+
+                   #header {
+                       height: 30px;
+                       /* border-bottom: 1px solid #ccc; */
+                   }
+                   #header a {
+                       display: none;
+                       display: inherit;
+                       background: none;
+                       width: 0;
+                       height: 0;
+                       top: 0;
+                       left: 0;
+                       padding: 0 20px 0 0;
+                       margin: 0;
+                       line-height: 1em;
+                   }
+
+                   #homelink {
+                       font-size: 80%;
+                       color: #ccc;
+                       padding: 5px 5px 0 5px;
+                   }
+                   #content {
+                       margin: 0px auto;
+                       padding: 0;
+                       max-width: 42em;
+                       /* padding: 0em .2em 0 .2em; for large screen view */
+                       /* padding: 2em .2em 0 .2em; for small screen view */
+                       padding: 0em .2em 0 .2em;
+                   }
+                   
+                   .mm-menu {
+                        background: #666;
+                    } 
+                   .mm-list {
+                       font-size: 1em;
+                       color: #ccc;
+                       text-align: right;
+                    }
+                    .mm-list > li { 
+                        /* margin-right: 10px; */
+                        /* font-weight: bold; */
+                    }
+                    .mm-list a:hover {
+                        background: #777; 
+                    }
+                   .mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults)::after {
+                       border: none;
+                   }
+                   #mm-blocker {
+                       background: #000;
+                   }
+                   .mm-menu.mm-right {
+                     width: 100px;
+                   } 
+                   html.mm-right.mm-opened.mm-opening .mm-page,
+                   html.mm-right.mm-opened.mm-opening #mm-blocker,
+                   html.mm-right.mm-opened.mm-opening .mm-fixed-top,
+                   html.mm-right.mm-opened.mm-opening .mm-fixed-bottom {
+                       right: 100px;
+                   }
+
+#hamburger {
+    padding: 10px 5px 0 0;
+    width: 20px;
+}
+
+#hamburger div {
+    background-color: #ccc;
+    height: 2px;
+    width: 90%;
+    margin-bottom: 2px; 
+}
+
+
+/* mmenu end */
+
+
+
+
 @media only screen and (max-width: 47em) { 
-    .mean-container .mean-bar {
-        position: absolute;
-    }
     header {
+        background-color: #ffffff;
         position: fixed;
+        border-bottom: 1px solid #888888;
+    }
+    section {
+        padding-top: 20px;
     }
     .largescreens2 {
-        display: none;
+        display: inline;
     }
     .smallscreens2 {
         display: inline;
@@ -164,8 +251,10 @@ header #homelink a, header #homelink {
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+
 </head>
 <body>
+<div id="page">
 
 <!-- <header> -->
 <!--
@@ -209,25 +298,35 @@ header #homelink a, header #homelink {
 <!-- /tmpl_if -->
 
 <header>
-<span class="largescreens2" id="homelink"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></span> 
-<nav>
+<div id="header">
+<a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><div id="homelink"><!-- tmpl_var name="site_name"--></div></a>
+<a class="right" title="menu" href="#menu">
+<div id="hamburger">
+<div></div>
+<div></div>
+<div></div>
+</div>
+</a>
+<nav id="menu">
 <ul>
 <!-- tmpl_if loggedin --> 
 <li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> 
-<!-- /tmpl_if -->
-<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>
-<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog RSS"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->/rss">rss</a></li>
+<li><a title="<!-- tmpl_var name="username" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="username" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>
 <li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
-<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags">tags</a></li> 
-<li><a title="Archives" href="<!-- tmpl_var name="cgi_app" -->/blogarchives">archives</a></li> 
-<!-- tmpl_if loggedin --> 
-<li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li>
 <li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
 <li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
+<!-- tmpl_else -->
+<!-- tmpl_if topshelfblogowner -->
+<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>
+<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog RSS"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->/rss">rss</a></li>
 <!-- /tmpl_if -->
-<li class="smallscreens2"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></li>
+<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags">tags</a></li> 
+<li><a title="Archives" href="<!-- tmpl_var name="cgi_app" -->/blogarchives">archives</a></li> 
+<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
+<!-- /tmpl_if -->
 </ul>
 </nav>
+</div>
 </header>
 
 <!-- tmpl_if topshelfbloghome -->

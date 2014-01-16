@@ -25,12 +25,12 @@
 <!-- /tmpl_if -->
 
 <ul>
-<li>Member since: <!-- tmpl_var name="creationdate" --></li>
+<!-- <li>Member since: <!-- tmpl_var name="creationdate" --></li> -->
 <li>Articles: <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="profileusername" -->"><!-- tmpl_var name="blogcount" --></a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/blog/<!-- tmpl_var name="profileusername" -->">rss</a></li>
 <li>Notes: <a href="<!-- tmpl_var name="cgi_app" -->/microblog/<!-- tmpl_var name="profileusername" -->"><!-- tmpl_var name="microblogcount" --></a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/microblog/<!-- tmpl_var name="profileusername" -->">rss</a></li>
 <!-- tmpl_if ownerloggedin -->
 <!-- /tmpl_if -->
-<li><a href="<!-- tmpl_var name="cgi_app" -->/stream/<!-- tmpl_var name="profileusername" -->">Stream</a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/stream/<!-- tmpl_var name="profileusername" -->">rss</a> -- (<a title="All posts by all users" href="<!-- tmpl_var name="cgi_app" -->/stream/All">All</a>)</li>
+<li><a href="<!-- tmpl_var name="cgi_app" -->/stream/<!-- tmpl_var name="profileusername" -->">Stream</a> - <a href="<!-- tmpl_var name="cgi_app" -->/rss/stream/<!-- tmpl_var name="profileusername" -->">rss</a> <!-- -- (<a title="All posts by all users" href="<!-- tmpl_var name="cgi_app" -->/stream/All">All</a>) --></li> 
 <li><a href="<!-- tmpl_var name="cgi_app" -->/tags/<!-- tmpl_var name="profileusername" -->">Tags</a></li>
 <li><a href="<!-- tmpl_var name="cgi_app" -->/blogarchives/<!-- tmpl_var name="profileusername" -->">Archives</a></li>
 </ul>

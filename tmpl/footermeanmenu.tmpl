@@ -1,4 +1,5 @@
 </div> <!-- close id=sitewide -->
+<br />
 <div id="footermenu">
 <ul>
 <li><a title="Site description" href="<!-- tmpl_var name="cgi_app" -->/blogpost/17/JotHut-About">about</a></li> 
@@ -21,21 +22,31 @@
  
 <p>
 &copy; 2013 <a href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name" --></strong></a> - <!-- tmpl_var name="site_description" -->
-<br />
-current date: <!-- tmpl_var name="serverdatetime" -->
 </p>
 
+<p>
+current date: <!-- tmpl_var name="serverdatetime" -->
+</p>
 </div>
 
 </section>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+<!-- tmpl_if topshelfblogpost -->
+<script src="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/jquery.meanmenu.blog.min.js"></script> 
+<!-- tmpl_else -->
+<!-- tmpl_if topshelfbloghome -->
+<script src="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/jquery.meanmenu.blog.min.js"></script> 
+<!-- tmpl_else -->
 <script src="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/jquery.meanmenu.min.js"></script> 
+<!-- /tmpl_if -->
+<!-- /tmpl_if -->
 <script>
 jQuery(document).ready(function () {
     jQuery('header nav').meanmenu();
 });
 </script>
+
 
 </body>
 </html>

@@ -28,14 +28,13 @@
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
 <!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="theme" -->.css"  />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/demo2.css" media="all" />
-<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/meanmenu2.css" media="all" />
+<link rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/sidr/jquery.sidr.dark.css" media="all" />
 
 <style>
  /* Big cover image on the home page */
 #site-head {
     position: relative;
-    display: table;
+    display: table; 
     width: 100%;
     /* height: 60%;  see NOTE above to make this work */
     text-align: center;
@@ -44,6 +43,7 @@
     background-size: cover;
     padding-top: 2em;  
     padding-bottom: 1em;
+    /* z-index: -9999; */
 }
 
 /* Creates a responsive wrapper that makes our content scale nicely */
@@ -74,90 +74,121 @@
     line-height: 1.5em; 
 }
 
-/* override defaults */
-
-header {
-    position: fixed;
-}
-
-header nav {
-    background: #000;
-}
-
-header nav ul {
-    padding: 0;
-    margin: 0;
-}
-
-header nav ul li {
-    display: none;
-}
+/* override junco.css defaults */
 
 section {
     padding-top: 0;
 }
- 
-.mean-container .mean-bar {
+
+
+#imageheader {
+    position: relative;
+/*    z-index: -9999;  */
+}
+/*
+#image
+{    
+    position:absolute;
+    left:0;
+    top:0;
+}
+*/
+
+
+/* sidr-related css */
+
+#mobile-header {
+    display: block; 
+    /* float: right; */
+    margin: 0;
+    padding: 0;
     background-color: transparent;
+    z-index: 9999; 
+    /* use 'position: fixed' if desire to pin hamburger icon */
     position: fixed;
+    width: 100%;
+    text-align: right;
+    line-height: 1em;
 }
 
-.mean-container .mean-nav {
-    background-color: #666;
-}
-
-.mean-container .mean-nav ul li a {
-    color: #ccc;
-    border-top: 0px solid #000;
-}
-
-.mean-container a.meanmenu-reveal {
-    color: #ccc;
-}
-
-.mean-container a.meanmenu-reveal span {
-    background: #ccc;
-}
-
-#content h1 {
-    padding-top: 0;
-    margin-top: 10px;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-header #homelink a, header #homelink {
-    color: #888888;
-    text-decoration: none;
-}
-
-#homelink a:hover {
-    color: #000000;
-    text-decoration: none;
-}
-
-.largescreens2 {
-    display: inline;
-}
-
-.smallscreens2 {
+#navigation {
     display: none;
 }
 
-@media only screen and (max-width: 47em) { 
-    .mean-container .mean-bar {
+.sidr {
+    width: 160px;
+    background: #666666;
+}
+
+.sidr ul li:hover {
+    background-color: #777777;
+    
+}
+
+.sidr ul li a, .sidr ul li span {
+    color: #cccccc;
+}
+
+.sidr ul {
+    border-top: none;
+    border-bottom: none;
+}
+
+.sidr ul li {
+    border-top: none;
+    border-bottom: none;
+}
+
+#responsive-menu-button {
+    background: #fff;
+}
+
+/* some hamburger tips from:
+http://www.ymc.ch/en/how-to-make-a-hamburger-a-menu-for-mobile-websites
+*/
+
+#hamburger {
+    padding: 5px 5px 0 5px;
+    width: 15px;
+    float: right;
+}
+
+#hamburger div {
+    background-color: #ccc;
+    height: 2px;
+    width: 90%;
+    margin-bottom: 2px; 
+}
+
+#content {
+    clear: right; 
+/*
+    margin: 0px auto 0px;
+    position: relative;
+    max-width: 42em; 
+*/
+}
+
+#navigation {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    margin: 0;
+    padding: 0;
+} 
+
+h1 {
+    line-height: 1em;
+}
+
+@media only screen and (max-width: 45em) { 
+    #mobile-header {
         position: absolute;
     }
-    header {
-        position: fixed;
-    }
-    .largescreens2 {
-        display: none;
-    }
-    .smallscreens2 {
-        display: inline;
-    }
 }
+
 
 </style>
 
@@ -203,32 +234,41 @@ header #homelink a, header #homelink {
 </header>
 -->
 
+<div id="mobile-header">
+<!--    <a id="responsive-menu-button" href="#sidrmenu">menu</a> -->
+    <a id="responsive-menu-button" href="#sidr">menu</a>
+<!--
+     <div id="hamburger">
+         <div></div>
+         <div></div>
+         <div></div>
+     </div>
+-->
+    
+</div>
+
+<!--
+<div id="mobile-header">
+    <small><span class="greytext"><a id="responsive-menu-button" href="#sidr-main">menu</a></span></small>
+</div>
+-->
+
+<div id="navigation">
+<nav class="nav">
+<ul>
+<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>
+<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog RSS"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->/rss">rss</a></li>
+<!-- tmpl_if loggedin --> 
+<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
+<!-- /tmpl_if -->
+<li><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><!-- tmpl_var name="site_name"--></a></li>
+</ul>
+</nav>
+</div>
 
 <!-- tmpl_if topshelfbloghome -->
 <div id="site-head" style="background-image: url(<!-- tmpl_var name="blogbannerimage" -->)"> 
 <!-- /tmpl_if -->
-
-<header>
-<span class="largescreens2" id="homelink"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></span> 
-<nav>
-<ul>
-<!-- tmpl_if loggedin --> 
-<li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> 
-<!-- /tmpl_if -->
-<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>
-<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog RSS"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->/rss">rss</a></li>
-<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
-<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags">tags</a></li> 
-<li><a title="Archives" href="<!-- tmpl_var name="cgi_app" -->/blogarchives">archives</a></li> 
-<!-- tmpl_if loggedin --> 
-<li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li>
-<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
-<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
-<!-- /tmpl_if -->
-<li class="smallscreens2"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></li>
-</ul>
-</nav>
-</header>
 
 <!-- tmpl_if topshelfbloghome -->
   <div class="vertical">
@@ -245,15 +285,15 @@ header #homelink a, header #homelink {
 </div>
 <!-- /tmpl_if -->
 
-<section>
-
 <!-- tmpl_if usinglargeimageheader -->
 <div id="imageheader"> 
 <center>
-<img src="<!-- tmpl_var name="largeimageheaderurl" -->">
+<img id="image" src="<!-- tmpl_var name="largeimageheaderurl" -->">
 </center>
 </div>
 <!-- /tmpl_if -->
+
+<section></section>
 
 <div id="sitewide">
 

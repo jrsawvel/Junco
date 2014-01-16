@@ -194,8 +194,10 @@ Mousetrap.bindGlobal('ctrl+shift+p', function() {
                      $('#col_left').set('$', '+col -singlecol');
                  } else {
                      $('#text_preview').set('innerHTML', obj['content']);
-                     $('#saveposttext').set({$color: '#fff'});
-                     setTimeout(function() {$('#saveposttext').set({$color: '#120a8f'})}, 2000);
+// 14jan2014                     $('#saveposttext').set({$color: '#fff'});
+// 14jan2014                     setTimeout(function() {$('#saveposttext').set({$color: '#120a8f'})}, 2000);
+                     $('#saveposttext').set({$color: '#000'});
+                     setTimeout(function() {$('#saveposttext').set({$color: '#f8f8f8'})}, 2000);
                      $('#splitscreenaction').set('@value', 'updateblog');
                      $('#splitscreenpostid').set('@value', obj['articleid']);
                      $('#splitscreenpostdigest').set('@value', obj['contentdigest']);

@@ -11,7 +11,7 @@ body {
 }  
 
 header {
-    background: #120a8f;   /* ultramarine blue */
+    /* background: #120a8f;  */  /* ultramarine blue */
     width: 100%;
     position: fixed; 
     top: 0;
@@ -20,6 +20,7 @@ header {
 }
 
 #headertopshelf {
+    background: #ffffff;
     position: fixed; 
     top: 0;
     left: 0;
@@ -67,16 +68,18 @@ table {
 
 h1, h2, h3, h4, h5 {
     color: #000;
-    border-bottom: 1px solid #cccccc;
+/*    border-bottom: 1px solid #cccccc; */
 }
 
 h1 {
     font-size: 1.40em;
+    border-bottom: none; 
 }
 
 h2 {
     font-size: 1.30em; 
     padding-top: 1.5em;
+    border-bottom: none; 
 }
 
 h3 {
@@ -224,7 +227,8 @@ a.extlink:hover {
 
 #imageheader img {
     width: 100%;
-    max-width: 990px;   
+/*    max-width: 990px;    */
+    max-width: 1280px;
 }
 
 .blogposttitle a {

@@ -32,17 +32,41 @@ current date: <!-- tmpl_var name="serverdatetime" -->
 </section>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
-<script type="text/javascript" src="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.js"></script>
-<script type="text/javascript">
-    $(function() {
-        $('nav#menu').mmenu({
-            position: "right",
-            zposition: "front"
-        });
+<!-- tmpl_if topshelfblogpost -->
+<script src="<!-- tmpl_var name="home_page" -->/javascript/sidr/jquery.sidr.min.js"></script>
+<script>
+    $('#responsive-menu-button').sidr({
+      name: 'sidr-main',
+      side: 'right',
+      source: '#navigation'
     });
 </script>
 
-</div> <!-- end id=page used by mmenu -->
+<!-- <script src="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/jquery.meanmenu.blog.min.js"></script> -->
+<!-- tmpl_else -->
+<!-- tmpl_if topshelfbloghome -->
+
+<script src="<!-- tmpl_var name="home_page" -->/javascript/sidr/jquery.sidr.min.js"></script>
+<script>
+    $('#responsive-menu-button').sidr({
+      name: 'sidr-main',
+      side: 'right',
+      source: '#navigation'
+    });
+</script>
+
+<!-- <script src="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/jquery.meanmenu.blog.min.js"></script>  -->
+<!-- tmpl_else -->
+<script src="<!-- tmpl_var name="home_page" -->/javascript/meanmenu/jquery.meanmenu.min.js"></script> 
+<script>
+jQuery(document).ready(function () {
+    jQuery('header nav').meanmenu();
+});
+</script>
+
+<!-- /tmpl_if -->
+<!-- /tmpl_if -->
+
 </body>
 </html>
 

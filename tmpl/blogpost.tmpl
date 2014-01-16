@@ -1,5 +1,5 @@
 <!-- tmpl_if topshelfblogpost -->
-<!-- tmpl_include name="topshelfblogheader2.tmpl" -->
+<!-- tmpl_include name="header.tmpl" -->
 <!-- tmpl_else -->
 <!-- tmpl_include name="header.tmpl" -->
 <!-- /tmpl_if -->
@@ -39,10 +39,18 @@
 
 <div id="content">
 
+
+
 <!-- tmpl_if canedit -->
-<div style="float:right; font-size:80%;">
+<div style="float:right; font-size:80%; margin-top: 10px;">
 <small class="greytext"><a href="<!-- tmpl_var name="cgi_app" -->/edit/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">EDIT</a></small>
 </div>
+<!-- tmpl_else -->
+<!-- tmpl_if readingtime -->
+<div style="float:right; font-size:80%; margin-top:5px;">
+<small><!-- tmpl_var name="readingtime" --> min</small>
+</div>
+<!-- /tmpl_if -->
 <!-- /tmpl_if -->
 
 <h1 class="p-name" id="articletitle"><a title="word count <!-- tmpl_var name="wordcount" --> - char count <!-- tmpl_var name="charcount" --> - <!-- tmpl_var name="readingtime" --> min read" href="<!-- tmpl_var name="cgi_app" -->/blogpost/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="urldate" -->/<!-- tmpl_var name="cleantitle" -->"><!-- tmpl_var name="title" --></a></h1>
@@ -52,6 +60,20 @@
 </div>
 
 <p>
+
+<!-- tmpl_if topshelfblogpost -->
+<small class="greytext">By <a class="p-author h-card" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="authorname" -->"><!-- tmpl_var name="authorname" --></a> 
+ - <!-- tmpl_var name="wordcount" --> words</small> 
+<br />
+<small>created: <time class="dt-published" datetime="<!-- tmpl_var name="dtpublished" -->"><!-- tmpl_var name="createddate" --></time></small>
+<!-- tmpl_if updated -->
+<small> - updated: <time class="dt-updated" datetime="<!-- tmpl_var name="dtupdated" -->"><!-- tmpl_var name="modifieddate" --></time></small> 
+<!-- /tmpl_if -->
+<!-- tmpl_if replycount -->
+ - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
+<!-- /tmpl_if -->
+
+<!-- tmpl_else -->
 <small class="greytext">From <a class="p-author h-card" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="authorname" -->"><!-- tmpl_var name="authorname" -->'s</a> : <a href="<!-- tmpl_var name="cgi_app" -->/blog/<!-- tmpl_var name="authorname" -->">articles</a></small>
 <br />
 <small><!-- tmpl_var name="wordcount" --> words - <!-- tmpl_var name="charcount" --> chars 
@@ -73,6 +95,9 @@
 <!-- tmpl_if replycount -->
  - <small><a href="<!-- tmpl_var name="cgi_app" -->/replies/<!-- tmpl_var name="articleid" -->">replies: <!-- tmpl_var name="replycount" --></a></small>
 <!-- /tmpl_if -->
+<!-- /tmpl_if -->
+
+
 <br />
 <small class="greytext">
  <a href="<!-- tmpl_var name="cgi_app" -->/source/<!-- tmpl_var name="articleid" -->/<!-- tmpl_var name="cleantitle" -->">source</a>

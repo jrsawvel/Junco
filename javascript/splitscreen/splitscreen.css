@@ -17,6 +17,11 @@ body {
     height: 100%;
 }
 
+#saveposttext {
+    color: #f8f8f8;
+    font-weight: bold;
+}
+
 #container {
 }
 
@@ -154,7 +159,8 @@ body > h1 {
 
 #navmenu ul {
     list-style-type: none;
-    background: #120a8f;   /* ultramarine blue */
+ /*   background: #120a8f; 14jan2014 */   /* ultramarine blue */
+    background: #f8f8f8;
     color: #120a8f;
     padding: .4em 0 .5em 0; 
     margin: 0 0 0 0;
@@ -168,14 +174,16 @@ body > h1 {
 
 #navmenu ul li a {
     text-decoration: none;
-    color: #f8f8f8;
+    /* color: #f8f8f8; 14jan2014 */
+    color: #777777;
     text-align: left;
     padding: 0 .5em;
 }
 
 #navmenu ul li a:hover {
     text-decoration: underline;
-    color: #ffffff;
+    /* color: #ffffff; 14jan2014 */
+    color: #000000;
 }
 
 #navmenu #navmenutext {
@@ -251,26 +259,29 @@ table {
 
 h1, h2, h3, h4, h5 {
     color: #000;
-    border-bottom: 1px solid #cccccc;
 }
 
 h1 {
     font-size: 1.40em;
+    border-bottom: none; 
 }
 
 h2 {
     font-size: 1.30em; 
+    border-bottom: none; 
     padding-top: 1.5em;
 }
 
 h3 {
     font-size: 1.20em; 
-    border-bottom: none; padding-top: 1.5em;
+    border-bottom: none; 
+    padding-top: 1.5em;
 }
 
 h4 {
     font-size: 1.15em; 
-    border-bottom: none; padding-top: 1.5em;
+    border-bottom: none; 
+    padding-top: 1.5em;
 }
 
 h5 {
