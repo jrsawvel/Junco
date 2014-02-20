@@ -97,7 +97,7 @@ sitewide {
 
 #content h1 {
     padding-top: 0;
-    margin-top: 10px;
+    margin-top: 5px;
     padding-bottom: 0;
     margin-bottom: 0;
 }
@@ -130,7 +130,7 @@ header #homelink a, header #homelink {
                        float: left;
                        width: 100%;
                        left: auto;
-                       position: fixed;
+                       position: absolute;
                    }
 
 #header a
@@ -171,20 +171,22 @@ header #homelink a, header #homelink {
                        padding: 5px 5px 0 5px;
                    }
                    #content {
+/*
                        margin: 0px auto;
                        padding: 0;
                        max-width: 42em;
-                       /* padding: 0em .2em 0 .2em; for large screen view */
-                       /* padding: 2em .2em 0 .2em; for small screen view */
                        padding: 0em .2em 0 .2em;
+*/
                    }
                    
                    .mm-menu {
-                        background: #666;
+                        /* background: #666; */
+                        background: #fff;
                     } 
                    .mm-list {
                        font-size: 1em;
-                       color: #ccc;
+                       /* color: #ccc; */
+                       color: #888;
                        text-align: right;
                     }
                     .mm-list > li { 
@@ -192,7 +194,10 @@ header #homelink a, header #homelink {
                         /* font-weight: bold; */
                     }
                     .mm-list a:hover {
-                        background: #777; 
+                        /* background: #777;  */
+                        background: #fff;
+                        color: #000;
+                        text-decoration: underline;
                     }
                    .mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults)::after {
                        border: none;
@@ -209,6 +214,11 @@ header #homelink a, header #homelink {
                    html.mm-right.mm-opened.mm-opening .mm-fixed-bottom {
                        right: 100px;
                    }
+                   .mm-menu.mm-front {
+                        box-shadow: none;
+                       /* simple */
+                       border-left: 1px solid #000; 
+                    }
 
 #hamburger {
     padding: 10px 5px 0 0;
@@ -226,13 +236,19 @@ header #homelink a, header #homelink {
 /* mmenu end */
 
 
-
-
-@media only screen and (max-width: 47em) { 
+/********** desktop or laptop >= 1224px **********/
+/* 76.5em = 1224 px */
+@media only screen and (min-width: 76.5em) { 
     header {
-        background-color: #ffffff;
         position: fixed;
-        border-bottom: 1px solid #888888;
+    }
+}
+
+@media only screen and (max-width: 50em) { 
+    header {
+/*        background-color: #ffffff; */
+/*        position: fixed; */
+/*        border-bottom: 1px solid #888888; */
     }
     section {
         padding-top: 20px;

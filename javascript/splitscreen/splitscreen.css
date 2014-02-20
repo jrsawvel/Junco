@@ -223,11 +223,17 @@ a:active {
     color: #f8f8f8;
     background: #120a8f; 
     border: 1px solid #120a8f;
+color: #666;
+background: #f8f8f8;
+border: 1px solid #888;
 }
 
 .bluebutton:hover {
     color: #ffffff;
     background: #0000cd;
+color: #000;
+background: #fff;
+border: 1px solid #000;
 }
 
 .greenbutton {

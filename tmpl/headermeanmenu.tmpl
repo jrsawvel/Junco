@@ -97,6 +97,10 @@ section {
     padding-top: 0;
 }
  
+sitewide {
+    padding-top: 0;
+}
+ 
 .mean-container .mean-bar {
     background-color: transparent;
     position: fixed;
@@ -104,19 +108,67 @@ section {
 
 .mean-container .mean-nav {
     background-color: #666;
+    background-color: #fff;
+    background-color: transparent;
 }
 
 .mean-container .mean-nav ul li a {
     color: #ccc;
+    color: #888;
     border-top: 0px solid #000;
+background: transparent;
 }
 
 .mean-container a.meanmenu-reveal {
     color: #ccc;
+    color: #888;
 }
 
 .mean-container a.meanmenu-reveal span {
     background: #ccc;
+}
+
+.mean-container .mean-nav ul li a:hover {
+    background: transparent;
+    color: #000;
+    text-decoration: underline;
+}
+
+.mean-container .mean-nav ul li a {
+    padding-right: 3%;
+    padding-left: 4%;
+    padding-top: 0;
+    padding-bottom: 0;
+    
+   
+/* padding: .5em 3% .5em 3%; original */
+}
+
+.jr, .jrfirst, .jrlast {
+    background: #fff;
+    width: 100px;
+    float: right;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 10px;
+    border-left: 1px solid #888;
+}
+.jr:hover {
+    text-decoration: underline;
+}
+
+.jrfirst {
+    border-top: 1px solid #888;
+}
+.jrfirst:hover {
+    text-decoration: underline;
+}
+
+.jrlast {
+    border-bottom: 1px solid #888;
+}
+.jrlast:hover {
+    text-decoration: underline;
 }
 
 #content h1 {
@@ -144,7 +196,7 @@ header #homelink a, header #homelink {
     display: none;
 }
 
-@media only screen and (max-width: 47em) { 
+@media only screen and (max-width: 50em) { 
     .mean-container .mean-bar {
         background-color: #ffffff;
         position: fixed;
@@ -162,6 +214,10 @@ header #homelink a, header #homelink {
     .smallscreens2 {
         display: inline;
     }
+    .jr, .jrfirst, .jrlast {
+        border: none;
+    }
+
 }
 
 </style>
@@ -218,17 +274,24 @@ header #homelink a, header #homelink {
 <nav>
 <ul>
 <!-- tmpl_if loggedin --> 
-<li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> 
+<li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><div class="jrfirst"><!-- tmpl_var name="username" --></div></a></li> 
+<li><a title="<!-- tmpl_var name="username" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="username" -->"><div class="jr"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</div></a></li>
+<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform"><div class="jr">search</div></a></li>
+<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout"><div class="jr">logout</div></a></li>
+<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform"><div class="jrlast">post</div></a></li>
+<!-- tmpl_else -->
+<!-- tmpl_if topshelfblogowner -->
+<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->"><div class="jrfirst"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</div></a></li>
+<li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog RSS"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->/rss"><div class="jr">rss</div></a></li>
+<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags"><div class="jr">tags</div></a></li> 
+<li><a title="Archives" href="<!-- tmpl_var name="cgi_app" -->/blogarchives"><div class="jr">archives</div></a></li> 
+<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform"><div class="jrlast">search</div></a></li>
+<!-- tmpl_else -->
+<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags"><div class="jrfirst">tags</div></a></li> 
+<li><a title="Archives" href="<!-- tmpl_var name="cgi_app" -->/blogarchives"><div class="jr">archives</div></a></li> 
+<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform"><div class="jrlast">search</div></a></li>
 <!-- /tmpl_if -->
-<li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
-<li><a title="Show Tags" href="<!-- tmpl_var name="cgi_app" -->/tags">tags</a></li> 
-<li><a title="Archives" href="<!-- tmpl_var name="cgi_app" -->/blogarchives">archives</a></li> 
-<!-- tmpl_if loggedin --> 
-<li><a title="Replies by others to your posts" href="<!-- tmpl_var name="cgi_app" -->/repliesstream">replies</a></li>
-<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
-<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
 <!-- /tmpl_if -->
-<li class="smallscreens2"><a title="Home Page" href="<!-- tmpl_var name="home_page" -->"><strong><!-- tmpl_var name="site_name"--></strong></a></li>
 </ul>
 </nav>
 </header>

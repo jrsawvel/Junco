@@ -212,6 +212,8 @@ a.extlink:hover {
     text-decoration: underline; color: #ff0000;
 }
 
+
+
 .greytext a {
     color: #888888;
 }
@@ -373,7 +375,7 @@ a.extlink:hover {
 #sitewide {
     margin: 0px auto;
     padding: 0;
-    max-width: 42em;
+    max-width: 44em; /* 704 px at default font size of 100% or 16px */
     padding: .4em .2em 0 .2em;
 }
 
@@ -586,18 +588,28 @@ a.extlink:hover {
 }
 
 .submitbutton {
-    font-size: 1em;
-    color: #f8f8f8;
-    background: #120a8f; 
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px; 
+    font-size: 1em;
+/*
+    color: #f8f8f8;
+    background: #120a8f; 
     border: 1px solid #120a8f;
+*/
+color: #666;
+background: #fff;
+border: 1px solid #b8b8b8;
 }
 
 .submitbutton:hover {
+/*
     color: #ffffff;
     background: #0000cd;
+*/
+color: #000;
+/* background: #f8f8f8; */
+border: 1px solid #222;
 }
 
 #homepagebutton .submitbutton {
@@ -725,6 +737,11 @@ a.extlink:hover {
 @media only screen and (min-width: 76.5em) { 
     #content {
         color: #222222;
+    }
+
+    #content p {
+        margin-top: 25px;
+        margin-bottom: 25px;
     }
 
     #headersearch {
