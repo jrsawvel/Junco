@@ -6,6 +6,7 @@ use warnings;
 use Text::Textile;
 # use Text::Markdown;
 use Text::MarkdownJRS;
+use Text::MultiMarkdown;
 use Junco::BlogData;
 
 sub permit_some_html_tags {
@@ -299,8 +300,11 @@ sub format_content {
     $action = lc($action);
 
     my $markdown = 0;
+    my $multimarkdown = 0;
 
     $markdown = 1 if Utils::get_power_command_on_off_setting_for("markdown", $formattedcontent, 0); 
+
+    $multimarkdown = 1 if Utils::get_power_command_on_off_setting_for("multimarkdown", $formattedcontent, 0); 
 
     $formattedcontent = remove_image_header_commands($formattedcontent); 
 
@@ -310,13 +314,13 @@ sub format_content {
 
     $formattedcontent = process_custom_code_block_encode($formattedcontent);
 
-    $formattedcontent = HTML::Entities::encode($formattedcontent, '<>') if !$markdown;
+    $formattedcontent = HTML::Entities::encode($formattedcontent, '<>') if !$markdown and !$multimarkdown;
 
     $formattedcontent = permit_some_html_tags($formattedcontent);
 
     $formattedcontent = process_embedded_media($formattedcontent);
 
-    $formattedcontent = StrNumUtils::url_to_link($formattedcontent) if !$markdown;
+    $formattedcontent = StrNumUtils::url_to_link($formattedcontent) if !$markdown and !$multimarkdown;
 
     $formattedcontent = custom_commands($formattedcontent); 
 
@@ -329,6 +333,9 @@ sub format_content {
 #        $formattedcontent = HTML::Entities::decode($formattedcontent);
 #        $formattedcontent = format_small_and_strikethrough($formattedcontent);
 #        $formattedcontent = format_big_and_underline($formattedcontent);
+    } elsif ( $multimarkdown ) {
+        my $m = Text::MultiMarkdown->new;
+        $formattedcontent = $m->markdown($formattedcontent);
     } else {
         $formattedcontent = Textile::textile($formattedcontent);
     }
@@ -395,6 +402,7 @@ sub remove_power_commands {
     # showintro=yes|no
     # code=yes|no
     # markdown=yes|no
+    # multimarkdown=yes|no
     # webmention=yes|no
 
     $str =~ s|^toc[\s]*=[\s]*[noNOyesYES]+||mig;
@@ -404,6 +412,7 @@ sub remove_power_commands {
     $str =~ s|^showintro[\s]*=[\s]*[noNOyesYES]+||mig;
     $str =~ s|^code[\s]*=[\s]*[noNOyesYES]+||mig;
     $str =~ s|^markdown[\s]*=[\s]*[noNOyesYES]+||mig;
+    $str =~ s|^multimarkdown[\s]*=[\s]*[noNOyesYES]+||mig;
     $str =~ s|^webmention[\s]*=[\s]*[noNOyesYES]+||mig;
 
     return $str;

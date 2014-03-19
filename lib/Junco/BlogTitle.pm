@@ -45,9 +45,10 @@ use NEXT;
             $self->{err_str} .= "You must give a title for your article.<br /><br />";
             $self->{err} = 1;
         } else {
-            # remove textile or markdown heading 1 markup commands if exists.
+            # remove textile or markdown / multimarkdown heading 1 markup commands if exists.
             my $md = 0;
             $md = 1 if Utils::get_power_command_on_off_setting_for("markdown", $markup, 0); 
+            $md = 1 if Utils::get_power_command_on_off_setting_for("multimarkdown", $markup, 0); 
             if ( !$md and $self->{title} =~ m/^h1\.(.+)/i ) {
                 $self->{title} = $1;
             } elsif ( $md and $self->{title} =~ m/^#[\s+](.+)/ ) {
