@@ -194,7 +194,4 @@ sub get_username_for_id {
     return $username;
 }
 
-
-1;
-
 1;

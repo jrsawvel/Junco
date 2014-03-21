@@ -142,6 +142,53 @@ sub reformat_nws_date_time {
     return %hash;
 }
 
+# create a relative time stamp if the posting is under 24-hours-old.
+sub format_creation_date {
+    my $creationdate = shift;
+    my $dateepochseconds = shift;
+
+    # hard-coded for U.S. eastern time zone
+    my $offset = -5;     # EST offset from GMT
+    # determine if it's daylight savings time for eastern time zone
+    my $isdst = (localtime)[8];
+    if ( $isdst ) {
+        $offset = -4;
+    } 
+
+    # my $offset = Utils::get_time_offset();
+    # my $offset = 0;
+
+    my $current_epochseconds = time(); 
+    my $twenty_four_hours = 86400;
+
+    my $tmp_offset = $offset - 3;   # include the three hours for Pacific time for server location
+
+       my $tmp_dateepochseconds = $dateepochseconds + (3600 * $tmp_offset);
+       my $tmp_diff = $current_epochseconds - $tmp_dateepochseconds;
+
+       if ( $tmp_diff < $twenty_four_hours ) {
+           $creationdate = " ";
+           if ( $tmp_diff < 3600 ) {
+               my $tmp_min = int($tmp_diff / 60); 
+               if ( $tmp_min == 0 ) {
+                   $creationdate = $tmp_diff . " secs ago";
+               } elsif ( $tmp_min == 1 ) {
+                   $creationdate = $tmp_min . " min ago";
+               } else {
+                   $creationdate = $tmp_min . " mins ago";
+               }
+           } else {
+               my $tmp_hr = int($tmp_diff / 3600); 
+               if ( $tmp_hr == 1 ) {
+                   $creationdate = $tmp_hr . " hr ago";
+               } else {
+                   $creationdate = $tmp_hr . " hrs ago";
+               }
+           }
+       }
+    return $creationdate;
+}
+
 1;
 
 

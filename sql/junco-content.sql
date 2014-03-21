@@ -12,7 +12,7 @@ create table junco_content(
     title		varchar(255) not null,
     markupcontent	mediumtext not null,
     formattedcontent	mediumtext not null,
-    type		char(1) not null default 'b',  -- (b) blog posting on the front page, (m) microblog posting
+    type		char(1) not null default 'b',  -- (b) blog posting on the front page, (m) microblog posting, (c) check-in
     status		char(1) not null default 'o',  -- (o) open or approved, (d) deleted, (v) old version, (p) pending 
     authorid            smallint unsigned not null,
     date		datetime,
@@ -26,6 +26,8 @@ create table junco_content(
     tags                varchar(255),
     ipaddress           varchar(20) not null default '0.0.0.0',
     importdate          datetime,
+    latitude            varchar(50),
+    longitude           varchar(50),
     index(parentid)
 ) TYPE=MyISAM;
 

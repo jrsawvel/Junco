@@ -104,6 +104,27 @@ use NEXT;
         exit;
     }
 
+    sub display_checkin {
+        my ($self, $function) = @_;
+
+        my @http_header = ("Content-type: text/html;\n\n", "");
+        my $http_header_var = 0;
+        print $http_header[$http_header_var]; 
+
+        my $site_name       =  Config::get_value_for("site_name");
+        my $datetimestr = DateTimeFormatter::create_date_time_stamp_local("(monthname) (daynum), (yearfull) - (12hr):(0min) (a.p.) (TZ)");
+
+        __set_template_variable($self, "home_page",          Config::get_value_for("home_page"));
+        __set_template_variable($self, "site_name",          $site_name);
+        __set_template_variable($self, "loggedin",           User::get_logged_in_flag());
+        __set_template_variable($self, "serverdatetime",     $datetimestr);
+        __set_template_variable($self, "pagetitle",          "$function | $site_name");
+
+        print $self->{TMPL}->output;
+
+        exit;
+    }
+
     sub report_error
     {
         my ($self, $type, $cusmsg, $sysmsg) = @_;

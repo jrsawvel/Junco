@@ -97,7 +97,7 @@ sitewide {
 
 #content h1 {
     padding-top: 0;
-    margin-top: 10px;
+    margin-top: 5px;
     padding-bottom: 0;
     margin-bottom: 0;
 }
@@ -233,14 +233,6 @@ header #homelink a, header #homelink {
 }
 
 
-#content h1 {
-    padding-top: 0;
-    margin-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-
 /* mmenu end */
 
 
@@ -336,8 +328,9 @@ header #homelink a, header #homelink {
 <li><a title="Your profile page, <!-- tmpl_var name="username" -->" href="<!-- tmpl_var name="cgi_app" -->/user/<!-- tmpl_var name="username" -->"><!-- tmpl_var name="username" --></a></li> 
 <li><a title="<!-- tmpl_var name="username" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="username" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>
 <li><a title="Search" href="<!-- tmpl_var name="cgi_app" -->/searchform">search</a></li>
-<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
+<li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/checkin">check-in</a></li>
 <li><a title="Create new article" href="<!-- tmpl_var name="cgi_app" -->/blogpostform">post</a></li>
+<li><a title="Log out of your account" href="<!-- tmpl_var name="cgi_app" -->/logout">logout</a></li>
 <!-- tmpl_else -->
 <!-- tmpl_if topshelfblogowner -->
 <li><a title="<!-- tmpl_var name="topshelfblogowner" -->'s blog home page"  href="<!-- tmpl_var name="cgi_app" -->/tag/blog_<!-- tmpl_var name="topshelfblogowner" -->"><!-- <!-- tmpl_var name="topshelfblogowner" -->'s--> blog</a></li>

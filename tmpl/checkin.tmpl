@@ -1,0 +1,261 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!--[if lt IE 9]> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<![endif]-->
+<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+<title><!-- tmpl_var name="pagetitle" --></title>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script src="http://jothut.com/javascript/splitscreen/minified.js"></script>
+
+<style type='text/css'>
+
+body {
+    background: #ffffff;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif; 
+    font-size: 100%; 
+    line-height: 1.5em;
+    width: 100%; 
+    margin: 0px;
+    padding: 0px;
+}
+
+article, section {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+article {
+    margin: 0px auto 0px;
+    position: relative;
+    padding: 5px 0 0 0;
+    width: 95%;
+    max-width: 46em; 
+}
+
+small {
+    color: #888;
+}
+
+input {
+    width: 80%;
+    font-size: 1em;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif; 
+    height: 2em;
+}
+
+.important { font-weight: bold; background: yellow; }
+
+#buttonbar {
+    margin: 0;
+    padding: 5px 0 0 0;
+    text-align:left;
+    float:right;
+}
+
+/* the button CSS, javascript, and html code is from metafilter.com */
+.buttons-not-used {
+    background: #ccc;
+    margin: 1px;
+    border: 1px solid #ccc; 
+    float:left;
+    width: 30px;
+}
+
+.buttons {
+    font-size: 1.5em;
+}
+
+/********* smartphone 320-480px  **********/
+/* 37.5em = 600px */
+@media only screen and (max-width: 37.5em) {
+    input {
+        width: 70%;
+    }
+}
+
+</style>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+
+var MINI = require('minified'); 
+var $ = MINI.$, $$ = MINI.$$, EE = MINI.EE;
+
+var autoSaveInterval=20000; // every 20 seconds
+var intervalID=0;
+
+var coords = {lat: "", lon: ""};
+
+$(function() {
+
+    getMessages('', 'Get');
+
+// auto-refresh not needed for this app
+//    intervalID = setInterval(function(){getMessages('', 'Get')},autoSaveInterval); 
+
+    function getMessages (msg, actionType) {
+
+            $.request('post', 'http://jothut.com/cgi-bin/junco.pl/addcheckin', {message: msg, sb: actionType, formtype: 'ajax', lat: coords.lat, lon: coords.lon})
+               .then(function(response) {
+
+                   var json_obj = $.parseJSON(response);
+                   var messages = json_obj['messages'];                 
+                   var error_code = json_obj['error_code'];
+
+                   if ( !error_code ) {
+                       var array_len = messages.length;
+
+                       if ( actionType === "Post" ) {
+                           $('#error').fill(EE('span', ''));
+                       }
+
+                       $('.todos').fill(EE('span', ''));
+
+                       for (var i = 0; i < array_len; i++) {
+                           var message_id   = messages[i].id; 
+                           var message_text = messages[i].formattedcontent;
+                           // var author_name  = messages[i].author_name; 
+                           var created_date = messages[i].createddate; 
+                           var latitude     = messages[i].latitude; 
+                           var longitude    = messages[i].longitude; 
+
+                           if ( latitude > 0 ) {
+                               var gmap_url = "https://maps.google.com/maps?q=" + latitude + "+" + longitude;
+
+                               $('.todos').add(EE('p', [
+/*
+                                   EE('strong', author_name),
+                                   EE('span', " - "),
+*/
+                                   EE('span', message_text),
+                                   EE('br'), 
+                                   EE('small', created_date),
+                                   EE('span', " - "),
+                                   EE('a', {href: gmap_url}, "map it")
+                               ]));
+                           } else {
+                               $('.todos').add(EE('p', [
+/*
+                                   EE('strong', author_name),
+                                   EE('span', " - "),
+*/
+                                   EE('span', message_text),
+                                   EE('br'), 
+                                   EE('small', created_date),
+                               ]));
+                           }
+
+                       }
+
+                      if ( actionType === "Post" ) {
+                          $('input').set({value: '', checked: false}); // reset inputs
+                      }
+
+                   } else {
+                       var json_obj = $.parseJSON(response);
+                       var error_message = json_obj['error_message'];                 
+                       // $('.error').add(EE('span', {$: classes}, error_message));
+                       $('#error').add(EE('span', error_message));
+                   }
+
+               })
+              .error(function(status, statusText, responseText) {
+                   $('.todos').add(EE('p', "response could not be completed. " + status + " " + statusText ));
+               });
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setLocation, runFail);
+        }
+    }
+
+    function runFail () {
+        if ($$('#textInput').value) {
+            var msg = $$('#textInput').value + " - geolocation disabled by client.";
+            getMessages(msg, 'Post');
+        } else {
+            var msg = "geolocation disabled by client.";
+            getMessages(msg, 'Post');
+        }
+    }
+
+    function setLocation(position) {
+        coords.lat = position.coords.latitude;
+        coords.lon = position.coords.longitude; 
+        if ($$('#textInput').value) {
+            var msg = $$('#textInput').value;
+            getMessages(msg, 'Post');
+        } else {
+            var msg = "check-in";
+            getMessages(msg, 'Post');
+        }
+    }
+
+/*
+    $('#addButton').on('click', function() {
+        if ($$('#textInput').value) {
+            getLocation();
+        } else {
+            getMessages(msg, 'Get');
+        }
+    });
+*/
+
+
+    $('#addButton').on('click', function() {
+        getLocation();
+    });
+
+
+});
+
+
+//]]>  
+
+</script>
+
+</head>
+<body>
+<!-- tmpl_if loggedin -->
+<article>
+<script type="text/javascript" src="/javascript/buttons/comments-textile.js"></script>
+<form>
+<div id="buttonbar">
+<a href="#" class="buttons" onclick="return pnhEditTextarea('textInput','pound')"   align="middle" title="click to add pound sign"><small>#</small></a>
+</div>
+<input id="textInput" autofocus  /> 
+<button id="addButton">post</button>
+</form>
+<div class="important" id="error"></div> 
+<div class="todos"></div> 
+<center>
+<p>
+<small><a href="<!-- tmpl_var name="home_page" -->"><!-- tmpl_var name="site_name" --></a></small>
+<br />
+<small>current date: <!-- tmpl_var name="serverdatetime" --></small>
+</p>
+</center>
+</article>
+<!-- /tmpl_if -->
+</body>
+</html>
+
+
