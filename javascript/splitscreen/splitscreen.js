@@ -6,11 +6,11 @@ var autoSaveInterval=300000   // in milliseconds. default = 5 minutes.
 var intervalID=0;
 var prevLength=0;
 var currLength=0;
+var isFocus=0;
 
 function countKeyStrokes () {
     keyCounter++;    
 }
-
     
 $(function() {
 
@@ -38,6 +38,56 @@ Mousetrap.bindGlobal('ctrl+shift+p', function() {
         if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
             e.preventDefault();
             singleScreenMode();
+        }
+
+        // bare minimum view. large textarea box only. no border. no nav bar. no other links. no buttons.
+        if(e.ctrlKey && e.keyCode == 'J'.charCodeAt(0)){
+            e.preventDefault();
+            $('body').set({$background: '#fff'} );
+            $('#navmenu').set({$display: 'none'} );
+            $('#tx_input').set({$background: '#fff'} );
+            $('#tx_input').set({$border: 'none'} );
+            $('#tx_input').set({$color: '#222'} );
+            $('#col_left').set({$padding: '1em 0 0 0'} );
+            singleScreenMode();
+        }
+
+        // display a 5-line text area box
+        if(e.ctrlKey && e.keyCode == 'H'.charCodeAt(0)){
+            e.preventDefault();
+            $('body').set({$background: '#fff'} );
+            $('#navmenu').set({$display: 'none'} );
+            $('#tx_input').set({$background: '#fff'} );
+            $('#tx_input').set({$border: 'none'} );
+            $('#tx_input').set({$color: '#222'} );
+            $('#tx_input').set({$height: '150px'} );
+            $('#tx_input').set({$margin: '30% 0 0 0'} );
+            $('#col_left').set({$padding: '1em 0 0 0'} );
+            isFocus=1;
+            singleScreenMode();
+        }
+
+        if(e.ctrlKey && e.keyCode == 'B'.charCodeAt(0)){
+            e.preventDefault();
+            $('body').set({$background: '#ddd'} );
+            $('#navmenu').set({$display: 'inline'} );
+            $('#tx_input').set({$background: '#f8f8ff'} );
+            $('#tx_input').set({$border: '1px solid #bbb'} );
+            $('#tx_input').set({$color: '#222'} );
+            $('#col_left').set({$padding: '0'} );
+            if ( isFocus ) {            
+                $('#tx_input').set({$margin: '0 0 0 0'} );
+                $('#tx_input').set({$height: '100%'} );
+                ifFocus=0;
+            }
+            splitScreenMode();
+        }
+
+        if(e.ctrlKey && e.keyCode == 'D'.charCodeAt(0)){
+            e.preventDefault();
+            $('body').set({$background: '#181818'} );
+            $('#tx_input').set({$background: '#181818'} );
+            $('#tx_input').set({$color: '#c0c0c0'} );
         }
     }
 

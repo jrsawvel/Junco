@@ -31,8 +31,15 @@ body {
     color: #222;
     line-height: 1.7em;
     display: block;
-    resize: none;
+/*    resize: none; */
     background: #f8f8ff;
+}
+
+#narrow_tx_input {
+    background: yellow;
+    height: 150px;
+    margin: 30% 0 0 0;
+    border: none;
 }
 
 label {
@@ -54,7 +61,7 @@ label {
 .singlecol {
     margin: 0;
     width: 60%;
-    height: 95%;
+    height: 95%; 
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -409,7 +416,7 @@ blockquote {
         margin: 0;
         width: 95%;
         left: 2%;
-        height: 95%;
+/*        height: 95%; */
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
@@ -421,7 +428,7 @@ blockquote {
         margin: 0;
         width: 85%;
         left: 7%;
-        height: 95%;
+/*        height: 95%;  */
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
@@ -433,7 +440,7 @@ blockquote {
         margin: 0;
         width: 75%;
         left: 12%;
-        height: 95%;
+/*        height: 95%; */
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
@@ -444,7 +451,7 @@ blockquote {
     .singlecol { 
         margin: 0; 
         width: 65%;  
-        height: 95%;
+/*        height: 95%; */
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;

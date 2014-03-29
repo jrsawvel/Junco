@@ -1,0 +1,179 @@
+/* override mmenu css with styles meant for junco */
+
+nav {
+    display: none;
+}
+
+section {
+    padding-top: 0;
+}
+sitewide {
+    padding-top: 0;
+}
+ 
+
+#content h1 {
+    padding-top: 0;
+    margin-top: 5px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+header #homelink a, header #homelink {
+    color: #888888;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#homelink a:hover, header a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+.largescreens2 {
+    display: inline;
+}
+
+.smallscreens2 {
+    display: none;
+}
+
+
+
+/* mmenu start */
+
+                    header {
+                       display: block;
+                       float: left;
+                       width: 100%;
+                       left: auto;
+                       position: absolute;
+                   }
+
+#header a
+{
+	display: block;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	left: 10px;
+}
+#header a.right
+{
+	left: auto;
+	right: 10px;
+}
+
+                   #header {
+                       height: 30px;
+                       /* border-bottom: 1px solid #ccc; */
+                   }
+                   #header a {
+                       display: none;
+                       display: inherit;
+                       background: none;
+                       width: 0;
+                       height: 0;
+                       top: 0;
+                       left: 0;
+                       padding: 0 20px 0 0;
+                       margin: 0;
+                       line-height: 1em;
+                   }
+
+                   #homelink {
+                       font-size: 80%;
+                       color: #888;
+                    /*   padding: 5px 5px 0 5px; */
+                   }
+                   #content {
+/*
+                       margin: 0px auto;
+                       padding: 0;
+                       max-width: 42em;
+                       padding: 0em .2em 0 .2em;
+*/
+                   }
+                   
+                   .mm-menu {
+                        /* background: #666; */
+                        background: #fff;
+                    } 
+                   .mm-list {
+                       font-size: 1em;
+                       /* color: #ccc; */
+                       color: #888;
+                       text-align: right;
+                    }
+                    .mm-list > li { 
+                        /* margin-right: 10px; */
+                        /* font-weight: bold; */
+                    }
+                    .mm-list a:hover {
+                        /* background: #777;  */
+                        background: #fff;
+                        color: #000;
+                        text-decoration: underline;
+                    }
+                   .mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults)::after {
+                       border: none;
+                   }
+                   #mm-blocker {
+                       background: #000;
+                   }
+                   .mm-menu.mm-right {
+                     width: 100px;
+                   } 
+                   html.mm-right.mm-opened.mm-opening .mm-page,
+                   html.mm-right.mm-opened.mm-opening #mm-blocker,
+                   html.mm-right.mm-opened.mm-opening .mm-fixed-top,
+                   html.mm-right.mm-opened.mm-opening .mm-fixed-bottom {
+                       right: 100px;
+                   }
+                   .mm-menu.mm-front {
+                        box-shadow: none;
+                       /* simple */
+                       border-left: 1px solid #000; 
+                    }
+
+#hamburger {
+    padding: 10px 5px 0 0;
+    width: 20px;
+}
+
+#hamburger div {
+    background-color: #888;
+    height: 2px;
+    width: 90%;
+    margin-bottom: 2px; 
+}
+
+
+/* mmenu end */
+
+
+/********** desktop or laptop >= 1224px **********/
+/* 76.5em = 1224 px */
+@media only screen and (min-width: 76.5em) { 
+    header {
+        position: fixed;
+    }
+}
+
+@media only screen and (max-width: 50em) { 
+    header {
+/*        background-color: #ffffff; */
+/*        position: fixed; */
+/*        border-bottom: 1px solid #888888; */
+    }
+    section {
+        padding-top: 20px;
+    }
+    .largescreens2 {
+        display: inline;
+    }
+    .smallscreens2 {
+        display: inline;
+    }
+}

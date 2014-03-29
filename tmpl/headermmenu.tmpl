@@ -28,240 +28,33 @@
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="textsize" -->.css"  />
 <!-- <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="maincss_url" -->?v16jul2013"  /> -->
 <link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/<!-- tmpl_var name="theme" -->.css"  />
-
+<link rel="stylesheet" type="text/css" href="<!-- tmpl_var name="css_dir_url" -->/horiznavmenu.css"  />  
 
 <!-- mmenu start -->
-<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.css" />
+<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.css" /> 
 <!--[if lt IE 9]>
 <link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.ie8.css" />
 <![endif]-->
-<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.positioning.css" />
+<link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/jquery.mmenu.positioning.css" /> 
+
+<script type="text/javascript">
+var $ = document; // shortcut
+var cssId = 'juncommenucID';
+if (!$.getElementById(cssId))
+{
+    var head  = $.getElementsByTagName('head')[0];
+    var link  = $.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'http://jothut.com/javascript/mmenu/juncommenu.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+</script>
+
+<!-- <link type="text/css" rel="stylesheet" href="<!-- tmpl_var name="home_page" -->/javascript/mmenu/juncommenu.css" />  -->
 <!-- mmenu end -->
-
-
-<style>
-nav {
-display: none;
-}
-
-
- /* Big cover image on the home page */
-#site-head {
-    position: relative;
-    display: table;
-    width: 100%;
-    /* height: 60%;  see NOTE above to make this work */
-    text-align: center;
-    color: #fff;
-    background: #303538 no-repeat center center;
-    background-size: cover;
-    padding-top: 2em;  
-    padding-bottom: 1em;
-}
-
-/* Creates a responsive wrapper that makes our content scale nicely */
-/* jrs - may not need this .inner */
-.inner {
-    position: relative;
-    width: 80%;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-#blog-author-image {
-    width:50px;
-    height:50px;
-    border-radius: 25px;
-    -moz-border-radius: 25px;
-    -khtml-border-radius: 25px;
-    -webkit-border-radius: 25px;
-}
-
-#blog-title {
-    font-size: 2em;
-    line-height: 1em; 
-}
-
-#blog-description {
-    font-size: 1em;
-    line-height: 1.5em; 
-}
-
-section {
-    padding-top: 0;
-}
-sitewide {
-    padding-top: 0;
-}
- 
-
-#content h1 {
-    padding-top: 0;
-    margin-top: 5px;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-header #homelink a, header #homelink {
-    color: #888888;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#homelink a:hover, header a:hover {
-    color: #000000;
-    text-decoration: none;
-}
-
-.largescreens2 {
-    display: inline;
-}
-
-.smallscreens2 {
-    display: none;
-}
-
-
-
-/* mmenu start */
-
-                    header {
-                       display: block;
-                       float: left;
-                       width: 100%;
-                       left: auto;
-                       position: absolute;
-                   }
-
-#header a
-{
-	display: block;
-	width: 40px;
-	height: 40px;
-	position: absolute;
-	top: 0;
-	left: 10px;
-}
-#header a.right
-{
-	left: auto;
-	right: 10px;
-}
-
-                   #header {
-                       height: 30px;
-                       /* border-bottom: 1px solid #ccc; */
-                   }
-                   #header a {
-                       display: none;
-                       display: inherit;
-                       background: none;
-                       width: 0;
-                       height: 0;
-                       top: 0;
-                       left: 0;
-                       padding: 0 20px 0 0;
-                       margin: 0;
-                       line-height: 1em;
-                   }
-
-                   #homelink {
-                       font-size: 80%;
-                       color: #ccc;
-                       padding: 5px 5px 0 5px;
-                   }
-                   #content {
-/*
-                       margin: 0px auto;
-                       padding: 0;
-                       max-width: 42em;
-                       padding: 0em .2em 0 .2em;
-*/
-                   }
-                   
-                   .mm-menu {
-                        /* background: #666; */
-                        background: #fff;
-                    } 
-                   .mm-list {
-                       font-size: 1em;
-                       /* color: #ccc; */
-                       color: #888;
-                       text-align: right;
-                    }
-                    .mm-list > li { 
-                        /* margin-right: 10px; */
-                        /* font-weight: bold; */
-                    }
-                    .mm-list a:hover {
-                        /* background: #777;  */
-                        background: #fff;
-                        color: #000;
-                        text-decoration: underline;
-                    }
-                   .mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults)::after {
-                       border: none;
-                   }
-                   #mm-blocker {
-                       background: #000;
-                   }
-                   .mm-menu.mm-right {
-                     width: 100px;
-                   } 
-                   html.mm-right.mm-opened.mm-opening .mm-page,
-                   html.mm-right.mm-opened.mm-opening #mm-blocker,
-                   html.mm-right.mm-opened.mm-opening .mm-fixed-top,
-                   html.mm-right.mm-opened.mm-opening .mm-fixed-bottom {
-                       right: 100px;
-                   }
-                   .mm-menu.mm-front {
-                        box-shadow: none;
-                       /* simple */
-                       border-left: 1px solid #000; 
-                    }
-
-#hamburger {
-    padding: 10px 5px 0 0;
-    width: 20px;
-}
-
-#hamburger div {
-    background-color: #ccc;
-    height: 2px;
-    width: 90%;
-    margin-bottom: 2px; 
-}
-
-
-/* mmenu end */
-
-
-/********** desktop or laptop >= 1224px **********/
-/* 76.5em = 1224 px */
-@media only screen and (min-width: 76.5em) { 
-    header {
-        position: fixed;
-    }
-}
-
-@media only screen and (max-width: 50em) { 
-    header {
-/*        background-color: #ffffff; */
-/*        position: fixed; */
-/*        border-bottom: 1px solid #888888; */
-    }
-    section {
-        padding-top: 20px;
-    }
-    .largescreens2 {
-        display: inline;
-    }
-    .smallscreens2 {
-        display: inline;
-    }
-}
-
-</style>
 
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
