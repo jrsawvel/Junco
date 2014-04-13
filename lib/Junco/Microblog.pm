@@ -74,7 +74,9 @@ sub add_microblog {
     # print $q->redirect( -url => $url);
     # 23may2013 print $q->redirect( -url => $ENV{HTTP_REFERER});
 
-    my $url = Config::get_value_for("home_page");
+    # my $url = Config::get_value_for("home_page");
+    # switched to this on 9Apr2014 after making default home page view point to blog_ view for personal site.
+    my $url = Config::get_value_for("home_page") . Config::get_value_for("cgi_app") . "/stream";
     print $q->redirect( -url => $url);
 
     exit;

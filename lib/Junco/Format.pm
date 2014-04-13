@@ -467,6 +467,17 @@ sub process_embedded_media {
         $str =~ s|\Q$cmd$url|$gscript|;    
     }
 
+    while ( $str =~ m|^(calc[\s]*=[\s]*)(.*?)$|mi ) {
+        my $cmd=$1;
+        my $arith = $2;
+        my $result = eval($arith);
+        unless ( $result ) {
+            $result = "arithmetic string could not be processed. $@";
+        }        
+        # $str =~ s|\Q$cmd$arith|[calc] $arith = $result|;    
+        $str =~ s|\Q$cmd$arith|$arith = $result|;    
+    }
+
     return $str;
 }
 # embedding media

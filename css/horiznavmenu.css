@@ -57,5 +57,14 @@ header #homelink {
     font: .9em/1.5 "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
+header .worklinks a, header .worklinks a:visited {
+    color: #444;
+    text-decoration: none;
+}
+
+header .worklinks a:hover {
+    color: #000;
+    text-decoration: underline;
+}
 
 
