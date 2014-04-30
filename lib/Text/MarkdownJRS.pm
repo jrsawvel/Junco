@@ -166,6 +166,8 @@ sub new {
 
     $p{tab_width} = 4 unless (defined $p{tab_width} and $p{tab_width} =~ m/^\d+$/);
 
+    $p{newline_to_br} = 0 unless (defined $p{newline_to_br} and $p{newline_to_br} =~ m/^\d+$/ and $p{newline_to_br} > 0);
+
     $p{empty_element_suffix} ||= ' />'; # Change to ">" for HTML output
 
     $p{trust_list_start_value} = $p{trust_list_start_value} ? 1 : 0;
@@ -583,7 +585,12 @@ $text = $self->_JRS_format_big_and_underline($text);
 
     # FIXME - Is hard coding space here sane, or does this want to be related to tab width?
     # Do hard breaks:
+# jrs - 30apr2013
+if ( $self->{newline_to_br} ) {
+    $text =~ s/\n/ <br$self->{empty_element_suffix}\n/g;
+} else {
     $text =~ s/ {2,}\n/ <br$self->{empty_element_suffix}\n/g;
+}
 
     return $text;
 }

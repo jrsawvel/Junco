@@ -306,6 +306,12 @@ sub format_content {
 
     $multimarkdown = 1 if Utils::get_power_command_on_off_setting_for("multimarkdown", $formattedcontent, 0); 
 
+    my $newline_to_br = 0;
+
+    if ( Utils::get_power_command_on_off_setting_for("newline_to_br", $formattedcontent, 0) ) {
+        $newline_to_br = 1;
+    }
+
     $formattedcontent = remove_image_header_commands($formattedcontent); 
 
     $formattedcontent = remove_power_commands($formattedcontent);
@@ -329,7 +335,9 @@ sub format_content {
     if ( $markdown ) {
 #        my $m = Text::Markdown->new;
         my $m = Text::MarkdownJRS->new;
-        $formattedcontent = $m->markdown($formattedcontent);
+#        $formattedcontent = $m->markdown($formattedcontent);
+        $formattedcontent = $m->markdown($formattedcontent, {newline_to_br => $newline_to_br} );
+
 #        $formattedcontent = HTML::Entities::decode($formattedcontent);
 #        $formattedcontent = format_small_and_strikethrough($formattedcontent);
 #        $formattedcontent = format_big_and_underline($formattedcontent);
@@ -414,6 +422,7 @@ sub remove_power_commands {
     $str =~ s|^markdown[\s]*=[\s]*[noNOyesYES]+||mig;
     $str =~ s|^multimarkdown[\s]*=[\s]*[noNOyesYES]+||mig;
     $str =~ s|^webmention[\s]*=[\s]*[noNOyesYES]+||mig;
+    $str =~ s|^newline_to_br[\s]*=[\s]*[noNOyesYES]+||mig;
 
     return $str;
 }
