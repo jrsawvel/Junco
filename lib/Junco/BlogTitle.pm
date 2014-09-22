@@ -55,13 +55,15 @@ use NEXT;
                 $self->{title} = $1;
             }
 
-            if ( $self->{title} =~ m/^(.+?):(.*)$/ ) {
-                my $namespace = StrNumUtils::trim_spaces($1);
-                if ( (lc($namespace) ne lc($self->{username})) ) {
-                    $self->{err_str} .= "The text preceding the colon punctuation mark must match your username. That area is reserved for your namespace. If you don't wish to use this for your namespace, then replace the colon mark.<br /><br />";
-                    $self->{err} = 1;
-                }
-            }
+# commented out this code block on July 16, 2014.
+# stopped enforcing the namespace feature, since I'm the only one using the site.
+#            if ( $self->{title} =~ m/^(.+?):(.*)$/ ) {
+#                my $namespace = StrNumUtils::trim_spaces($1);
+#                if ( (lc($namespace) ne lc($self->{username})) ) {
+#                    $self->{err_str} .= "The text preceding the colon punctuation mark must match your username. That area is reserved for your namespace. If you don't wish to use this for your namespace, then replace the colon mark.<br /><br />";
+#                    $self->{err} = 1;
+#                }
+#            }
 
             if ( BlogData::title_exists(StrNumUtils::trim_spaces($self->{title}), $self->{articleid} ) ) {
                 $self->{err_str} .= "Article title: \"$self->{title}\" already exists. Choose a different title.<br /><br />";

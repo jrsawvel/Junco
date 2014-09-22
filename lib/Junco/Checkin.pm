@@ -163,14 +163,15 @@ sub _get_checkins {
     my $db = Db->new($pt_db_catalog, $pt_db_user_id, $pt_db_password);
     Error::report_error("500", "Error connecting to database.", $db->errstr) if $db->err;
 
+#        date_format(date_add(createddate, interval 0 hour), '%b %d, %Y') as createddate, 
     my $sql = <<EOSQL;
         select id, formattedcontent, status, createddate as dbdate,
-        date_format(date_add(createddate, interval 0 hour), '%b %d, %Y') as createddate, 
+        date_format(date_add(createddate, interval 0 hour), '%b %d, %Y - %r utc') as createddate, 
         unix_timestamp(createddate) as date_epoch_seconds,
         latitude, longitude 
         from $dbtable_content  
         where authorid=$userid and status='o' and type='c' 
-        order by id desc limit 150
+        order by id desc limit 200
 EOSQL
 
 

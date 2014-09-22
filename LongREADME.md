@@ -300,6 +300,9 @@ These custom commands are used to display other media:
 * youtube=
 * vimeo=
 * gist=
+* insta=http://instagram.com/p/tOvJxJtQhC - will display image size as 320x320 pixels
+* or specify a size with insta=http://instagram.com/p/tOvJxJtQhC 480x480
+
 
 A part of the URL that points to the video, map, or code snippet is placed after the appropriate command.
 

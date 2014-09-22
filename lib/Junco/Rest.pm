@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use MIME::Base64;
 use HTML::Entities;
+use Junco::User;
 use Junco::Format;
 use Junco::BlogTitle;
 use Junco::Backlinks;
@@ -24,7 +25,7 @@ sub create_blogpost_draft_stub {
 
     # set set up some defaults:
     my $domain   = Config::get_value_for("email_host");
-    my $function = 'addblog';
+    my $function = 'addarticle';
 #    my $user = 'JR';
     my $prog = Config::get_value_for("cgi_app");
     my $datetime = Utils::create_datetime_stamp();
@@ -74,7 +75,7 @@ sub do_rest {
         do_get($tmp_hash);
     } elsif ( $request_method eq "POST" and $function eq "addmicroblog" ) {
         add_microblog();
-    } elsif ( $request_method eq "POST" and $function eq "addblog" ) {
+    } elsif ( $request_method eq "POST" and $function eq "addarticle" ) {
         add_blog();
     } elsif ( $request_method eq "PUT" ) {
         do_put();
@@ -263,7 +264,10 @@ sub _add_microblog {
 sub add_blog {
     my $q = new CGI;
     my $err_msg = "";
+
    
+
+
 #    User::user_allowed_to_function();
 
     my $formattedcontent = "";
@@ -290,17 +294,25 @@ sub add_blog {
         $err_msg .= "Missing the created date.<br />\n";
     }
 
-    my $logged_in_userid = $q->param("authorid");
-    if ( !defined($logged_in_userid)  ||  (length($logged_in_userid) < 1)  ||  !StrNumUtils::is_numeric($logged_in_userid) ) {
-        $err_msg .= "Missing or invalid author ID.<br />\n";
-    }
+#    my $logged_in_userid = $q->param("authorid");
+#    if ( !defined($logged_in_userid)  ||  (length($logged_in_userid) < 1)  ||  !StrNumUtils::is_numeric($logged_in_userid) ) {
+#        $err_msg .= "Missing or invalid author ID.<br />\n";
+#    }
 
-    my $logged_in_username = User::get_username_for_id($logged_in_userid);
-    if ( length($logged_in_username) < 1 ) {
-        $err_msg .= "Missing or invalid username.<br />\n";
-    }
+#    my $logged_in_username = User::get_username_for_id($logged_in_userid);
+#    if ( length($logged_in_username) < 1 ) {
+#        $err_msg .= "Missing or invalid username.<br />\n";
+#    }
 
     my $id = $q->param("id");
+
+    my $logged_in_username = "JR";
+    my $logged_in_userid   = 1;
+
+#print "Content-type: text/plain;\n\n";
+#print "debug\n";
+#exit;
+
 
     my $o = BlogTitle->new();
     $o->set_logged_in_username($logged_in_username);
