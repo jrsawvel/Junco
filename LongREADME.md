@@ -507,6 +507,7 @@ A few other formatting commands were added, and they work similar to the Textile
 * br.
 * more.
 * code. and code..
+* fence. and fence..
 
 
 * q. and q.. To highlight or quote text from another source, surround it with the opening and closing ``q`` tags. Both must start at the beginning of the line.

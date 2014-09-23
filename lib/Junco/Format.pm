@@ -60,6 +60,7 @@ sub custom_commands {
     # pt=alphanumeric_plus_underscore  and pt..
     # more.
     # code. and code..
+    # fence. and fence..
 
 #    $formattedcontent =~ s/^q[.][.]/\n<\/div>/igm;
     $formattedcontent =~ s/^q[.][.]/\n<\/blockquote>/igm;
@@ -70,7 +71,6 @@ sub custom_commands {
     $formattedcontent =~ s/^tmpl[.]/<tmpl>/igm;
 
     $formattedcontent =~ s/^code[.][.]/<\/code><\/pre><\/div>/igm;
-#    $formattedcontent =~ s/^code[.]/<textarea class="codetext" id="enhtextareaboxarticle" rows="15" cols="60" wrap="off" readonly>/igm;
     $formattedcontent =~ s/^code[.]/<div class="codeClass"><pre><code>/igm;
 
     $formattedcontent =~ s/^hr[.]/<hr \/>/igm;
@@ -81,6 +81,9 @@ sub custom_commands {
     $formattedcontent =~ s/^pt[.][.]/<\/pt>/igm;
 
     $formattedcontent =~ s/^more[.]/<more \/>/igm;
+
+    $formattedcontent =~ s/^fence[.][.]/<\/code><\/pre>/igm;
+    $formattedcontent =~ s/^fence[.]/<pre><code>/igm;
 
     return $formattedcontent;
 }
