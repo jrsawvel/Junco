@@ -1,6 +1,7 @@
 
 /* @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);  */
 
+
 body {
     background: #ffffff;
     font-family: "Open Sans", Arial, Helvetica, sans-serif; 
@@ -32,6 +33,7 @@ section {
     margin: 0px auto 0px;
     position: relative;
     padding-top: 20px; 
+    /* padding-bottom: 30px; */  /* needed if fixed footer used */
 }
 
 article {
@@ -397,6 +399,19 @@ a.extlink:hover {
     text-align: center;
 }
 
+/* testing - code to fix footer menu at bottom of page */
+/* will test more later, but for now, 18may2014, i don't care for it except on phone */
+/*
+#fixedfooter {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background: #f0fff0; 
+}
+*/
+
 .codetext {
     color: #000000; 
     font-size: .8em;
@@ -506,6 +521,17 @@ a.extlink:hover {
 
 #microblogtoolbar {
     display: none;
+}
+
+.fenceClass pre {
+    white-space: pre;
+}
+
+.fenceClass {
+    overflow-x: scroll;
+    background: #f8f8f8;
+    border: 1px solid #dddddd;
+    padding: 2px 5px 2px 5px;
 }
 
 /*  http://stackoverflow.com/questions/2295766/how-to-create-a-scrollable-div-tag-vertically-supported-in-chrome */
@@ -946,6 +972,7 @@ border: 1px solid #222;
     #footermenu ul li a {
         padding: 0 .3em;
     }
+
 }
 
 @media only screen and (max-width: 800px) { 

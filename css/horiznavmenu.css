@@ -1,5 +1,23 @@
 /* used to display the navigation menu in horizontal bar across top of site */
 
+
+/* added these lines on 5apr2015 while removing the javascript hamburger slide-in menu for all screens */
+#content h1 {
+    padding-top: 0;
+    margin-top: 5px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/*
+#homelink a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+*/
+
+/**************/
+
 header {
     display: block;
     float: left;
@@ -9,8 +27,10 @@ header {
 
 header nav {
     text-align: left;
-    background: #ffffff;
-    font: 1em/1em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+/*    background: #ffffff; */
+    background: transparent;
+/*    font-family: "Open Sans", Arial, Helvetica, sans-serif;  */
+    font: 1em/1em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif; 
     padding-left: 1em;
 }
 
@@ -35,6 +55,7 @@ header nav ul li ul {
 
 header nav a, header nav a:visited {
     color: #444;
+    color: #888;
     text-decoration: none;
 }
 
@@ -43,12 +64,24 @@ header nav a:hover {
     text-decoration: underline;
 }
 
+#header-links a, #header-links a:visited {
+    color: #444;
+    color: #888;
+    text-decoration: none;
+}
+
+#header-links a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+/*
 header #homelink a, header #homelink {
     color: #444;
     text-decoration: none;
 }
+*/
 
-header #homelink {
+header #newhomelink {
     position: absolute;
     left: .5em;
     top: .4em;
@@ -67,4 +100,19 @@ header .worklinks a:hover {
     text-decoration: underline;
 }
 
+#newhomelink  {
+    color: #888;
+    font-weight: bold;
+    text-decoration: none;
+}
 
+#newhomelink a:visited {
+    color: #888;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#newhomelink a:hover {
+    color: #000;
+    text-decoration: underline; 
+}

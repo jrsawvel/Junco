@@ -82,8 +82,8 @@ sub custom_commands {
 
     $formattedcontent =~ s/^more[.]/<more \/>/igm;
 
-    $formattedcontent =~ s/^fence[.][.]/<\/code><\/pre>/igm;
-    $formattedcontent =~ s/^fence[.]/<pre><code>/igm;
+    $formattedcontent =~ s/^fence[.][.]/<\/code><\/pre><\/div>/igm;
+    $formattedcontent =~ s/^fence[.]/<div class="fenceClass"><pre><code>/igm;
 
     return $formattedcontent;
 }
